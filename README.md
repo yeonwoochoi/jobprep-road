@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 취준로드 (Job-prep Road)
 
-First, run the development server:
+## 프로젝트 개요
+- 업종 및 직무를 선택한 취준생에게 기업 요구사항을 분석해 맞춤형 취업 준비 커리큘럼을 AI 기반으로 자동 생성하는 서비스
+- IT 직군 중심, 향후 타 업종 확장 가능
+
+## 주요 기능
+- 사용자 인증 (이메일, Google/GitHub OAuth)
+- 업종/직무 태그 선택 및 다중 선택 지원
+- AI(GPT-4) 기반 커리큘럼 자동 생성 (필수 스킬, 학습 로드맵, 추천 리소스)
+- 커리큘럼 저장, 공유, PDF 내보내기
+- 관리자용 크롤링 데이터 관리 및 AI 설정 대시보드
+
+## 기술 스택
+- 프론트엔드: Next.js (App Router), TailwindCSS
+- 백엔드: Next.js API Routes, NextAuth.js (인증)
+- 데이터베이스: PostgreSQL + Prisma ORM
+- AI 연동: OpenAI GPT-4 API
+- 배포: Vercel
+
+## 시작하기
+
+### 설치 및 실행
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 환경 변수 설정 (`.env.local`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+DATABASE_URL=postgresql://...
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your_secret
+GOOGLE_CLIENT_ID=...
+GOOGLE_CLIENT_SECRET=...
+GITHUB_ID=...
+GITHUB_SECRET=...
+OPENAI_API_KEY=...
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 데이터베이스 마이그레이션
 
-## Learn More
+```bash
+npx prisma migrate dev --name init
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 프로젝트 구조
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/app` : Next.js App Router 기반 페이지
+- `/components` : 재사용 가능한 UI 컴포넌트
+- `/lib` : Prisma, 인증, GPT API 헬퍼 등
+- `/store` : Zustand 상태 관리
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 개발 및 배포
 
-## Deploy on Vercel
+- Vercel 연동 자동 배포 지원
+- ESLint 및 TailwindCSS 적용된 코드 스타일 유지
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 참고
+
+본 프로젝트는 MVP 개발을 목표로 하며, 사용자 피드백에 따라 기능 확장 예정입니다.
