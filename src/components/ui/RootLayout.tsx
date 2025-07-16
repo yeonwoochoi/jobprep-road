@@ -24,6 +24,7 @@ import Link from "next/link";
 import { Logo, Logomark } from "@/components/ui/Logo";
 import clsx from "clsx";
 import { Button } from "@/components/ui/Button";
+import { SocialMedia } from "@/components/ui/SocialMedia";
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -49,24 +50,82 @@ function MenuIcon(props: ComponentPropsWithoutRef<'svg'>) {
 
 function Navigation() {
   return (
-    <nav>
-
+    <nav className="mt-px text-white text-5xl font-medium tracking-tight">
+      <NavigationRow>
+        <NavigationItem href="/">서비스 소개</NavigationItem>
+        <NavigationItem href="/curriculum/generate">커리큘럼 생성</NavigationItem>
+      </NavigationRow>
+      <NavigationRow>
+        <NavigationItem href="/profile">마이페이지</NavigationItem>
+        <NavigationItem href="/contact">피드백 보내기</NavigationItem>
+      </NavigationRow>
     </nav>
   )
 }
 
 function NavigationRow({ children }: { children: ReactNode }) {
-  return <div></div>
+  return (
+    <div className="sm:bg-neutral-950">
+      <Container>
+        <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
+      </Container>
+    </div>
+  )
 }
 
-function NavigationItem({ href, children }: { href: string, children: ReactNode }) {
-  return <div></div>
+function NavigationItem({ href, children, }: { href: string, children: ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
+    >
+      {children}
+      <span
+        className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100"/>
+    </Link>
+  )
 }
 
 function InfoSection() {
-  return (
-    <div>
+  const handleCopy = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value)
+      alert("복사되었습니다!")
+    } catch (err) {
+      console.error("복사 실패:", err)
+    }
+  }
 
+  return (
+    <div className="relative bg-neutral-950 text-white before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
+      <Container>
+        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 py-12 sm:py-16">
+          <div>
+            <div className="py-4">
+              <div className="font-bold text-xl mb-2">이메일</div>
+              <button
+                onClick={() => handleCopy("chldusdn20@gmail.com")}
+                className="hover:text-gray-300 cursor-pointer"
+              >
+                chldusdn20@gmail.com
+              </button>
+            </div>
+            <div className="py-4">
+              <div className="font-bold text-xl mb-2">연락처</div>
+              <button
+                onClick={() => handleCopy("+82-10-8560-3465")}
+                className="hover:text-gray-300 cursor-pointer"
+              >
+                +82-10-8560-3465
+              </button>
+            </div>
+          </div>
+          <div>
+            <div className="font-bold text-xl">소셜 링크</div>
+            <SocialMedia className="mt-6" invert />
+          </div>
+        </div>
+      </Container>
     </div>
   )
 }
@@ -76,12 +135,12 @@ type HeaderPropsType = {
   icon: ComponentType<{ className?: string }>
   expanded: boolean
   onToggle: () => void
-  toggleRef: RefObject<HTMLButtonElement>
+  toggleRef: RefObject<HTMLButtonElement | null>
   invert?: boolean
 }
 
 function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = false }: HeaderPropsType) {
-  let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
+  const { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
 
   return (
     <Container>
@@ -135,15 +194,15 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
 }
 
 function RootLayoutInner({ children }: { children: ReactNode }) {
-  let panelId = useId()
-  let [expanded, setExpanded] = useState(false) // 메뉴의 열림/닫힘 상태
-  let [isTransitioning, setIsTransitioning] = useState(false) // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
+  const panelId = useId()
+  const [expanded, setExpanded] = useState(false) // 메뉴의 열림/닫힘 상태
+  const [isTransitioning, setIsTransitioning] = useState(false) // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
 
-  let openRef = useRef<HTMLButtonElement | null>(null)
-  let closeRef = useRef<HTMLButtonElement | null>(null)
-  let navRef = useRef<HTMLDivElement | null>(null)
+  const openRef = useRef<HTMLButtonElement | null>(null)
+  const closeRef = useRef<HTMLButtonElement | null>(null)
+  const navRef = useRef<HTMLDivElement | null>(null)
 
-  let shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion()
 
   useEffect(() => {
     // 현재 페이지 링크 클릭 시 메뉴 닫고 애니메이션 초기화
@@ -185,6 +244,7 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
         <div
           className="absolute top-2 right-0 left-0 z-40 pt-14"
           aria-hidden={expanded ? 'true' : undefined}
+          // @ts-expect-error (https://github.com/facebook/react/issues/17157)
           inert={expanded ? undefined : ''}
         >
           <Header
@@ -204,6 +264,7 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
           style={{ height: expanded ? 'auto' : '0.5rem' }}
           className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
           aria-hidden={expanded ? undefined : 'true'}
+          // @ts-expect-error (https://github.com/facebook/react/issues/17157)
           inert={expanded ? undefined : ''}
         >
           <motion.div layout className="bg-neutral-800">
@@ -244,8 +305,8 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  let pathname = usePathname()
-  let [logoHovered, setLogoHovered] = useState(false)
+  const pathname = usePathname()
+  const [logoHovered, setLogoHovered] = useState(false)
 
   return (
     <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>

@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useId } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
 
 export function Logomark({
@@ -9,8 +9,6 @@ export function Logomark({
   invert?: boolean
   filled?: boolean
 }) {
-  let id = useId()
-
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" {...props}>
       {/* 닫힌 도형 (로드맵을 상징하는 방패 모양) */}
