@@ -25,6 +25,10 @@ import { Logo, Logomark } from "@/components/ui/Logo";
 import clsx from "clsx";
 import { Button } from "@/components/ui/Button";
 import { SocialMedia } from "@/components/ui/SocialMedia";
+import LocaleText from "@/components/common/LocaleText";
+import { MessageKey } from "@/locale/message";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translate } from "@/locale";
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -48,16 +52,42 @@ function MenuIcon(props: ComponentPropsWithoutRef<'svg'>) {
   )
 }
 
+export function GlobeIcon(props: ComponentPropsWithoutRef<'svg'>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <circle cx={12} cy={12} r={10} />
+      <line x1={2} y1={12} x2={22} y2={12} />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+    </svg>
+  );
+}
+
 function Navigation() {
   return (
     <nav className="mt-px text-white text-5xl font-medium tracking-tight">
       <NavigationRow>
-        <NavigationItem href="/">서비스 소개</NavigationItem>
-        <NavigationItem href="/curriculum/generate">커리큘럼 생성</NavigationItem>
+        <NavigationItem href="/">
+          <LocaleText messageKey={MessageKey.HEADER_HOME} />
+        </NavigationItem>
+        <NavigationItem href="/curriculum/generate">
+          <LocaleText messageKey={MessageKey.HEADER_CURRICULUM} />
+        </NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/profile">마이페이지</NavigationItem>
-        <NavigationItem href="/contact">피드백 보내기</NavigationItem>
+        <NavigationItem href="/profile">
+          <LocaleText messageKey={MessageKey.HEADER_PROFILE} />
+        </NavigationItem>
+        <NavigationItem href="/contact">
+          <LocaleText messageKey={MessageKey.HEADER_FEEDBACK} />
+        </NavigationItem>
       </NavigationRow>
     </nav>
   )
@@ -87,12 +117,14 @@ function NavigationItem({ href, children, }: { href: string, children: ReactNode
 }
 
 function InfoSection() {
+  const { language, toggleLanguage } = useLanguage()
+
   const handleCopy = async (value: string) => {
     try {
       await navigator.clipboard.writeText(value)
-      alert("복사되었습니다!")
+      alert(translate(MessageKey.COPY_SUCCESS, language));
     } catch (err) {
-      console.error("복사 실패:", err)
+      alert(translate(MessageKey.COPY_FAILURE, language));
     }
   }
 
@@ -102,27 +134,43 @@ function InfoSection() {
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 py-12 sm:py-16">
           <div>
             <div className="py-4">
-              <div className="font-bold text-xl mb-2">이메일</div>
+              <div className="font-bold text-xl">
+                <LocaleText messageKey={MessageKey.HEADER_CONTACT_EMAIL_TITLE} />
+              </div>
               <button
                 onClick={() => handleCopy("chldusdn20@gmail.com")}
-                className="hover:text-gray-300 cursor-pointer"
+                className="hover:text-gray-300 cursor-pointer mt-4"
               >
                 chldusdn20@gmail.com
               </button>
             </div>
             <div className="py-4">
-              <div className="font-bold text-xl mb-2">연락처</div>
+              <div className="font-bold text-xl">
+                <LocaleText messageKey={MessageKey.HEADER_CONTACT_PHONE_TITLE} />
+              </div>
               <button
                 onClick={() => handleCopy("+82-10-8560-3465")}
-                className="hover:text-gray-300 cursor-pointer"
+                className="hover:text-gray-300 cursor-pointer mt-4"
               >
                 +82-10-8560-3465
               </button>
             </div>
           </div>
           <div>
-            <div className="font-bold text-xl">소셜 링크</div>
-            <SocialMedia className="mt-6" invert />
+            <div className="py-4">
+              <div className="font-bold text-xl">
+                <LocaleText messageKey={MessageKey.HEADER_CONTACT_SOCIAL_TITLE} />
+              </div>
+              <SocialMedia className="mt-4" invert />
+            </div>
+            <div className="py-4">
+              <div className="font-bold text-xl">
+                <LocaleText messageKey={MessageKey.HEADER_CONTACT_LANGUAGE_TITLE} />
+              </div>
+              <button onClick={toggleLanguage} className="cursor-pointer mt-4">
+                <GlobeIcon className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </Container>
@@ -157,14 +205,14 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
             filled={logoHovered}
           />
           <Logo
-            className="hidden h-8 sm:block"
+            className="h-8 sm:block"
             invert={invert}
             filled={logoHovered}
           />
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
-            Contact us
+          <Button href="/auth/login" invert={invert} className="w-20 h-11">
+            <LocaleText messageKey={MessageKey.HEADER_LOGIN_BUTTON} />
           </Button>
           <button
             ref={toggleRef}
@@ -296,7 +344,9 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
             yOffset={-96}
             interactive
           />
+
           <main className="w-full flex-auto">{children}</main>
+
           <Footer/>
         </motion.div>
       </motion.div>

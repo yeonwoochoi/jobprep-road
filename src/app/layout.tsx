@@ -1,6 +1,8 @@
 import { ReactNode } from "react";
 import "@/styles/tailwind.css";
 import { Metadata } from "next";
+import RootLayout from "@/components/ui/RootLayout";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: {
@@ -13,7 +15,11 @@ export default function Layout({ children }: Readonly<{ children: ReactNode }>) 
   return (
     <html className="h-full bg-neutral-950 text-base antialiased">
       <body className="flex min-h-full flex-col">
-        {children}
+        <LanguageProvider>
+          <RootLayout>
+            {children}
+          </RootLayout>
+        </LanguageProvider>
       </body>
     </html>
   );

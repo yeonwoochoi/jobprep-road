@@ -1,5 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react'
 import clsx from 'clsx'
+import { MessageKey } from "@/locale/message";
+import LocaleText from "@/components/common/LocaleText";
 
 export function Logomark({
   invert = false,
@@ -69,7 +71,7 @@ export function Logo({
 }) {
   return (
     <svg
-      viewBox="0 0 180 32"
+      viewBox="0 0 200 32"
       aria-hidden="true"
       className={clsx(fillOnHover && 'group/logo', className)}
       {...props}
@@ -88,7 +90,7 @@ export function Logo({
           invert ? 'fill-white' : 'fill-neutral-950'
         )}
       >
-        취준로드
+        <LocaleText messageKey={MessageKey.HEADER_COMPANY_NAME} />
       </text>
     </svg>
   )
