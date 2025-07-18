@@ -14,13 +14,13 @@ function Label({ id, children }: { id: string; children: ReactNode }) {
 }
 
 export default function TextField(
-  { label, text = 'text', className, ...props }
+  { label, type = 'text', className, ...props }
   : Omit<ComponentPropsWithoutRef<'input'>, 'id'> & { label: string }) {
   const id = useId()
   return (
     <div className={className}>
       {label && <Label id={id}>{label}</Label>}
-      <input id={id} type={text} name={label} {...props} className={formClasses} />
+      <input id={id} type={type} name={label} {...props} className={formClasses} />
     </div>
   )
 }
