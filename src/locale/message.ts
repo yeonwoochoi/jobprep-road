@@ -19,6 +19,15 @@ export enum MessageKey {
   HEADER_CONTACT_SOCIAL_TITLE = 'CONTACT_SOCIAL_TITLE',
   HEADER_CONTACT_LANGUAGE_TITLE = 'CONTACT_LANGUAGE_TITLE',
 
+  // AUTH
+  AUTH_EMAIL_LABEL = 'AUTH_EMAIL_LABEL',
+  AUTH_PASSWORD_LABEL = 'AUTH_PASSWORD_LABEL',
+  AUTH_LOGIN_TITLE = 'AUTH_LOGIN_TITLE',
+  AUTH_NO_ACCOUNT = 'AUTH_NO_ACCOUNT',
+  AUTH_SIGNUP_CTA = 'AUTH_SIGNUP_CTA',
+  AUTH_SUBMIT_BUTTON = 'AUTH_SUBMIT_BUTTON',
+  AUTH_SUBMIT_PENDING = 'AUTH_SUBMIT_PENDING',
+
   // API MESSAGE
   REQUIRED_EMAIL_PASSWORD = 'REQUIRED_EMAIL_PASSWORD',
   UNKNOWN_ERROR = 'UNKNOWN_ERROR',
@@ -87,6 +96,36 @@ export const messages: LocaleData = {
   [MessageKey.HEADER_CONTACT_LANGUAGE_TITLE]: {
     ko: '언어',
     en: 'Language',
+  },
+
+  // AUTH
+  [MessageKey.AUTH_EMAIL_LABEL]: {
+    ko: '이메일',
+    en: 'Email',
+  },
+  [MessageKey.AUTH_PASSWORD_LABEL]: {
+    ko: '비밀번호',
+    en: 'Password',
+  },
+  [MessageKey.AUTH_LOGIN_TITLE]: {
+    ko: '계정 로그인',
+    en: 'Login to your account',
+  },
+  [MessageKey.AUTH_NO_ACCOUNT]: {
+    ko: '계정이 없으신가요?',
+    en: 'Don’t have an account?',
+  },
+  [MessageKey.AUTH_SIGNUP_CTA]: {
+    ko: '회원가입하기',
+    en: 'Sign Up',
+  },
+  [MessageKey.AUTH_SUBMIT_BUTTON]: {
+    ko: '로그인',
+    en: 'Login',
+  },
+  [MessageKey.AUTH_SUBMIT_PENDING]: {
+    ko: '로그인 중...',
+    en: 'Logging in...',
   },
 
   // API MESSAGE

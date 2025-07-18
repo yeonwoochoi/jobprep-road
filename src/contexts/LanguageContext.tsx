@@ -6,13 +6,13 @@ import { Locale } from "@/locale";
 
 interface LanguageContextType {
   language: Locale;
-  toggleLanguage: (lang: Locale) => void;
+  toggleLanguage: () => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Locale>('ko')
+export function LanguageProvider({ children, initialLanguage = 'ko' }: { children: ReactNode, initialLanguage?: Locale }) {
+  const [language, setLanguage] = useState<Locale>(initialLanguage)
 
   useEffect(() => {
     const cookieLang = getCookie('lang') as Locale | undefined;

@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  ComponentPropsWithoutRef,
   ComponentType,
   createContext,
   Dispatch,
@@ -28,47 +27,14 @@ import { SocialMedia } from "@/components/ui/SocialMedia";
 import LocaleText from "@/components/common/LocaleText";
 import { MessageKey } from "@/locale/message";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { translate } from "@/locale";
+import { t } from "@/locale";
+import { XIcon, MenuIcon } from "@/components/ui/Icons";
+import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
 
-const RootLayoutContext = createContext<{
+const MainLayoutContext = createContext<{
   logoHovered: boolean
   setLogoHovered: Dispatch<SetStateAction<boolean>>
 } | null>(null)
-
-function XIcon(props: ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path d="m5.636 4.223 14.142 14.142-1.414 1.414L4.222 5.637z"/>
-      <path d="M4.222 18.363 18.364 4.22l1.414 1.414L5.636 19.777z"/>
-    </svg>
-  )
-}
-
-function MenuIcon(props: ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path d="M2 6h20v2H2zM2 16h20v2H2z"/>
-    </svg>
-  )
-}
-
-export function GlobeIcon(props: ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      {...props}
-    >
-      <circle cx={12} cy={12} r={10} />
-      <line x1={2} y1={12} x2={22} y2={12} />
-      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  );
-}
 
 function Navigation() {
   return (
@@ -122,9 +88,9 @@ function InfoSection() {
   const handleCopy = async (value: string) => {
     try {
       await navigator.clipboard.writeText(value)
-      alert(translate(MessageKey.COPY_SUCCESS, language));
+      alert(t(MessageKey.COPY_SUCCESS, language));
     } catch (err) {
-      alert(translate(MessageKey.COPY_FAILURE, language));
+      alert(t(MessageKey.COPY_FAILURE, language));
     }
   }
 
@@ -167,9 +133,7 @@ function InfoSection() {
               <div className="font-bold text-xl">
                 <LocaleText messageKey={MessageKey.HEADER_CONTACT_LANGUAGE_TITLE} />
               </div>
-              <button onClick={toggleLanguage} className="cursor-pointer mt-4">
-                <GlobeIcon className="w-6 h-6" />
-              </button>
+              <LanguageToggleButton className="mt-4" />
             </div>
           </div>
         </div>
@@ -188,7 +152,7 @@ type HeaderPropsType = {
 }
 
 function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = false }: HeaderPropsType) {
-  const { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
+  const { logoHovered, setLogoHovered } = useContext(MainLayoutContext)!
 
   return (
     <Container>
@@ -241,7 +205,7 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
   )
 }
 
-function RootLayoutInner({ children }: { children: ReactNode }) {
+function MainLayoutInner({ children }: { children: ReactNode }) {
   const panelId = useId()
   const [expanded, setExpanded] = useState(false) // 메뉴의 열림/닫힘 상태
   const [isTransitioning, setIsTransitioning] = useState(false) // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
@@ -338,7 +302,7 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
         className="relative flex flex-auto overflow-hidden bg-white pt-14"
       >
-        <motion.div className="relative isolate flex flex-col w-full pt-9">
+        <motion.div className="relative isolate flex flex-col w-full pt-16">
           <GridPattern
             className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full mask-[linear-gradient(to_bottom_left,white_40%,transparent_50%)] fill-neutral-50 stroke-neutral-950/5"
             yOffset={-96}
@@ -354,15 +318,15 @@ function RootLayoutInner({ children }: { children: ReactNode }) {
   )
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function MainLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const [logoHovered, setLogoHovered] = useState(false)
 
   return (
-    <RootLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
-      <RootLayoutInner key={pathname}>
+    <MainLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
+      <MainLayoutInner key={pathname}>
         {children}
-      </RootLayoutInner>
-    </RootLayoutContext.Provider>
+      </MainLayoutInner>
+    </MainLayoutContext.Provider>
   )
 }
