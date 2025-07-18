@@ -169,7 +169,7 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
             filled={logoHovered}
           />
           <Logo
-            className="h-8 sm:block"
+            className="h-8 hidden sm:block"
             invert={invert}
             filled={logoHovered}
           />
