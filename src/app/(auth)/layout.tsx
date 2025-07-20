@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import "@/styles/tailwind.css";
 import { Metadata } from "next";
 import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
 
