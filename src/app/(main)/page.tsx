@@ -13,7 +13,7 @@ export default function Home() {
           <br className="hidden sm:inline" />
           <LocaleText messageKey={MessageKey.HOME_TITLE_SUFFIX} />
         </h1>
-        <p className="mt-6 text-xl text-neutral-600">
+        <p className="mt-6 text-xl text-neutral-600 text-pretty">
           <LocaleText messageKey={MessageKey.HOME_DESCRIPTION} />
         </p>
         <Button href="/curriculum" className="text-lg w-[150px] h-12 mt-6">

@@ -28,6 +28,12 @@ export enum MessageKey {
   AUTH_SUBMIT_BUTTON = 'AUTH_SUBMIT_BUTTON',
   AUTH_SUBMIT_PENDING = 'AUTH_SUBMIT_PENDING',
 
+  // NOT FOUND
+  NOT_FOUND_TITLE = 'NOT_FOUND_TITLE',
+  NOT_FOUND_SUBTITLE = 'NOT_FOUND_SUBTITLE',
+  NOT_FOUND_DESCRIPTION = 'NOT_FOUND_DESCRIPTION',
+  NOT_FOUND_HOME_BUTTON = 'NOT_FOUND_HOME_BUTTON',
+
   // API MESSAGE
   REQUIRED_EMAIL_PASSWORD = 'REQUIRED_EMAIL_PASSWORD',
   UNKNOWN_ERROR = 'UNKNOWN_ERROR',
@@ -126,6 +132,24 @@ export const messages: LocaleData = {
   [MessageKey.AUTH_SUBMIT_PENDING]: {
     ko: '로그인 중...',
     en: 'Logging in...',
+  },
+
+  // NOT FOUND
+  [MessageKey.NOT_FOUND_TITLE]: {
+    ko: '404',
+    en: '404',
+  },
+  [MessageKey.NOT_FOUND_SUBTITLE]: {
+    ko: '페이지 없음',
+    en: 'Page not found',
+  },
+  [MessageKey.NOT_FOUND_DESCRIPTION]: {
+    ko: '죄송합니다. 요청하신 페이지를 찾을 수 없습니다.',
+    en: 'Sorry, we couldn’t find the page you’re looking for.',
+  },
+  [MessageKey.NOT_FOUND_HOME_BUTTON]: {
+    ko: '홈으로',
+    en: 'Go back home',
   },
 
   // API MESSAGE
