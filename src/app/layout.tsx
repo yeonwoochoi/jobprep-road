@@ -2,6 +2,8 @@ import { ReactNode } from "react";
 import { cookies } from 'next/headers';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
+import '@/styles/tailwind.css'
+
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();
   const langCookie = cookieStore.get('lang' as any);
