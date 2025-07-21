@@ -233,7 +233,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const toggleMenuAndFocusCloseButton = () => {
+  const toggleMenuAndFocusButton = (isClose: boolean) => {
     setIsTransitioning(true)
     setExpanded((expanded) => !expanded)
 
@@ -241,7 +241,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
     // close button (closeRef) 가 렌더링 전이면 없을 수도 있으니까.
     // 메뉴가 열린 후 닫기 버튼(XIcon)에 포커스를 강제로 줌
     window.setTimeout(() => {
-      const el = closeRef.current
+      const el = isClose ? openRef.current : closeRef.current
       if (el) {
         el.focus({ preventScroll: true } as FocusOptions)
       }
@@ -255,16 +255,16 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
         {/* Expand 전 Header */}
         <div
           className="absolute top-2 right-0 left-0 z-40 pt-14"
-          aria-hidden={expanded ? 'true' : undefined}
+          aria-hidden={expanded}
           // @ts-expect-error (https://github.com/facebook/react/issues/17157)
-          inert={expanded ? undefined : ''}
+          inert={expanded}
         >
           <Header
             panelId={panelId}
             icon={MenuIcon}
             toggleRef={openRef}
             expanded={expanded}
-            onToggle={toggleMenuAndFocusCloseButton}
+            onToggle={() => toggleMenuAndFocusButton(false)}
           />
         </div>
 
@@ -275,9 +275,9 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
           id={panelId}
           style={{ height: expanded ? 'auto' : '0.5rem' }}
           className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
-          aria-hidden={expanded ? undefined : 'true'}
+          aria-hidden={expanded}
           // @ts-expect-error (https://github.com/facebook/react/issues/17157)
-          inert={expanded ? undefined : ''}
+          inert={!expanded}
         >
           <motion.div layout className="bg-neutral-800">
             <div ref={navRef} className="bg-neutral-950 pt-14 pb-16">
@@ -285,9 +285,9 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
                 invert
                 panelId={panelId}
                 icon={XIcon}
-                toggleRef={openRef}
+                toggleRef={closeRef}
                 expanded={expanded}
-                onToggle={toggleMenuAndFocusCloseButton}
+                onToggle={() => toggleMenuAndFocusButton(true)}
               />
             </div>
             <Navigation/>

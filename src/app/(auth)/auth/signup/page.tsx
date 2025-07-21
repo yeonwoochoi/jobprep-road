@@ -6,8 +6,6 @@ import { MessageKey } from "@/locale/message";
 import SignupInput from "@/components/auth/SignupInput";
 
 export default function Page() {
-
-
   return (
     <div className="flex flex-col flex-1 items-center justify-center pb-24">
       <FadeIn>
