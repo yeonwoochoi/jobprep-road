@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
 import '@/styles/tailwind.css'
+import { ToastProvider } from "@/components/ui/ToastProvider";
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();
@@ -15,6 +16,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <LanguageProvider initialLanguage={lang}>
           {children}
         </LanguageProvider>
+        <ToastProvider />
       </body>
     </html>
   )

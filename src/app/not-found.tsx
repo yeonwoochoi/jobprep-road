@@ -1,12 +1,17 @@
-import Container from "@/components/ui/Container";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
 import LocaleText from "@/components/common/LocaleText";
 import { MessageKey } from "@/locale/message";
+import { GridPattern } from "@/components/ui/GridPattern";
 
 export default function NotFound() {
   return (
-    <Container className="flex flex-col h-screen relative items-center justify-center text-center pb-20">
+    <div className="flex flex-col h-screen relative isolate items-center justify-center text-center pb-20">
+      <GridPattern
+        className="absolute inset-x-0 -top-14 -z-10 h-full w-full mask-[linear-gradient(to_bottom_left,white_40%,transparent_50%)] fill-neutral-50 stroke-neutral-950/5"
+        yOffset={-96}
+        interactive
+      />
       <FadeIn>
         <p className="font-semibold text-base text-neutral-900">
           <LocaleText messageKey={MessageKey.NOT_FOUND_TITLE}/>
@@ -21,6 +26,6 @@ export default function NotFound() {
           <LocaleText messageKey={MessageKey.NOT_FOUND_HOME_BUTTON}/>
         </Button>
       </FadeIn>
-    </Container>
+    </div>
   )
 }

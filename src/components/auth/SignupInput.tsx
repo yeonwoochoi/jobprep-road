@@ -1,22 +1,22 @@
 'use client'
 
-import { useActionState, useEffect } from "react";
-import { loginAction } from "@/actions/login.action";
-import { ApiResult } from "@/lib/api";
-import { LoginData } from "@/types/types";
-import { MessageKey } from "@/locale/message";
-import { t } from "@/locale";
-import { useLanguage } from "@/contexts/LanguageContext";
 import TextField from "@/components/ui/TextField";
-import { useToast } from '@/hooks/useToast'
+import { t } from "@/locale";
+import { MessageKey } from "@/locale/message";
+import { useActionState, useEffect } from "react";
+import { signupAction } from "@/actions/signup.action";
+import { ApiResult } from "@/lib/api";
+import { UserData } from "@/types/types";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
 
-type LoginActionState = ApiResult<LoginData | null>
+type SignupActionState = ApiResult<UserData | null>
 
-export default function LoginInput() {
-  const [state, formAction, isPending] = useActionState<LoginActionState, FormData>(loginAction, {
+export default function SignupInput() {
+  const [state, formAction, isPending] = useActionState<SignupActionState, FormData>(signupAction, {
     status: 'success',
-    data: null,
+    data: null
   })
 
   const { language } = useLanguage()
@@ -36,6 +36,24 @@ export default function LoginInput() {
 
   return (
     <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-8 w-full">
+      <div className="flex w-full gap-x-4">
+        <TextField
+          label="First Name"
+          name="firstName"
+          autoComplete="given-name"
+          required
+          className="flex-1"
+          disabled={isPending}
+        />
+        <TextField
+          label="Last Name"
+          name="lastName"
+          autoComplete="family-name"
+          required
+          className="flex-1"
+          disabled={isPending}
+        />
+      </div>
       <TextField
         label="Email address"
         name="email"

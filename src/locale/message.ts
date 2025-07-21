@@ -27,6 +27,15 @@ export enum MessageKey {
   AUTH_SIGNUP_CTA = 'AUTH_SIGNUP_CTA',
   AUTH_SUBMIT_BUTTON = 'AUTH_SUBMIT_BUTTON',
   AUTH_SUBMIT_PENDING = 'AUTH_SUBMIT_PENDING',
+  AUTH_SIGN_UP_TITLE = 'AUTH_SIGN_UP_TITLE',
+  AUTH_ALREADY_REGISTERED = 'AUTH_ALREADY_REGISTERED',
+  AUTH_ALREADY_REGISTERED_LINK = 'AUTH_ALREADY_REGISTERED_LINK',
+  AUTH_FIRST_NAME_LABEL = 'AUTH_FIRST_NAME_LABEL',
+  AUTH_LAST_NAME_LABEL = 'AUTH_LAST_NAME_LABEL',
+  AUTH_EMAIL_ADDRESS_LABEL = 'AUTH_EMAIL_ADDRESS_LABEL',
+  AUTH_SIGN_UP_BUTTON = 'AUTH_SIGN_UP_BUTTON',
+  AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS',
+  AUTH_SIGN_UP_SUCCESS = 'AUTH_SIGN_UP_SUCCESS',
 
   // NOT FOUND
   NOT_FOUND_TITLE = 'NOT_FOUND_TITLE',
@@ -132,6 +141,42 @@ export const messages: LocaleData = {
   [MessageKey.AUTH_SUBMIT_PENDING]: {
     ko: '로그인 중...',
     en: 'Logging in...',
+  },
+  [MessageKey.AUTH_SIGN_UP_TITLE]: {
+    ko: '회원가입하기',
+    en: 'Sign up for an account',
+  },
+  [MessageKey.AUTH_ALREADY_REGISTERED]: {
+    ko: '이미 회원이신가요?',
+    en: 'Already registered?',
+  },
+  [MessageKey.AUTH_ALREADY_REGISTERED_LINK]: {
+    ko: '로그인하세요',
+    en: 'Sign in',
+  },
+  [MessageKey.AUTH_FIRST_NAME_LABEL]: {
+    ko: '이름',
+    en: 'First name',
+  },
+  [MessageKey.AUTH_LAST_NAME_LABEL]: {
+    ko: '성',
+    en: 'Last name',
+  },
+  [MessageKey.AUTH_EMAIL_ADDRESS_LABEL]: {
+    ko: '이메일 주소',
+    en: 'Email address',
+  },
+  [MessageKey.AUTH_SIGN_UP_BUTTON]: {
+    ko: '회원가입하기',
+    en: 'Sign Up',
+  },
+  [MessageKey.AUTH_LOGIN_SUCCESS]: {
+    ko: '로그인 성공',
+    en: 'Login successful',
+  },
+  [MessageKey.AUTH_SIGN_UP_SUCCESS]: {
+    ko: '회원가입 성공',
+    en: 'Register successful',
   },
 
   // NOT FOUND
