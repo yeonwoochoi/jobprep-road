@@ -233,19 +233,17 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const toggleMenuAndFocusButton = (isClose: boolean) => {
+  useEffect(() => {
+    if (!expanded) {
+      openRef.current?.focus({ preventScroll: true })
+    } else {
+      closeRef.current?.focus({ preventScroll: true })
+    }
+  }, [expanded])
+
+  const toggleMenu = () => {
     setIsTransitioning(true)
     setExpanded((expanded) => !expanded)
-
-    // Rendering 끝나면 = (콜스택이 비면, 이미 준비된 비동기 작업의 콜백이 스택에 들어가 실행되니까)
-    // close button (closeRef) 가 렌더링 전이면 없을 수도 있으니까.
-    // 메뉴가 열린 후 닫기 버튼(XIcon)에 포커스를 강제로 줌
-    window.setTimeout(() => {
-      const el = isClose ? openRef.current : closeRef.current
-      if (el) {
-        el.focus({ preventScroll: true } as FocusOptions)
-      }
-    })
   }
 
   return (
@@ -263,7 +261,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
             icon={MenuIcon}
             toggleRef={openRef}
             expanded={expanded}
-            onToggle={() => toggleMenuAndFocusButton(false)}
+            onToggle={toggleMenu}
           />
         </div>
 
@@ -285,7 +283,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
                 icon={XIcon}
                 toggleRef={closeRef}
                 expanded={expanded}
-                onToggle={() => toggleMenuAndFocusButton(true)}
+                onToggle={toggleMenu}
               />
             </div>
             <Navigation/>
