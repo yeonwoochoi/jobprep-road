@@ -12,10 +12,10 @@ export function validateRequiredFields<T extends RequiredFields>(
   ) as Record<T[number], string | undefined>
 
   for (const key of requiredFields) {
-    if (!data[key]) {
+    if (!data[key as T[number]]) {
       return {
         status: 'error',
-        error: `Please input ${fieldLabelMap[key]}.`,
+        error: `Please input ${fieldLabelMap[key as T[number]]}.`,
       }
     }
   }
