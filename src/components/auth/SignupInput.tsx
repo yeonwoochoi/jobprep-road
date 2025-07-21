@@ -28,8 +28,8 @@ export default function SignupInput() {
       if (state.status === 'error') {
         toastError(state.error)
       } else if (state.status === 'success' && state.data) {
-        toastSuccess(t(MessageKey.AUTH_LOGIN_SUCCESS, language))
-        router.push("/")
+        toastSuccess(t(MessageKey.AUTH_SIGN_UP_SUCCESS, language))
+        router.push("/auth/login")
       }
     }
   }, [state])
