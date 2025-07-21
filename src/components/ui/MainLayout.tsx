@@ -256,7 +256,6 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
         <div
           className="absolute top-2 right-0 left-0 z-40 pt-14"
           aria-hidden={expanded}
-          // @ts-expect-error (https://github.com/facebook/react/issues/17157)
           inert={expanded}
         >
           <Header
@@ -275,8 +274,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
           id={panelId}
           style={{ height: expanded ? 'auto' : '0.5rem' }}
           className="relative z-50 overflow-hidden bg-neutral-950 pt-2"
-          aria-hidden={expanded}
-          // @ts-expect-error (https://github.com/facebook/react/issues/17157)
+          aria-hidden={!expanded}
           inert={!expanded}
         >
           <motion.div layout className="bg-neutral-800">
