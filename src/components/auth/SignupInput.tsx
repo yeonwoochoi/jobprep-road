@@ -1,10 +1,10 @@
 'use client'
 
-import TextField from "@/components/ui/TextField";
+import { TextField } from "@/components/ui/TextField";
 import { t } from "@/locale";
 import { MessageKey } from "@/locale/message";
 import { useActionState, useEffect } from "react";
-import { signupAction } from "@/actions/signup.action";
+import { signupAction } from "@/actions/auth/signup.action";
 import { ApiResult } from "@/lib/api";
 import { UserData } from "@/types/types";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -15,8 +15,7 @@ type SignupActionState = ApiResult<UserData | null>
 
 export default function SignupInput() {
   const [state, formAction, isPending] = useActionState<SignupActionState, FormData>(signupAction, {
-    status: 'success',
-    data: null
+    status: 'idle'
   })
 
   const { language } = useLanguage()
@@ -28,17 +27,17 @@ export default function SignupInput() {
       if (state.status === 'error') {
         toastError(state.error)
       } else if (state.status === 'success' && state.data) {
-        toastSuccess(t(MessageKey.AUTH_SIGN_UP_SUCCESS, language))
+        toastSuccess(t({ ko: '회원가입 성공', en: 'Register successful' }, language))
         router.push("/auth/login")
       }
     }
   }, [state])
 
   return (
-    <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-8 w-full">
+    <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-6 w-full">
       <div className="flex w-full gap-x-4">
         <TextField
-          label="First Name"
+          label={t({ ko: "이름", en: "First Name" }, language)}
           name="firstName"
           autoComplete="given-name"
           required
@@ -46,7 +45,7 @@ export default function SignupInput() {
           disabled={isPending}
         />
         <TextField
-          label="Last Name"
+          label={t({ ko: "성", en: "Last Name" }, language)}
           name="lastName"
           autoComplete="family-name"
           required
@@ -55,7 +54,7 @@ export default function SignupInput() {
         />
       </div>
       <TextField
-        label="Email address"
+        label={t({ ko: "이메일", en: "Email Address" }, language)}
         name="email"
         type="email"
         autoComplete="email"
@@ -63,7 +62,7 @@ export default function SignupInput() {
         disabled={isPending}
       />
       <TextField
-        label="Password"
+        label={t({ ko: "비밀번호", en: "Password" }, language)}
         name="password"
         type="password"
         autoComplete="current-password"
@@ -72,14 +71,11 @@ export default function SignupInput() {
       />
       <button
         type="submit"
-        className="bg-black hover:bg-gray-700 rounded-full text-white py-3"
+        className="bg-black hover:bg-gray-700 rounded-full text-white py-3 mt-4 disabled:bg-gray-400 disabled:cursor-not-allowed"
         disabled={isPending}
       >
-        {isPending ? t(MessageKey.AUTH_SUBMIT_PENDING, language) : t(MessageKey.AUTH_SUBMIT_BUTTON, language)}
+        {isPending ? t({ ko: '가입 중...', en: 'Signing up...' }, language) : t({ ko: '회원가입', en: 'Sign Up' }, language)}
       </button>
-      {state.status === 'error' && (
-        <p className="text-red-600 mt-2">{state.error}</p>
-      )}
     </form>
   )
 }

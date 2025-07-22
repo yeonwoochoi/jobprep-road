@@ -8,7 +8,7 @@ export function createFormAction<T extends readonly string[], D>(
 ) {
   return async function action(_: any, formData: FormData): Promise<ApiResult<D | null>> {
     const validation = validateRequiredFields(formData, requiredFields, fieldLabelMap);
-    if (validation.status === "error") {
+    if (validation.status === "error" || validation.status === "idle") {
       return validation;
     }
     try {

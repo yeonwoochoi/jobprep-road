@@ -9,6 +9,7 @@ type FetchOptions = RequestInit & {
 }
 
 export type ApiResult<T> =
+  | { status: 'idle' }
   | { status: 'success'; data: T }
   | { status: 'error'; error: string };
 

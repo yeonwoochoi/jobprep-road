@@ -1,17 +1,13 @@
 import { ReactNode } from "react";
-import { Metadata } from "next";
 import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
 import { GridPattern } from "@/components/ui/GridPattern";
-
-export const metadata: Metadata = {
-  title: '로그인 - 취준로드',
-};
+import { FadeIn } from "@/components/ui/FadeIn";
 
 export default function Layout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <div className="flex h-screen flex-col">
       <header className="flex items-center justify-end p-6">
-        <LanguageToggleButton />
+        <LanguageToggleButton/>
       </header>
       <main className="my-auto">
         <GridPattern
@@ -19,7 +15,13 @@ export default function Layout({ children }: Readonly<{ children: ReactNode }>) 
           yOffset={-96}
           interactive
         />
-        {children}
+        <div className="flex flex-col flex-1 items-center justify-center pb-24">
+          <FadeIn>
+            <div className="w-full sm:w-lg px-8">
+              {children}
+            </div>
+          </FadeIn>
+        </div>
       </main>
     </div>
   );

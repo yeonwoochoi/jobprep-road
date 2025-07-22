@@ -25,17 +25,12 @@ export enum MessageKey {
   AUTH_LOGIN_TITLE = 'AUTH_LOGIN_TITLE',
   AUTH_NO_ACCOUNT = 'AUTH_NO_ACCOUNT',
   AUTH_SIGNUP_CTA = 'AUTH_SIGNUP_CTA',
-  AUTH_SUBMIT_BUTTON = 'AUTH_SUBMIT_BUTTON',
-  AUTH_SUBMIT_PENDING = 'AUTH_SUBMIT_PENDING',
   AUTH_SIGN_UP_TITLE = 'AUTH_SIGN_UP_TITLE',
   AUTH_ALREADY_REGISTERED = 'AUTH_ALREADY_REGISTERED',
-  AUTH_ALREADY_REGISTERED_LINK = 'AUTH_ALREADY_REGISTERED_LINK',
-  AUTH_FIRST_NAME_LABEL = 'AUTH_FIRST_NAME_LABEL',
-  AUTH_LAST_NAME_LABEL = 'AUTH_LAST_NAME_LABEL',
-  AUTH_EMAIL_ADDRESS_LABEL = 'AUTH_EMAIL_ADDRESS_LABEL',
-  AUTH_SIGN_UP_BUTTON = 'AUTH_SIGN_UP_BUTTON',
-  AUTH_LOGIN_SUCCESS = 'AUTH_LOGIN_SUCCESS',
-  AUTH_SIGN_UP_SUCCESS = 'AUTH_SIGN_UP_SUCCESS',
+  AUTH_FORGOT_PASSWORD_BUTTON = 'AUTH_FORGOT_PASSWORD_BUTTON',
+  AUTH_FORGOT_PASSWORD_TITLE = 'AUTH_FORGOT_PASSWORD_TITLE',
+  AUTH_FORGOT_PASSWORD_DESCRIPTION_1 = 'AUTH_FORGOT_PASSWORD_DESCRIPTION_1',
+  AUTH_FORGOT_PASSWORD_DESCRIPTION_2 = 'AUTH_FORGOT_PASSWORD_DESCRIPTION_2',
 
   // NOT FOUND
   NOT_FOUND_TITLE = 'NOT_FOUND_TITLE',
@@ -63,8 +58,8 @@ export const messages: LocaleData = {
     en: 'Your Personalized Career Plan',
   },
   [MessageKey.HOME_DESCRIPTION]: {
-    ko: '원하는 직무 기준, 공통 채용 요구 분석 후\n3개월 학습 로드맵 제공해 드립니다.',
-    en: 'We analyze common hiring requirements based on your target role\nand provide a 3-month personalized learning roadmap.',
+    ko: '원하는 직무 기준, 공통 채용 요구 분석 후 3개월 학습 로드맵 제공해 드립니다.',
+    en: 'We analyze common hiring requirements based on your target role and provide a 3-month personalized learning roadmap.',
   },
   [MessageKey.HOME_BUTTON]: {
     ko: '바로가기',
@@ -134,14 +129,6 @@ export const messages: LocaleData = {
     ko: '회원가입하기',
     en: 'Sign Up',
   },
-  [MessageKey.AUTH_SUBMIT_BUTTON]: {
-    ko: '로그인',
-    en: 'Login',
-  },
-  [MessageKey.AUTH_SUBMIT_PENDING]: {
-    ko: '로그인 중...',
-    en: 'Logging in...',
-  },
   [MessageKey.AUTH_SIGN_UP_TITLE]: {
     ko: '회원가입하기',
     en: 'Sign up for an account',
@@ -150,33 +137,21 @@ export const messages: LocaleData = {
     ko: '이미 회원이신가요?',
     en: 'Already registered?',
   },
-  [MessageKey.AUTH_ALREADY_REGISTERED_LINK]: {
-    ko: '로그인하세요',
-    en: 'Sign in',
+  [MessageKey.AUTH_FORGOT_PASSWORD_BUTTON]: {
+    ko: '비밀번호를 잊으셨나요?',
+    en: 'Forgot password?',
   },
-  [MessageKey.AUTH_FIRST_NAME_LABEL]: {
-    ko: '이름',
-    en: 'First name',
+  [MessageKey.AUTH_FORGOT_PASSWORD_TITLE]: {
+    ko: '비밀번호 재설정',
+    en: 'Forgot password',
   },
-  [MessageKey.AUTH_LAST_NAME_LABEL]: {
-    ko: '성',
-    en: 'Last name',
+  [MessageKey.AUTH_FORGOT_PASSWORD_DESCRIPTION_1]: {
+    ko: '가입했던 이메일을 입력해주세요.',
+    en: 'Enter the email you signed up with.',
   },
-  [MessageKey.AUTH_EMAIL_ADDRESS_LABEL]: {
-    ko: '이메일 주소',
-    en: 'Email address',
-  },
-  [MessageKey.AUTH_SIGN_UP_BUTTON]: {
-    ko: '회원가입하기',
-    en: 'Sign Up',
-  },
-  [MessageKey.AUTH_LOGIN_SUCCESS]: {
-    ko: '로그인 성공',
-    en: 'Login successful',
-  },
-  [MessageKey.AUTH_SIGN_UP_SUCCESS]: {
-    ko: '회원가입 성공',
-    en: 'Register successful',
+  [MessageKey.AUTH_FORGOT_PASSWORD_DESCRIPTION_2]: {
+    ko: '비밀번호 재설정 메일을 보내드립니다.',
+    en: 'We’ll send you an email to reset your password.',
   },
 
   // NOT FOUND

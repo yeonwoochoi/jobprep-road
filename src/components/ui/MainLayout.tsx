@@ -28,7 +28,7 @@ import LocaleText from "@/components/common/LocaleText";
 import { MessageKey } from "@/locale/message";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/locale";
-import { XIcon, MenuIcon } from "@/components/ui/Icons";
+import { MenuIcon, XIcon } from "@/components/ui/Icons";
 import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
 
 const MainLayoutContext = createContext<{
@@ -41,18 +41,18 @@ function Navigation() {
     <nav className="mt-px text-white text-5xl font-medium tracking-tight">
       <NavigationRow>
         <NavigationItem href="/">
-          <LocaleText messageKey={MessageKey.HEADER_HOME} />
+          <LocaleText keyOrLocaleData={MessageKey.HEADER_HOME} />
         </NavigationItem>
         <NavigationItem href="/curriculum/generate">
-          <LocaleText messageKey={MessageKey.HEADER_CURRICULUM} />
+          <LocaleText keyOrLocaleData={MessageKey.HEADER_CURRICULUM} />
         </NavigationItem>
       </NavigationRow>
       <NavigationRow>
         <NavigationItem href="/profile">
-          <LocaleText messageKey={MessageKey.HEADER_PROFILE} />
+          <LocaleText keyOrLocaleData={MessageKey.HEADER_PROFILE} />
         </NavigationItem>
         <NavigationItem href="/contact">
-          <LocaleText messageKey={MessageKey.HEADER_FEEDBACK} />
+          <LocaleText keyOrLocaleData={MessageKey.HEADER_FEEDBACK} />
         </NavigationItem>
       </NavigationRow>
     </nav>
@@ -83,7 +83,7 @@ function NavigationItem({ href, children, }: { href: string, children: ReactNode
 }
 
 function InfoSection() {
-  const { language, toggleLanguage } = useLanguage()
+  const { language } = useLanguage()
 
   const handleCopy = async (value: string) => {
     try {
@@ -101,7 +101,7 @@ function InfoSection() {
           <div>
             <div className="py-4">
               <div className="font-bold text-xl">
-                <LocaleText messageKey={MessageKey.HEADER_CONTACT_EMAIL_TITLE} />
+                <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_EMAIL_TITLE} />
               </div>
               <button
                 onClick={() => handleCopy("chldusdn20@gmail.com")}
@@ -112,7 +112,7 @@ function InfoSection() {
             </div>
             <div className="py-4">
               <div className="font-bold text-xl">
-                <LocaleText messageKey={MessageKey.HEADER_CONTACT_PHONE_TITLE} />
+                <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_PHONE_TITLE} />
               </div>
               <button
                 onClick={() => handleCopy("+82-10-8560-3465")}
@@ -125,13 +125,13 @@ function InfoSection() {
           <div>
             <div className="py-4">
               <div className="font-bold text-xl">
-                <LocaleText messageKey={MessageKey.HEADER_CONTACT_SOCIAL_TITLE} />
+                <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_SOCIAL_TITLE} />
               </div>
               <SocialMedia className="mt-4" invert />
             </div>
             <div className="py-4">
               <div className="font-bold text-xl">
-                <LocaleText messageKey={MessageKey.HEADER_CONTACT_LANGUAGE_TITLE} />
+                <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_LANGUAGE_TITLE} />
               </div>
               <LanguageToggleButton className="mt-4" />
             </div>
@@ -176,7 +176,7 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/auth/login" invert={invert} className="w-20 h-11">
-            <LocaleText messageKey={MessageKey.HEADER_LOGIN_BUTTON} />
+            <LocaleText keyOrLocaleData={MessageKey.HEADER_LOGIN_BUTTON} />
           </Button>
           <button
             ref={toggleRef}

@@ -90,7 +90,7 @@ export function Logo({
           invert ? 'fill-white' : 'fill-neutral-950'
         )}
       >
-        <LocaleText messageKey={MessageKey.HEADER_COMPANY_NAME} />
+        <LocaleText keyOrLocaleData={MessageKey.HEADER_COMPANY_NAME} />
       </text>
     </svg>
   )
