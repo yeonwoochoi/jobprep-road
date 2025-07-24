@@ -19,21 +19,22 @@ export const verifyCodeAction = createFormAction(
     if (res.status === 'error') {
       throw new Error(res.error)
     }
-
-    const setCookieHeader = res.headers.get('set-cookie')
-    if (setCookieHeader) {
-      const cookieObj = parse(setCookieHeader)?.find(c => c.name === 'reset_token')
-      if (cookieObj) {
-        const cookieStore = await cookies()
-        cookieStore.set({
-          name: 'reset_token',
-          value: cookieObj.value,
-          path: cookieObj.path,
-          httpOnly: !!cookieObj.httpOnly,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: cookieObj.sameSite as 'strict' | 'lax' | 'none',
-          maxAge: cookieObj.maxAge
-        })
+    else if (res.status === 'success') {
+      const setCookieHeader = res.headers?.get('set-cookie')
+      if (setCookieHeader) {
+        const cookieObj = parse(setCookieHeader)?.find(c => c.name === 'reset_token')
+        if (cookieObj) {
+          const cookieStore = await cookies()
+          cookieStore.set({
+            name: 'reset_token',
+            value: cookieObj.value,
+            path: cookieObj.path,
+            httpOnly: !!cookieObj.httpOnly,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: cookieObj.sameSite as 'strict' | 'lax' | 'none',
+            maxAge: cookieObj.maxAge
+          })
+        }
       }
     }
 
