@@ -14,7 +14,7 @@ export default function Page() {
     <>
       <div>
         <Link href="/">
-          <Logo className="h-8" />
+          <Logo className="inline-block h-8" />
         </Link>
         <p className="mt-10 text-2xl font-bold">
           <LocaleText keyOrLocaleData={MessageKey.AUTH_SIGN_UP_TITLE} />
