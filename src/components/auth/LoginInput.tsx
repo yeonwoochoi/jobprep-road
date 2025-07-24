@@ -2,8 +2,6 @@
 
 import { useActionState, useEffect } from "react";
 import { loginAction } from "@/actions/auth/login.action";
-import { ApiResult } from "@/lib/api";
-import { LoginData } from "@/types/types";
 import { MessageKey } from "@/locale/message";
 import { t } from "@/locale";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -12,11 +10,10 @@ import { useToast } from '@/hooks/useToast'
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LocaleText from "@/components/common/LocaleText";
-
-type LoginActionState = ApiResult<LoginData | null>
+import { FormActionResult } from "@/utils/formActions";
 
 export default function LoginInput() {
-  const [state, formAction, isPending] = useActionState<LoginActionState, FormData>(loginAction, {
+  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(loginAction, {
     status: 'idle'
   })
 
@@ -33,7 +30,7 @@ export default function LoginInput() {
     if (state) {
       if (state.status === 'error') {
         toastError(state.error)
-      } else if (state.status === 'success' && state.data) {
+      } else if (state.status === 'success') {
         router.push("/")
       }
     }

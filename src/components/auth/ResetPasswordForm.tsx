@@ -2,22 +2,21 @@
 
 import { FormEvent, startTransition, useActionState, useEffect, useState } from "react";
 import { resetNewPassword } from "@/actions/auth/reset-new-password.action";
-import { ApiResult } from "@/lib/api";
-import { ResetPasswordData } from "@/types/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/useToast";
 import { t } from "@/locale";
 import { TextField } from "@/components/ui/TextField";
+import { useRouter } from "next/navigation";
+import { FormActionResult } from "@/utils/formActions";
 
-type ResetPasswordActionState = ApiResult<ResetPasswordData | null>
-
-export default function ResetPasswordForm({ email, token, onSuccess }: { email: string, token: string, onSuccess: () => void }) {
-  const [state, formAction, isPending] = useActionState<ResetPasswordActionState, FormData>(resetNewPassword, {
+export default function ResetPasswordForm({ email }: { email: string }) {
+  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(resetNewPassword, {
     status: 'idle'
   })
 
   const { language } = useLanguage()
   const { toastSuccess, toastError } = useToast()
+  const router = useRouter()
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -29,9 +28,9 @@ export default function ResetPasswordForm({ email, token, onSuccess }: { email: 
     if (state) {
       if (state.status === 'error') {
         toastError(state.error)
-      } else if (state.status === 'success' && state.data) {
+      } else if (state.status === 'success') {
         toastSuccess(t({ ko: '비밀번호 재설정이 완료되었습니다.', en: 'Your password has been successfully reset.' }, language))
-        onSuccess()
+        router.push("/auth/login")
       }
     }
   }, [state])
@@ -58,7 +57,6 @@ export default function ResetPasswordForm({ email, token, onSuccess }: { email: 
     // FormData 생성 및 서버 액션 실행
     const formData = new FormData()
     formData.append('email', email)
-    formData.append('token', token)
     formData.append('password', password)
 
     startTransition(() => {
@@ -69,7 +67,6 @@ export default function ResetPasswordForm({ email, token, onSuccess }: { email: 
   return (
     <form onSubmit={handleSubmit} className="mt-10 grid grid-cols-1 w-full">
       <input name="email" value={email} hidden readOnly />
-      <input name="token" value={token} hidden readOnly />
       <TextField
         label={t({ ko: "새 비밀번호", en: "New Password" }, language)}
         name="newPassword"

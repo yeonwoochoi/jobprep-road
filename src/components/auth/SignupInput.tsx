@@ -2,19 +2,15 @@
 
 import { TextField } from "@/components/ui/TextField";
 import { t } from "@/locale";
-import { MessageKey } from "@/locale/message";
 import { useActionState, useEffect } from "react";
 import { signupAction } from "@/actions/auth/signup.action";
-import { ApiResult } from "@/lib/api";
-import { UserData } from "@/types/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/useToast";
 import { useRouter } from "next/navigation";
-
-type SignupActionState = ApiResult<UserData | null>
+import { FormActionResult } from "@/utils/formActions";
 
 export default function SignupInput() {
-  const [state, formAction, isPending] = useActionState<SignupActionState, FormData>(signupAction, {
+  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(signupAction, {
     status: 'idle'
   })
 
@@ -26,7 +22,7 @@ export default function SignupInput() {
     if (state) {
       if (state.status === 'error') {
         toastError(state.error)
-      } else if (state.status === 'success' && state.data) {
+      } else if (state.status === 'success') {
         toastSuccess(t({ ko: '회원가입 성공', en: 'Register successful' }, language))
         router.push("/auth/login")
       }

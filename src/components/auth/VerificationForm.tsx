@@ -5,29 +5,28 @@ import { t } from "@/locale";
 import { useActionState, useEffect, useTransition } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/useToast";
-import { ApiResult } from "@/lib/api";
-import { VerificationCodeData } from "@/types/types";
 import { verifyCodeAction } from "@/actions/auth/verify-code.action";
 import { sendVerificationCodeAction } from "@/actions/auth/send-verification-code.action";
+import { useRouter } from "next/navigation";
+import { FormActionResult } from "@/utils/formActions";
 
-type VerificationCodeActionState = ApiResult<VerificationCodeData | null>
-
-export default function VerificationForm({ email, onSuccess }: { email: string, onSuccess: (token: string) => void }) {
-  const [state, formAction, isVerifying] = useActionState<VerificationCodeActionState, FormData>(verifyCodeAction, {
+export default function VerificationForm({ email }: { email: string }) {
+  const [state, formAction, isVerifying] = useActionState<FormActionResult<null>, FormData>(verifyCodeAction, {
     status: 'idle'
   })
   const [isResending, startTransition] = useTransition()
 
   const { language } = useLanguage()
   const { toastSuccess, toastError } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
         toastError(state.error)
-      } else if (state.status === 'success' && state.data) {
+      } else if (state.status === 'success') {
         toastSuccess(t({ ko: '인증이 완료되었습니다.', en: 'Verification completed.' }, language))
-        onSuccess(state.data.token)
+        router.push(`/auth/forgot-password/reset?email=${encodeURIComponent(email)}`)
       }
     }
   }, [state])

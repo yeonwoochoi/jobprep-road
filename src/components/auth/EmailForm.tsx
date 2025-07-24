@@ -2,30 +2,40 @@
 
 import { TextField } from "@/components/ui/TextField";
 import { t } from "@/locale";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { sendVerificationCodeAction } from "@/actions/auth/send-verification-code.action";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/useToast";
-import { SendVerificationCodeData } from "@/types/types";
-import { ApiResult } from "@/lib/api";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormActionResult } from "@/utils/formActions";
 
-type SendVerificationCodeActionState = ApiResult<SendVerificationCodeData | null>
-
-export default function EmailForm({ onSuccess }: { onSuccess: (email: string) => void }) {
-  const [state, formAction, isPending] = useActionState<SendVerificationCodeActionState, FormData>(sendVerificationCodeAction, {
+export default function EmailForm() {
+  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(sendVerificationCodeAction, {
     status: 'idle'
   })
 
+  const searchParams = useSearchParams()
+  const error = searchParams.get('error') as string
+
+  useEffect(() => {
+    if (error) {
+      toastError('잘못된 접근입니다.')
+    }
+  }, [])
+
+
+  const [email, setEmail] = useState('');
   const { language } = useLanguage()
   const { toastSuccess, toastError } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
         toastError(state.error)
-      } else if (state.status === 'success' && state.data) {
+      } else if (state.status === 'success') {
         toastSuccess(t({ ko: '메일이 전송되었습니다.', en: 'Email has been sent.' }, language))
-        onSuccess(state.data.email)
+        router.push(`/auth/forgot-password/verify?email=${encodeURIComponent(email)}`)
       }
     }
   }, [state])
@@ -39,6 +49,7 @@ export default function EmailForm({ onSuccess }: { onSuccess: (email: string) =>
         autoComplete="email"
         required
         disabled={isPending}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <button
         type="submit"
