@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     response.cookies.set('reset_token', resetToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
+      sameSite: 'lax',
       maxAge: 10 * 60, // 10분
       path: '/' // 전체 경로에서 접근 가능하게
     })
