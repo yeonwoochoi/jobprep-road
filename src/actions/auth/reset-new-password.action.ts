@@ -1,7 +1,6 @@
 'use server'
 
 import { createFormAction } from '@/utils/formActions';
-import delay from '@/utils/delay';
 import { dynamicFetch } from '@/lib/api';
 import { cookies } from 'next/headers';
 
@@ -24,8 +23,6 @@ export const resetNewPassword = createFormAction(
     }
 
     cookieStore.delete('reset_token')
-
-    await delay(1000)
     return null
   }
 )

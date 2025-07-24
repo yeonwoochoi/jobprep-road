@@ -1,7 +1,6 @@
 'use server'
 
 import { createFormAction } from '@/utils/formActions'
-import delay from '@/utils/delay'
 import { dynamicFetch } from '@/lib/api'
 import parse from 'set-cookie-parser'
 import { cookies } from 'next/headers'
@@ -37,8 +36,6 @@ export const verifyCodeAction = createFormAction(
         }
       }
     }
-
-    await delay(1000)
     return null
   }
 )

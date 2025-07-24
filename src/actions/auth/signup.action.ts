@@ -1,7 +1,6 @@
 'use server'
 
 import { createFormAction } from '@/utils/formActions';
-import delay from '@/utils/delay';
 
 // TODO
 export const signupAction = createFormAction(
@@ -13,7 +12,6 @@ export const signupAction = createFormAction(
     lastName: 'Last Name',
   },
   async ({ email, password, firstName, lastName }) => {
-    await delay(2000)
     console.log({ email, password, firstName, lastName })
     return null
   }

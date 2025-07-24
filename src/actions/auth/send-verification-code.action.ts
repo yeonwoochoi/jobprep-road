@@ -1,7 +1,6 @@
 'use server'
 
 import { createFormAction } from "@/utils/formActions";
-import delay from "@/utils/delay";
 import { dynamicFetch } from "@/lib/api";
 
 export const sendVerificationCodeAction = createFormAction(
@@ -16,8 +15,6 @@ export const sendVerificationCodeAction = createFormAction(
     if (res.status === 'error') {
       throw new Error(res.error)
     }
-
-    await delay(1000)
     return null
   }
 )
