@@ -13,7 +13,3 @@ export const redirectMiddleware: Middleware = async (request, next) => {
 
   return next();
 }
-
-export const redirectConfig = {
-  matcher: ['/auth/forgot-password/reset/:path*'], // 이 모듈이 처리할 경로
-}

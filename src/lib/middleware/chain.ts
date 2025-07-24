@@ -7,7 +7,7 @@ export type Middleware = (
 
 export function chain(middlewares: Middleware[]) {
   return async (request: NextRequest, _: any): Promise<NextResponse> => {
-    const invoke = async (index: number) => {
+    const invoke = async (index: number): Promise<NextResponse> => {
       if (index >= middlewares.length) {
         return NextResponse.next(); // 기본 응답
       }
