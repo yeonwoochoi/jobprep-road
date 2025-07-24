@@ -1,4 +1,5 @@
 import { cache } from 'react'
+import { getErrorMessage } from "@/utils/error";
 
 type FetchOptions = RequestInit & {
   cache?: 'force-cache' | 'no-store'
@@ -10,7 +11,7 @@ type FetchOptions = RequestInit & {
 
 export type ApiResult<T> =
   | { status: 'idle' }
-  | { status: 'success'; data: T }
+  | { status: 'success'; data: T; headers?: Headers }
   | { status: 'error'; error: string };
 
 class ApiClient {
@@ -31,23 +32,23 @@ class ApiClient {
           ...(options.headers as Record<string, string>)
         },
       })
+      const text = await response.text();
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        const errorMessage = text ? (JSON.parse(text)?.error) : `HTTP error! ${response.status}`
+        throw new Error(errorMessage)
       }
 
       // 빈 Body 체크
-      const text = await response.text();
       if (!text) {
         return { status: 'success', data: null };
       }
       else {
         const data = JSON.parse(text);
-        return { status: 'success', data };
+        return { status: 'success', data, headers: response.headers };
       }
     } catch (err) {
-      const error = err instanceof Error ? err.message : 'Fetch error';
-      return { status: 'error', error };
+      return { status: 'error', error: getErrorMessage(err, 'Fetch error') };
     }
   }
 

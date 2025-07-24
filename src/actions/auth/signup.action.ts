@@ -15,6 +15,6 @@ export const signupAction = createFormAction(
   async ({ email, password, firstName, lastName }) => {
     await delay(2000)
     console.log({ email, password, firstName, lastName })
-    return { email, password, firstName, lastName } // TODO: 실제 로직
+    return null
   }
 )

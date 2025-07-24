@@ -1,16 +1,43 @@
-import { createFormAction } from "@/utils/formActions";
-import delay from "@/utils/delay";
+'use server'
+
+import { createFormAction } from '@/utils/formActions'
+import delay from '@/utils/delay'
+import { dynamicFetch } from '@/lib/api'
+import parse from 'set-cookie-parser'
+import { cookies } from 'next/headers'
 
 // TODO
 export const verifyCodeAction = createFormAction(
-  ["email", "verificationCode"] as const,
+  ['email', 'verificationCode'] as const,
 { email: 'Email', verificationCode: 'Verification Code' },
   async ({ email, verificationCode }) => {
-    // const isValid = await checkVerificationCode(email, verificationCode); // 서버 검증 함수
-    // if (!isValid) throw new Error('인증번호가 올바르지 않습니다.');
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lMSIsImlhdCI6MTczOTM3MDY0NiwiZXhwIjoxNzM5Mzc0MjQ2fQ.gISzSChHIPtAkwi6sh8UlQScynMBBQisSQ393ih0X5g"
-    await delay(2000)
-    console.log({ email, verificationCode })
-    return { email, token };
+    const res = await dynamicFetch('/api/auth/verify-reset-code', {
+      method: 'POST',
+      body: JSON.stringify({ email, verificationCode })
+    })
+
+    if (res.status === 'error') {
+      throw new Error(res.error)
+    }
+
+    const setCookieHeader = res.headers.get('set-cookie')
+    if (setCookieHeader) {
+      const cookieObj = parse(setCookieHeader)?.find(c => c.name === 'reset_token')
+      if (cookieObj) {
+        const cookieStore = await cookies()
+        cookieStore.set({
+          name: 'reset_token',
+          value: cookieObj.value,
+          path: cookieObj.path,
+          httpOnly: !!cookieObj.httpOnly,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: cookieObj.sameSite as 'strict' | 'lax' | 'none',
+          maxAge: cookieObj.maxAge
+        })
+      }
+    }
+
+    await delay(1000)
+    return null
   }
 )

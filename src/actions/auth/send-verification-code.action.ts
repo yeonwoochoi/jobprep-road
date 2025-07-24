@@ -2,13 +2,22 @@
 
 import { createFormAction } from "@/utils/formActions";
 import delay from "@/utils/delay";
+import { dynamicFetch } from "@/lib/api";
 
 export const sendVerificationCodeAction = createFormAction(
   ["email"] as const,
   { email: "Email" },
   async ({ email }) => {
-    await delay(2000)
-    console.log({ email })
-    return { email } // TODO 실제 처리
+    const res = await dynamicFetch('/api/auth/send-reset-code', {
+      method: "POST",
+      body: JSON.stringify({ email })
+    })
+
+    if (res.status === 'error') {
+      throw new Error(res.error)
+    }
+
+    await delay(1000)
+    return null
   }
 )
