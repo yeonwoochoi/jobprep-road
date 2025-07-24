@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
 
     // 2. 쿠키에서 토큰 추출
     const token = request.cookies.get('reset_token')?.value || ""
-    console.log(token)
 
     if (!token) {
       return NextResponse.json(
