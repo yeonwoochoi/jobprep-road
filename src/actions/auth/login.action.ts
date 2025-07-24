@@ -9,6 +9,6 @@ export const loginAction = createFormAction(
   async ({ email, password }) => {
     await delay(2000)
     console.log({ email, password })
-    return { email, password }
+    return null
   }
 )
