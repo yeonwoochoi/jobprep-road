@@ -72,6 +72,7 @@ export default function ResetPasswordForm({ email }: { email: string }) {
         name="newPassword"
         type="password"
         required
+        autoComplete="new-password"
         disabled={isPending}
         value={password}
         onChange={(e) => setPassword(e.target.value)}
@@ -83,6 +84,7 @@ export default function ResetPasswordForm({ email }: { email: string }) {
         name="passwordConfirm"
         type="password"
         required
+        autoComplete="new-password"
         disabled={isPending}
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
