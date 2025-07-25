@@ -71,7 +71,7 @@ export function Logo({
 }) {
   return (
     <svg
-      viewBox="0 0 120 32"
+      viewBox="0 0 190 32"
       aria-hidden="true"
       className={clsx(fillOnHover && 'group/logo', className)}
       {...props}

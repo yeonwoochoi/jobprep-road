@@ -3,6 +3,9 @@ import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { MessageKey } from "@/locale/message";
 import LocaleText from "@/components/common/LocaleText";
+import { generatePageMetadata } from "@/_meta/metadata-utils";
+
+export const generateMetadata = async () => generatePageMetadata('home')
 
 export default function Home() {
   return (

@@ -3,11 +3,9 @@ import Link from "next/link";
 import { MessageKey } from "@/locale/message";
 import LocaleText from "@/components/common/LocaleText";
 import { Logo } from "@/components/ui/Logo";
-import { Metadata } from "next";
+import { generatePageMetadata } from "@/_meta/metadata-utils";
 
-export const metadata: Metadata = {
-  title: '로그인 - 취준로드',
-};
+export const generateMetadata = async () => generatePageMetadata('login')
 
 export default function Page() {
   return (

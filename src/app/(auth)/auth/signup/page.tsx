@@ -3,11 +3,9 @@ import { Logo } from "@/components/ui/Logo";
 import LocaleText from "@/components/common/LocaleText";
 import { MessageKey } from "@/locale/message";
 import SignupInput from "@/components/auth/SignupInput";
-import { Metadata } from "next";
+import { generatePageMetadata } from "@/_meta/metadata-utils";
 
-export const metadata: Metadata = {
-  title: '회원가입 - 취준로드',
-};
+export const generateMetadata = async () => generatePageMetadata('signup')
 
 export default function Page() {
   return (

@@ -4,6 +4,9 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 
 import '@/styles/tailwind.css'
 import { ToastProvider } from "@/components/ui/ToastProvider";
+import { generateRootMetadata } from "@/_meta/metadata-utils";
+
+export const metadata = generateRootMetadata()
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();

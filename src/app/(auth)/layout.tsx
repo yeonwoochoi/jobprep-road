@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
 import { GridPattern } from "@/components/ui/GridPattern";
-import { FadeIn } from "@/components/ui/FadeIn";
+import PageTransitionWrapper from "@/components/common/PageTransitionWrapper";
 
 export default function Layout({ children }: Readonly<{ children: ReactNode }>) {
   return (
@@ -16,11 +16,11 @@ export default function Layout({ children }: Readonly<{ children: ReactNode }>) 
           interactive
         />
         <div className="flex flex-col flex-1 items-center justify-center pb-24">
-          <FadeIn>
+          <PageTransitionWrapper>
             <div className="w-full sm:w-lg px-8">
               {children}
             </div>
-          </FadeIn>
+          </PageTransitionWrapper>
         </div>
       </main>
     </div>

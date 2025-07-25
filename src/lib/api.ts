@@ -80,7 +80,7 @@ class ApiClient {
   }
 }
 
-const apiClient = new ApiClient(process.env.NEXT_PUBLIC_API_URL)
+const apiClient = new ApiClient(process.env.NEXT_PUBLIC_BASE_URL)
 
 // 직접 클라이언트 생성할 수도 있어서 (다른 base URL 사용 시)
 export default apiClient

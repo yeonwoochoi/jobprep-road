@@ -9,7 +9,7 @@ import { useToast } from "@/hooks/useToast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormActionResult } from "@/utils/formActions";
 
-export default function EmailForm() {
+export default function ClientPage() {
   const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(sendVerificationCodeAction, {
     status: 'idle'
   })
