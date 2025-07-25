@@ -7,7 +7,7 @@ type ContainerProps<T extends ElementType> = {
   children: ReactNode
 }
 
-export default function Container<T extends ElementType = 'div'>({
+export function Container<T extends ElementType = 'div'>({
   as,
   className,
   children,

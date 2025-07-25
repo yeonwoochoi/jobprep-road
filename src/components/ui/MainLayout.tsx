@@ -18,7 +18,7 @@ import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
 import { GridPattern } from '@/components/ui/GridPattern'
 import Footer from "@/components/ui/Footer";
-import Container from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import Link from "next/link";
 import { Logo, Logomark } from "@/components/ui/Logo";
 import clsx from "clsx";

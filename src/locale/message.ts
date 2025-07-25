@@ -7,6 +7,28 @@ export enum MessageKey {
   HOME_DESCRIPTION = 'HOME_DESCRIPTION',
   HOME_BUTTON = 'HOME_BUTTON',
 
+  // Home - Get started
+  HOME_SERVICE_EYEBROW = 'HOME_SERVICE_EYEBROW',
+  HOME_SERVICE_TITLE = 'HOME_SERVICE_TITLE',
+  HOME_SERVICE_SUBTITLE = 'HOME_SERVICE_SUBTITLE',
+  HOME_SERVICE_STEP_1_TITLE = 'HOME_SERVICE_STEP_1_TITLE',
+  HOME_SERVICE_STEP_1_DESC = 'HOME_SERVICE_STEP_1_DESC',
+  HOME_SERVICE_STEP_2_TITLE = 'HOME_SERVICE_STEP_2_TITLE',
+  HOME_SERVICE_STEP_2_DESC = 'HOME_SERVICE_STEP_2_DESC',
+  HOME_SERVICE_STEP_3_TITLE = 'HOME_SERVICE_STEP_3_TITLE',
+  HOME_SERVICE_STEP_3_DESC = 'HOME_SERVICE_STEP_3_DESC',
+
+  // HOME - Why us?
+  HOME_WHY_US_TITLE = 'HOME_WHY_US_TITLE',
+  HOME_WHY_US_PITCH = 'HOME_WHY_US_PITCH',
+  HOME_WHY_US_GUIDANCE = 'HOME_WHY_US_GUIDANCE',
+  HOME_WHY_US_FEATURE_1_TITLE = 'HOME_WHY_US_FEATURE_1_TITLE',
+  HOME_WHY_US_FEATURE_1_DESC = 'HOME_WHY_US_FEATURE_1_DESC',
+  HOME_WHY_US_FEATURE_2_TITLE = 'HOME_WHY_US_FEATURE_2_TITLE',
+  HOME_WHY_US_FEATURE_2_DESC = 'HOME_WHY_US_FEATURE_2_DESC',
+  HOME_WHY_US_FEATURE_3_TITLE = 'HOME_WHY_US_FEATURE_3_TITLE',
+  HOME_WHY_US_FEATURE_3_DESC = 'HOME_WHY_US_FEATURE_3_DESC',
+
   // HEADER
   HEADER_COMPANY_NAME = 'HEADER_COMPANY_NAME',
   HEADER_LOGIN_BUTTON = 'HEADER_LOGIN_BUTTON',
@@ -14,10 +36,10 @@ export enum MessageKey {
   HEADER_CURRICULUM = 'HEADER_CURRICULUM',
   HEADER_PROFILE = 'HEADER_PROFILE',
   HEADER_FEEDBACK = 'HEADER_FEEDBACK',
-  HEADER_CONTACT_EMAIL_TITLE = 'CONTACT_EMAIL_TITLE',
-  HEADER_CONTACT_PHONE_TITLE = 'CONTACT_PHONE_TITLE',
-  HEADER_CONTACT_SOCIAL_TITLE = 'CONTACT_SOCIAL_TITLE',
-  HEADER_CONTACT_LANGUAGE_TITLE = 'CONTACT_LANGUAGE_TITLE',
+  HEADER_CONTACT_EMAIL_TITLE = 'HEADER_CONTACT_EMAIL_TITLE',
+  HEADER_CONTACT_PHONE_TITLE = 'HEADER_CONTACT_PHONE_TITLE',
+  HEADER_CONTACT_SOCIAL_TITLE = 'HEADER_CONTACT_SOCIAL_TITLE',
+  HEADER_CONTACT_LANGUAGE_TITLE = 'HEADER_CONTACT_LANGUAGE_TITLE',
 
   // AUTH
   AUTH_EMAIL_LABEL = 'AUTH_EMAIL_LABEL',
@@ -64,6 +86,82 @@ export const messages: LocaleData = {
   [MessageKey.HOME_BUTTON]: {
     ko: '바로가기',
     en: 'Get Started',
+  },
+
+  // Home - Get Started
+  [MessageKey.HOME_SERVICE_EYEBROW]: {
+    ko: '서비스',
+    en: 'Services',
+  },
+  [MessageKey.HOME_SERVICE_TITLE]: {
+    ko: '취업 준비, 이제 맞춤형으로!',
+    en: 'Job Prep, Now Personalized!',
+  },
+  [MessageKey.HOME_SERVICE_SUBTITLE]: {
+    ko: 'AI가 당신의 업종과 직무에 딱 맞는 커리큘럼을 설계해 드립니다.',
+    en: 'AI designs a curriculum perfectly tailored to your industry and role.',
+  },
+  [MessageKey.HOME_SERVICE_STEP_1_TITLE]: {
+    ko: '1단계. 업종/직무 선택',
+    en: 'Step 1. Select Industry/Role',
+  },
+  [MessageKey.HOME_SERVICE_STEP_1_DESC]: {
+    ko: '취업 희망 업종과 직무를 선택하면, 최신 채용 공고 데이터를 분석해 핵심 요구사항을 뽑아드립니다.',
+    en: 'Choose your desired industry and role, and we\'ll analyze the latest job postings to extract core requirements.',
+  },
+  [MessageKey.HOME_SERVICE_STEP_2_TITLE]: {
+    ko: '2단계. AI 커리큘럼 생성',
+    en: 'Step 2. AI Curriculum Generation',
+  },
+  [MessageKey.HOME_SERVICE_STEP_2_DESC]: {
+    ko: 'AI가 스킬트리, 추천 학습 자료, 타임라인까지 개인 맞춤형 학습 계획을 즉시 생성해드립니다.',
+    en: 'AI instantly generates a personalized learning plan, including skill trees, recommended study materials, and a timeline.',
+  },
+  [MessageKey.HOME_SERVICE_STEP_3_TITLE]: {
+    ko: '3단계. 쉽고 빠른 준비',
+    en: 'Step 3. Easy & Fast Preparation',
+  },
+  [MessageKey.HOME_SERVICE_STEP_3_DESC]: {
+    ko: '생성한 커리큘럼은 저장, 공유, PDF 내보내기까지 지원! 번거로운 검색 없이 준비 끝.',
+    en: 'Your generated curriculum supports saving, sharing, and PDF export! Finish your prep without tedious searching.',
+  },
+
+  // HOME - Why us?
+  [MessageKey.HOME_WHY_US_TITLE]: {
+    ko: '왜 취준로드인가?',
+    en: 'Why Job Prep Road?',
+  },
+  [MessageKey.HOME_WHY_US_PITCH]: {
+    ko: '취업 준비, 더 이상 막막하지 않습니다.',
+    en: 'Job preparation is no longer overwhelming.',
+  },
+  [MessageKey.HOME_WHY_US_GUIDANCE]: {
+    ko: '취준로드가 직접 분석하고 맞춤형으로 안내합니다.',
+    en: 'Job Prep Road analyzes your needs and provides personalized guidance.',
+  },
+  [MessageKey.HOME_WHY_US_FEATURE_1_TITLE]: {
+    ko: '최신 기업 요구사항 자동 반영',
+    en: 'Real-time Reflection of Latest Company Requirements',
+  },
+  [MessageKey.HOME_WHY_US_FEATURE_1_DESC]: {
+    ko: '잡코리아, 사람인 등 실시간 채용 공고 크롤링으로 항상 최신 데이터를 반영합니다.',
+    en: 'Always updated with the latest data through real-time job posting crawling from JobKorea, Saramin, and more.',
+  },
+  [MessageKey.HOME_WHY_US_FEATURE_2_TITLE]: {
+    ko: 'AI가 설계하는 개인 맞춤 커리큘럼',
+    en: 'AI-Designed Personalized Curriculum',
+  },
+  [MessageKey.HOME_WHY_US_FEATURE_2_DESC]: {
+    ko: 'AI가 당신의 상황과 목표에 맞춰 핵심 스킬트리와 최적 학습 경로를 자동으로 생성합니다.',
+    en: 'AI automatically generates core skill trees and optimal learning paths tailored to your situation and goals.',
+  },
+  [MessageKey.HOME_WHY_US_FEATURE_3_TITLE]: {
+    ko: '간편한 정보 입력 및 분석',
+    en: 'Effortless Information Input & Analysis',
+  },
+  [MessageKey.HOME_WHY_US_FEATURE_3_DESC]: {
+    ko: '이력서 등 취업에 필요한 파일을 업로드하면 즉시 분석하여 시간을 절약합니다.', // 문구 다듬음
+    en: 'Simply upload necessary employment files like your resume for instant analysis, saving you time.', // 문구 다듬음
   },
 
   // HEADER

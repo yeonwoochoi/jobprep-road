@@ -1,4 +1,4 @@
-import Container from "@/components/ui/Container";
+import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Logo } from "@/components/ui/Logo";
 import Link from "next/link";
