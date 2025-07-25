@@ -4,9 +4,35 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 
 import '@/styles/tailwind.css'
 import { ToastProvider } from "@/components/ui/ToastProvider";
-import { generateRootMetadata } from "@/_meta/metadata-utils";
+import { Metadata } from "next";
+import { Locale } from "@/locale";
+import { commonMetadata } from "@/_meta/metadata-definition";
 
-export const metadata = generateRootMetadata()
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+
+  const commonMeta = commonMetadata
+
+  return {
+    title: {
+      default: commonMeta[lang].siteName,
+      template: `${commonMeta[lang].siteName} - %s`
+    },
+    description: commonMeta[lang].description,
+    openGraph: {
+      siteName: commonMeta[lang].siteName,
+      url: process.env.NEXT_PUBLIC_BASE_URL || '/',
+      locale: lang,
+      type: 'website',
+      images: [{ url: '/thumbnail.png' }], // 공통 OG 이미지 설정
+    },
+    twitter: {
+      card: 'summary_large_image'
+    },
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000')
+  }
+}
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
   const cookieStore = await cookies();

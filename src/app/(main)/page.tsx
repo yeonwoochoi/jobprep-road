@@ -9,8 +9,15 @@ import { SectionIntro } from "@/components/ui/SectionIntro";
 import { List, ListItem } from "@/components/ui/List";
 import { StylizedImage } from "@/components/ui/StylizedImage";
 import imageLaptop from '@/images/laptop.jpg'
+import { Metadata } from "next";
+import { cookies } from "next/headers";
+import { Locale } from "@/locale";
 
-export const generateMetadata = async () => generatePageMetadata('home')
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata("home", lang)
+}
 
 function CtoSection() {
   return (

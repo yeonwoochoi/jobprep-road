@@ -4,8 +4,15 @@ import { MessageKey } from "@/locale/message";
 import LocaleText from "@/components/common/LocaleText";
 import { Logo } from "@/components/ui/Logo";
 import { generatePageMetadata } from "@/_meta/metadata-utils";
+import { Metadata } from "next";
+import { cookies } from "next/headers";
+import { Locale } from "@/locale";
 
-export const generateMetadata = async () => generatePageMetadata('login')
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata("login", lang)
+}
 
 export default function Page() {
   return (
