@@ -146,7 +146,7 @@ function WhyUsCard ({ icon: iconSrc, title, description }: WhyUsDistinction) {
         {iconSrc && (
           <Image
             src={iconSrc}
-            alt={messages[title?.props?.keyOrLocaleData]?.en || `why-us-icon-${id}`}
+            alt={`why-us-icon-${id}`}
             width={48}
             height={48}
             aria-labelledby={titleId}
