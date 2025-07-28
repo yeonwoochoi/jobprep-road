@@ -19,9 +19,10 @@ export enum MessageKey {
   HOME_SERVICE_STEP_3_DESC = 'HOME_SERVICE_STEP_3_DESC',
 
   // HOME - Why us?
+  HOME_WHY_US_EYEBROW = 'HOME_WHY_US_EYEBROW',
   HOME_WHY_US_TITLE = 'HOME_WHY_US_TITLE',
-  HOME_WHY_US_PITCH = 'HOME_WHY_US_PITCH',
-  HOME_WHY_US_GUIDANCE = 'HOME_WHY_US_GUIDANCE',
+  HOME_WHY_US_SUBTITLE_1 = 'HOME_WHY_US_SUBTITLE_1',
+  HOME_WHY_US_SUBTITLE_2 = 'HOME_WHY_US_SUBTITLE_2',
   HOME_WHY_US_FEATURE_1_TITLE = 'HOME_WHY_US_FEATURE_1_TITLE',
   HOME_WHY_US_FEATURE_1_DESC = 'HOME_WHY_US_FEATURE_1_DESC',
   HOME_WHY_US_FEATURE_2_TITLE = 'HOME_WHY_US_FEATURE_2_TITLE',
@@ -127,15 +128,19 @@ export const messages: LocaleData = {
   },
 
   // HOME - Why us?
+  [MessageKey.HOME_WHY_US_EYEBROW]: {
+    ko: '차별점',
+    en: 'Why Us?',
+  },
   [MessageKey.HOME_WHY_US_TITLE]: {
     ko: '왜 취준로드인가?',
     en: 'Why Job Prep Road?',
   },
-  [MessageKey.HOME_WHY_US_PITCH]: {
+  [MessageKey.HOME_WHY_US_SUBTITLE_1]: {
     ko: '취업 준비, 더 이상 막막하지 않습니다.',
     en: 'Job preparation is no longer overwhelming.',
   },
-  [MessageKey.HOME_WHY_US_GUIDANCE]: {
+  [MessageKey.HOME_WHY_US_SUBTITLE_2]: {
     ko: '취준로드가 직접 분석하고 맞춤형으로 안내합니다.',
     en: 'Job Prep Road analyzes your needs and provides personalized guidance.',
   },

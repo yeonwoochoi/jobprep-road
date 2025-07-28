@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
-import { FadeIn } from "@/components/ui/FadeIn";
+import { FadeIn, FadeInStagger } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
-import { MessageKey } from "@/locale/message";
+import { MessageKey, messages } from "@/locale/message";
 import LocaleText from "@/components/common/LocaleText";
 import { generatePageMetadata } from "@/_meta/metadata-utils";
 import { ContactSection } from "@/components/common/ContactSection";
@@ -12,6 +12,12 @@ import imageLaptop from '@/images/laptop.jpg'
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Locale } from "@/locale";
+import { ReactNode, useId } from "react";
+
+import Feature1Icon from '@/images/icons/why-us-feature-1.svg';
+import Feature2Icon from '@/images/icons/why-us-feature-2.svg';
+import Feature3Icon from '@/images/icons/why-us-feature-3.svg';
+import Image, { ImageProps } from "next/image";
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies()
@@ -41,7 +47,7 @@ function CtoSection() {
 
 function ServiceSection () {
   return (
-    <div className="sm:mt-32 sm:py-32 lg:mt-56">
+    <div className="mt-32 py-32 lg:mt-56">
       <SectionIntro
         eyebrow={<LocaleText keyOrLocaleData={MessageKey.HOME_SERVICE_EYEBROW}/>}
         title={<LocaleText keyOrLocaleData={MessageKey.HOME_SERVICE_TITLE}/>}
@@ -63,7 +69,7 @@ function ServiceSection () {
               />
             </FadeIn>
           </div>
-          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-132 lg:pl-4">
+          <List className="break-keep mt-16 lg:mt-0 lg:w-1/2 lg:min-w-132 lg:pl-4">
             <ListItem title={<LocaleText keyOrLocaleData={MessageKey.HOME_SERVICE_STEP_1_TITLE}/>}>
               <LocaleText keyOrLocaleData={MessageKey.HOME_SERVICE_STEP_1_DESC}/>
             </ListItem>
@@ -80,10 +86,81 @@ function ServiceSection () {
   )
 }
 
+type WhyUsDistinction = {
+  icon: ImageProps['src']
+  title: string | ReactNode
+  description: string | ReactNode
+}
+
 function WhyUsSection () {
+  const distinctions: WhyUsDistinction[] = [
+    {
+      icon: Feature1Icon,
+      title: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_1_TITLE} />,
+      description: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_1_DESC} />
+    },
+    {
+      icon: Feature2Icon,
+      title: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_2_TITLE} />,
+      description: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_2_DESC} />
+    },
+    {
+      icon: Feature3Icon,
+      title: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_3_TITLE} />,
+      description: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_3_DESC} />
+    },
+  ]
+
   return (
-    <div>
+    <div className="py-16 sm:py-32 mt-16">
+      <SectionIntro
+        eyebrow={<LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_EYEBROW}/>}
+        title={<LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_TITLE}/>}
+      >
+        <p>
+          <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_SUBTITLE_1}/>
+        </p>
+        <p>
+          <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_SUBTITLE_2}/>
+        </p>
+      </SectionIntro>
+      <Container className="mt-16">
+        <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {distinctions.map((distinction, index) => {
+            return <WhyUsCard key={`why-us-card-${index}`} {...distinction}/>
+          })}
+        </FadeInStagger>
+      </Container>
     </div>
+  )
+}
+
+function WhyUsCard ({ icon: iconSrc, title, description }: WhyUsDistinction) {
+  const id = useId()
+  const titleId = `distinction-title-${id}`
+  const descriptionId = `distinction-desc-${id}`
+
+  return (
+    <FadeIn key={id} className="flex">
+      <article className="w-full rounded-3xl ring-1 ring-neutral-950/5 hover:bg-neutral-50 p-6 sm:p-8">
+        {iconSrc && (
+          <Image
+            src={iconSrc}
+            alt={messages[title?.props?.keyOrLocaleData]?.en || `why-us-icon-${id}`}
+            width={48}
+            height={48}
+            aria-labelledby={titleId}
+            aria-describedby={descriptionId}
+          />
+        )}
+        <p id={titleId} className="break-keep mt-6 font-display text-2xl font-semibold text-neutral-950">
+          {title}
+        </p>
+        <p id={descriptionId} className="break-keep mt-4 text-base text-neutral-600">
+          {description}
+        </p>
+      </article>
+    </FadeIn>
   )
 }
 
