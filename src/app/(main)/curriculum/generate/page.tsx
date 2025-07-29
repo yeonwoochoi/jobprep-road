@@ -11,6 +11,7 @@ import IndustrySelector from "@/components/common/IndustrySelector";
 import JobTagCloud from "@/components/common/JobTagCloud";
 import ResumeUploader from "@/components/common/ResumeUploader";
 import GenerateLoading from "@/components/common/GenerateLoading";
+import { useRouter } from "next/navigation";
 
 interface StepSectionProps {
   step: number;
@@ -39,6 +40,8 @@ export default function Page() {
   const [selectedJobs, setSelectedJobs] = useState(new Set<string>())
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
   const [isLoading, setIsLoading] = useState(false)
+
+  const router = useRouter()
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -95,6 +98,8 @@ export default function Page() {
     setIsLoading(false);
     // TODO: 생성 완료 후 결과 페이지로 리다이렉트 또는 결과 표시
     alert('생성이 완료되었습니다!');
+    const id = 1 // 생성된 curriculum id
+    router.push(`/curriculum/${id}`)
   }
 
   return (

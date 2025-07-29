@@ -36,3 +36,7 @@
 
   --font-display-length: 2;
 }
+
+.loading-overlay-active {
+  overflow: hidden;
+}
