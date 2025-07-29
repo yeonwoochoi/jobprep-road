@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { FadeIn, FadeInStagger } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
-import { MessageKey, messages } from "@/locale/message";
+import { MessageKey } from "@/locale/message";
 import LocaleText from "@/components/common/LocaleText";
 import { generatePageMetadata } from "@/_meta/metadata-utils";
 import { ContactSection } from "@/components/common/ContactSection";

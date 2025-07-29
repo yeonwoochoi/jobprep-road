@@ -26,10 +26,9 @@ import { Button } from "@/components/ui/Button";
 import { SocialMedia } from "@/components/ui/SocialMedia";
 import LocaleText from "@/components/common/LocaleText";
 import { MessageKey } from "@/locale/message";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { t } from "@/locale";
 import { MenuIcon, XIcon } from "@/components/ui/Icons";
 import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
+import ContactInfo from "@/components/ui/ContactInfo";
 
 const MainLayoutContext = createContext<{
   logoHovered: boolean
@@ -83,44 +82,12 @@ function NavigationItem({ href, children, }: { href: string, children: ReactNode
 }
 
 function InfoSection() {
-  const { language } = useLanguage()
-
-  const handleCopy = async (value: string) => {
-    try {
-      await navigator.clipboard.writeText(value)
-      alert(t(MessageKey.COPY_SUCCESS, language));
-    } catch (err) {
-      alert(t(MessageKey.COPY_FAILURE, language));
-    }
-  }
-
   return (
     <div className="relative bg-neutral-950 text-white before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
       <Container>
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 py-12 sm:py-16">
           <div>
-            <div className="py-4">
-              <div className="font-bold text-xl">
-                <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_EMAIL_TITLE} />
-              </div>
-              <button
-                onClick={() => handleCopy("chldusdn20@gmail.com")}
-                className="hover:text-gray-300 cursor-pointer mt-4"
-              >
-                chldusdn20@gmail.com
-              </button>
-            </div>
-            <div className="py-4">
-              <div className="font-bold text-xl">
-                <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_PHONE_TITLE} />
-              </div>
-              <button
-                onClick={() => handleCopy("+82-10-8560-3465")}
-                className="hover:text-gray-300 cursor-pointer mt-4"
-              >
-                +82-10-8560-3465
-              </button>
-            </div>
+            <ContactInfo invert className="py-4" />
           </div>
           <div>
             <div className="py-4">
@@ -133,7 +100,7 @@ function InfoSection() {
               <div className="font-bold text-xl">
                 <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_LANGUAGE_TITLE} />
               </div>
-              <LanguageToggleButton className="mt-4" />
+              <LanguageToggleButton invert className="mt-4" />
             </div>
           </div>
         </div>

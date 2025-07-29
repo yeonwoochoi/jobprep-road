@@ -30,6 +30,13 @@ export enum MessageKey {
   HOME_WHY_US_FEATURE_3_TITLE = 'HOME_WHY_US_FEATURE_3_TITLE',
   HOME_WHY_US_FEATURE_3_DESC = 'HOME_WHY_US_FEATURE_3_DESC',
 
+  // HOME - Contact
+  HOME_CONTACT_TITLE = 'HOME_CONTACT_TITLE',
+  HOME_CONTACT_FEEDBACK_BUTTON = 'HOME_CONTACT_FEEDBACK_BUTTON',
+  HOME_CONTACT_EMAIL = 'HOME_CONTACT_EMAIL',
+  HOME_CONTACT_PHONE = 'HOME_CONTACT_PHONE',
+
+
   // HEADER
   HEADER_COMPANY_NAME = 'HEADER_COMPANY_NAME',
   HEADER_LOGIN_BUTTON = 'HEADER_LOGIN_BUTTON',
@@ -165,8 +172,26 @@ export const messages: LocaleData = {
     en: 'Effortless Information Input & Analysis',
   },
   [MessageKey.HOME_WHY_US_FEATURE_3_DESC]: {
-    ko: '이력서 등 취업에 필요한 파일을 업로드하면 즉시 분석하여 시간을 절약합니다.', // 문구 다듬음
-    en: 'Simply upload necessary employment files like your resume for instant analysis, saving you time.', // 문구 다듬음
+    ko: '이력서 등 취업에 필요한 파일을 업로드하면 즉시 분석하여 시간을 절약합니다.',
+    en: 'Simply upload necessary employment files like your resume for instant analysis, saving you time.',
+  },
+
+  // HOME - Contact
+  [MessageKey.HOME_CONTACT_TITLE]: {
+    ko: '프로젝트 개선을 위한 의견을 부탁드립니다.',
+    en: 'We’d love your feedback.',
+  },
+  [MessageKey.HOME_CONTACT_FEEDBACK_BUTTON]: {
+    ko: '피드백 보내기',
+    en: 'Send Feedback',
+  },
+  [MessageKey.HOME_CONTACT_EMAIL]: {
+    ko: '이메일',
+    en: 'Email',
+  },
+  [MessageKey.HOME_CONTACT_PHONE]: {
+    ko: '연락처',
+    en: 'Phone',
   },
 
   // HEADER
