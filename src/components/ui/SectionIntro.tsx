@@ -43,7 +43,7 @@ export function SectionIntro({
           <span
             className={
               clsx(
-                'block font-display tracking-tight text-balance',
+                'block font-display tracking-tight text-balance break-keep',
                 smaller ? 'text-2xl font-semibold' : 'text-4xl font-medium sm:text-5xl',
                 invert ? 'text-white' : 'text-neutral-950'
               )

@@ -1,3 +1,7 @@
+import MainLayout from "@/components/ui/MainLayout";
+
 export default function Page() {
-  return <div>/dashboard</div>
+  return (
+    <div>List</div>
+  )
 }
