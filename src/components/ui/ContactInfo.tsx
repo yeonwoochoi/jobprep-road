@@ -6,8 +6,13 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { t } from "@/locale";
 import clsx from "clsx";
 import { useToast } from "@/hooks/useToast";
+import { ComponentPropsWithoutRef } from "react";
 
-export default function ContactInfo({ invert = false }: { invert?: boolean }) {
+type ContactInfoProps = {
+  invert?: boolean
+} & ComponentPropsWithoutRef<'div'>
+
+export default function ContactInfo({ invert = false, className, ...props }: ContactInfoProps) {
   const { language } = useLanguage()
   const { toastSuccess, toastError } = useToast()
 
@@ -21,7 +26,7 @@ export default function ContactInfo({ invert = false }: { invert?: boolean }) {
   }
 
   return (
-    <>
+    <div className={className} {...props}>
       <div>
         <div className={clsx('font-bold text-xl', invert ? 'text-white' : 'text-neutral-950')}>
           <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_EMAIL_TITLE}/>
@@ -44,6 +49,6 @@ export default function ContactInfo({ invert = false }: { invert?: boolean }) {
           +82-10-8560-3465
         </button>
       </div>
-    </>
+    </div>
   )
 }
