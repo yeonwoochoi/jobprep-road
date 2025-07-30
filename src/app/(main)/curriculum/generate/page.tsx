@@ -10,8 +10,13 @@ import { FadeIn, FadeInStagger } from "@/components/ui/FadeIn";
 import IndustrySelector from "@/components/common/IndustrySelector";
 import JobTagCloud from "@/components/common/JobTagCloud";
 import ResumeUploader from "@/components/common/ResumeUploader";
-import GenerateLoading from "@/components/common/GenerateLoading";
+import GenerateLoading, { GenerationStatus } from "@/components/common/GenerateLoading";
 import { useRouter } from "next/navigation";
+import { dynamicFetch } from "@/lib/api";
+import { Curriculum } from "@/types/curriculum";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { industryIdToNameKeyMap, jobIdToNameKeyMap } from "@/data/jobData";
+import { t } from "@/locale";
 
 interface StepSectionProps {
   step: number;
@@ -39,9 +44,11 @@ export default function Page() {
   const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null)
   const [selectedJobs, setSelectedJobs] = useState(new Set<string>())
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [currentStatus, setCurrentStatus] = useState<GenerationStatus>('idle')
+  const isLoading = useMemo(() => currentStatus !== 'idle', [currentStatus]);
 
   const router = useRouter()
+  const { language } = useLanguage()
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -92,14 +99,50 @@ export default function Page() {
   const handleGenerate = async () => {
     if (!isGenerateButtonEnabled || isLoading) return;
 
-    setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 12000));
+    setCurrentStatus('preparing');
 
-    setIsLoading(false);
-    // TODO: 생성 완료 후 결과 페이지로 리다이렉트 또는 결과 표시
-    alert('생성이 완료되었습니다!');
-    const id = 1 // 생성된 curriculum id
-    router.push(`/curriculum/${id}`)
+    try {
+      const industryNameKey = industryIdToNameKeyMap.get(selectedIndustry!);
+      const industryText = industryNameKey ? t(industryNameKey, language) : selectedIndustry;
+      const targetJobTexts = Array.from(selectedJobs).map(jobId => {
+        const jobNameKey = jobIdToNameKeyMap.get(jobId);
+        // 만약 키를 찾으면 번역된 텍스트를, 못찾으면 원래 id를 반환
+        return jobNameKey ? t(jobNameKey, language).replace(/^#/, "") : jobId;
+      });
+
+
+      const formData = new FormData()
+      formData.append('industry', industryText!)
+      formData.append('targetJobs', JSON.stringify(targetJobTexts))
+      uploadedFiles.forEach(file => {
+        formData.append('files', file)
+      })
+
+      setCurrentStatus('generating')
+      const res = await dynamicFetch<Curriculum>('/api/curriculum/generate', {
+        method: 'POST',
+        body: formData as BodyInit
+      });
+
+      if (res.status === 'success' && res.data) {
+        setCurrentStatus('success')
+
+        // TODO: 생성된 데이터를 어딘가에 저장하고 결과 페이지로 이동
+        // 예를 들어, Recoil, Zustand, Redux 같은 상태 관리 라이브러리에 저장하거나,
+        // router.push의 query 파라미터로 간단한 ID만 넘겨주고,
+        // 결과 페이지에서 해당 ID로 데이터를 다시 조회할 수 있다.
+        // 지금은 alert로 생성된 데이터의 일부를 보여준다.
+        alert(`커리큘럼 생성 성공!\n제목: ${res.data.metadata.title}`);
+        // router.push(`/curriculum/${some_id}`); // 실제 결과 페이지 이동 로직
+      } else if (res.status === 'error') {
+        throw new Error(res.error);
+      }
+    } catch (error) {
+      setCurrentStatus('error')
+      alert(error)
+    } finally {
+      setCurrentStatus('idle')
+    }
   }
 
   return (
@@ -133,7 +176,7 @@ export default function Page() {
           </div>
         </Container>
       </FadeInStagger>
-      {isLoading && <GenerateLoading/>}
+      {isLoading && <GenerateLoading status={currentStatus}/>}
     </>
   )
 }

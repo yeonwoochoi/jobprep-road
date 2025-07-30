@@ -23,14 +23,17 @@ class ApiClient {
 
   async fetchApi<T>(url: string, options: FetchOptions = {}): Promise<ApiResult<T | null>> {
     const fullUrl = this.baseUrl + url;
+    const isFormData = options.body instanceof FormData;
 
     try {
       const response = await fetch(fullUrl, {
         ...options,
-        headers: {
-          'Content-Type': 'application/json',
-          ...(options.headers as Record<string, string>)
-        },
+        headers: isFormData
+          ? (options.headers as Record<string, string>) // FormData일 땐 Content-Type 자동 세팅
+          : {
+            'Content-Type': 'application/json',
+            ...(options.headers as Record<string, string>)
+          },
       })
       const text = await response.text();
 

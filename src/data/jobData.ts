@@ -1,9 +1,27 @@
-import {
-  Lightbulb, Scale, Users, Calculator, Megaphone, Laptop, Palette, Ship, Truck, Phone, Headset,
-  Landmark, UtensilsCrossed, Store, GanttChartSquare, Factory, GraduationCap, HardHat,
-  Stethoscope, Film, HeartHandshake
-} from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import {
+  Calculator,
+  Factory,
+  Film,
+  GanttChartSquare,
+  GraduationCap,
+  HardHat,
+  Headset,
+  HeartHandshake,
+  Landmark,
+  Laptop,
+  Lightbulb,
+  Megaphone,
+  Palette,
+  Phone,
+  Scale,
+  Ship,
+  Stethoscope,
+  Store,
+  Truck,
+  Users,
+  UtensilsCrossed
+} from 'lucide-react';
 import { IndustryMessageKey, JobMessageKey } from '@/locale/messages/industry';
 
 // --- 타입 정의 (Type Definitions) ---
@@ -21,7 +39,6 @@ export interface Job {
   id: string; // 상태 관리를 위한 고유하고 안정적인 식별자 (예: 'frontend')
   nameKey: JobMessageKey; // 실제 텍스트를 참조하기 위한 키
 }
-
 
 // --- 실제 데이터 (Data Declaration) ---
 export const jobData: Industry[] = [
@@ -294,3 +311,16 @@ export const jobData: Industry[] = [
     ],
   },
 ]
+
+// 업종 ID -> NameKey 맵
+export const industryIdToNameKeyMap = new Map<string, IndustryMessageKey>(
+  jobData.map(industry => [industry.id, industry.nameKey])
+);
+
+// 직무 ID -> NameKey 맵
+export const jobIdToNameKeyMap = new Map<string, JobMessageKey>();
+jobData.forEach(industry => {
+  industry.jobs.forEach(job => {
+    jobIdToNameKeyMap.set(job.id, job.nameKey);
+  });
+});

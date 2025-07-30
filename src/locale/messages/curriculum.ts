@@ -26,12 +26,29 @@ export enum CurriculumMessageKey {
   GENERATE_CTA_BUTTON = 'GENERATE_CTA_BUTTON',
 
   // --- Loading State ---
-  GENERATE_LOADING_TEXT_1 = 'GENERATE_LOADING_TEXT_1',
-  GENERATE_LOADING_TEXT_2 = 'GENERATE_LOADING_TEXT_2',
-  GENERATE_LOADING_TEXT_3 = 'GENERATE_LOADING_TEXT_3',
+  GENERATE_STATUS_PREPARING = 'GENERATE_STATUS_PREPARING',
+  GENERATE_STATUS_GENERATING = 'GENERATE_STATUS_GENERATING',
+  GENERATE_STATUS_SUCCESS = 'GENERATE_STATUS_SUCCESS',
+  GENERATE_STATUS_ERROR = 'GENERATE_STATUS_ERROR',
+}
 
-  // --- Result Alert ---
-  GENERATE_SUCCESS_ALERT = 'GENERATE_SUCCESS_ALERT',
+export enum CurriculumUITextKey {
+  // Level
+  LEVEL_ENTRY = 'LEVEL_ENTRY',
+  LEVEL_JUNIOR = 'LEVEL_JUNIOR',
+  LEVEL_SENIOR = 'LEVEL_SENIOR',
+
+  // Importance
+  IMPORTANCE_REQUIRED = 'IMPORTANCE_REQUIRED',
+  IMPORTANCE_RECOMMENDED = 'IMPORTANCE_RECOMMENDED',
+  IMPORTANCE_NICE_TO_HAVE = 'IMPORTANCE_NICE_TO_HAVE',
+
+  // Resource Type
+  RESOURCE_TYPE_COURSE = 'RESOURCE_TYPE_COURSE',
+  RESOURCE_TYPE_ARTICLE = 'RESOURCE_TYPE_ARTICLE',
+  RESOURCE_TYPE_BOOK = 'RESOURCE_TYPE_BOOK',
+  RESOURCE_TYPE_OFFICIAL_DOCS = 'RESOURCE_TYPE_OFFICIAL_DOCS',
+  RESOURCE_TYPE_PROJECT = 'RESOURCE_TYPE_PROJECT',
 }
 
 export const curriculumMessages: LocaleData = {
@@ -101,23 +118,40 @@ export const curriculumMessages: LocaleData = {
     en: 'Generate Curriculum',
   },
 
-  // --- Loading State ---
-  [CurriculumMessageKey.GENERATE_LOADING_TEXT_1]: {
-    ko: '이력서를 기반으로 당신의 강점을 분석하고 있어요...',
-    en: 'Analyzing your strengths based on your resume...',
+  // --- Generation Status Messages ---
+  [CurriculumMessageKey.GENERATE_STATUS_PREPARING]: {
+    ko: '요청 데이터를 준비하고 있어요...',
+    en: 'Preparing your request data...',
   },
-  [CurriculumMessageKey.GENERATE_LOADING_TEXT_2]: {
-    ko: '목표 직무에 필요한 핵심 역량을 확인하는 중...',
-    en: 'Identifying core competencies for your target job...',
+  [CurriculumMessageKey.GENERATE_STATUS_GENERATING]: {
+    ko: 'AI가 맞춤형 커리큘럼을 생성하고 있어요...',
+    en: 'The AI is generating your personalized curriculum...',
   },
-  [CurriculumMessageKey.GENERATE_LOADING_TEXT_3]: {
-    ko: '두 데이터를 비교해 맞춤 학습 계획을 짜고 있어요!',
-    en: 'Creating your personalized learning plan by comparing the data!',
+  [CurriculumMessageKey.GENERATE_STATUS_SUCCESS]: {
+    ko: '커리큘럼 생성이 완료되었어요!',
+    en: 'Curriculum generation complete!',
   },
+  [CurriculumMessageKey.GENERATE_STATUS_ERROR]: {
+    ko: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
+    en: 'An error occurred. Please try again in a moment.',
+  },
+} as const;
 
-  // --- Result Alert ---
-  [CurriculumMessageKey.GENERATE_SUCCESS_ALERT]: {
-    ko: '커리큘럼 생성이 완료되었습니다!',
-    en: 'Curriculum generated successfully!',
-  },
+export const curriculumUIMessages = {
+  // Level
+  [CurriculumUITextKey.LEVEL_ENTRY]: { ko: '신입', en: 'Entry' },
+  [CurriculumUITextKey.LEVEL_JUNIOR]: { ko: '주니어', en: 'Junior' },
+  [CurriculumUITextKey.LEVEL_SENIOR]: { ko: '경력', en: 'Senior' },
+
+  // Importance
+  [CurriculumUITextKey.IMPORTANCE_REQUIRED]: { ko: '필수', en: 'Required' },
+  [CurriculumUITextKey.IMPORTANCE_RECOMMENDED]: { ko: '권장', en: 'Recommended' },
+  [CurriculumUITextKey.IMPORTANCE_NICE_TO_HAVE]: { ko: '알아두면 좋음', en: 'Nice to have' },
+
+  // Resource Type
+  [CurriculumUITextKey.RESOURCE_TYPE_COURSE]: { ko: '강의', en: 'Course' },
+  [CurriculumUITextKey.RESOURCE_TYPE_ARTICLE]: { ko: '아티클', en: 'Article' },
+  [CurriculumUITextKey.RESOURCE_TYPE_BOOK]: { ko: '도서', en: 'Book' },
+  [CurriculumUITextKey.RESOURCE_TYPE_OFFICIAL_DOCS]: { ko: '공식문서', en: 'Docs' },
+  [CurriculumUITextKey.RESOURCE_TYPE_PROJECT]: { ko: '프로젝트', en: 'Project' },
 } as const;

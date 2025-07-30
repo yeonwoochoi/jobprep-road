@@ -9,11 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@headlessui/react": "^2.2.4",
+    "@types/pdf-parse": "^1.1.5",
     "cookies-next": "^6.1.0",
     "framer-motion": "^12.23.1",
+    "hwp.js": "^0.0.3",
     "lucide-react": "^0.532.0",
+    "mammoth": "^1.9.1",
     "next": "15.3.5",
+    "pdf-parse": "^1.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-toastify": "^11.0.5",
