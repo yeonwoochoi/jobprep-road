@@ -4,7 +4,7 @@ import { parseFilesToText } from '@/lib/parser';
 import { generateCurriculumPrompt } from "@/lib/prompt";
 import { Curriculum } from '@/types/curriculum';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 export async function POST(req: NextRequest) {
   try {
