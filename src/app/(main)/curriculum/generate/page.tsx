@@ -126,6 +126,7 @@ export default function Page() {
 
       if (res.status === 'success' && res.data) {
         setCurrentStatus('success')
+        console.log(res.data)
 
         // TODO: 생성된 데이터를 어딘가에 저장하고 결과 페이지로 이동
         // 예를 들어, Recoil, Zustand, Redux 같은 상태 관리 라이브러리에 저장하거나,
