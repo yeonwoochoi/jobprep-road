@@ -134,7 +134,7 @@ setTempData(JSON.stringify(res.data, null, 2));
         // router.push의 query 파라미터로 간단한 ID만 넘겨주고,
         // 결과 페이지에서 해당 ID로 데이터를 다시 조회할 수 있다.
         // 지금은 alert로 생성된 데이터의 일부를 보여준다.
-        alert(`커리큘럼 생성 성공!\n제목: ${res.data.data.metadata.title}`);
+        alert('커리큘럼 생성 성공!');
         // router.push(`/curriculum/${some_id}`); // 실제 결과 페이지 이동 로직
       } else if (res.status === 'error') {
         throw new Error(res.error);
