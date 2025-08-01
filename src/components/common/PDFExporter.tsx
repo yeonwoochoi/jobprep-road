@@ -1,3 +1,9 @@
+import { Button } from "@/components/ui/Button";
+
 export default function PDFExporter() {
-  return <div>PDFExporter - PDF 생성 버튼</div>
+  return (
+    <Button className="w-36 h-11">
+      PDF 다운로드
+    </Button>
+  )
 }

@@ -33,6 +33,11 @@ export enum CurriculumMessageKey {
 }
 
 export enum CurriculumUITextKey {
+  // Meta data
+  CURRICULUM_TARGET_JOB = 'CURRICULUM_TARGET_JOB',
+  CURRICULUM_RECOMMENDED_LEVEL = 'CURRICULUM_RECOMMENDED_LEVEL',
+  CURRICULUM_CREATED_AT = 'CURRICULUM_CREATED_AT',
+
   // Level
   LEVEL_ENTRY = 'LEVEL_ENTRY',
   LEVEL_JUNIOR = 'LEVEL_JUNIOR',
@@ -42,6 +47,24 @@ export enum CurriculumUITextKey {
   IMPORTANCE_REQUIRED = 'IMPORTANCE_REQUIRED',
   IMPORTANCE_RECOMMENDED = 'IMPORTANCE_RECOMMENDED',
   IMPORTANCE_NICE_TO_HAVE = 'IMPORTANCE_NICE_TO_HAVE',
+
+  // Table of Contents
+  TABLE_OF_CONTENTS = 'TABLE_OF_CONTENTS',
+  RECOMMENDED_RESOURCES = 'RECOMMENDED_RESOURCES',
+  INTRODUCTION = 'INTRODUCTION',
+  SKILL_STACK = 'SKILL_STACK',
+  WEEK_1 = 'WEEK_1',
+  WEEK_2 = 'WEEK_2',
+  WEEK_3 = 'WEEK_3',
+  WEEK_4 = 'WEEK_4',
+  WEEK_5 = 'WEEK_5',
+  WEEK_6 = 'WEEK_6',
+  WEEK_7 = 'WEEK_7',
+  WEEK_8 = 'WEEK_8',
+  WEEK_9 = 'WEEK_9',
+  WEEK_10 = 'WEEK_10',
+  WEEK_11 = 'WEEK_11',
+  WEEK_12 = 'WEEK_12',
 
   // Resource Type
   RESOURCE_TYPE_COURSE = 'RESOURCE_TYPE_COURSE',
@@ -138,6 +161,11 @@ export const curriculumMessages: LocaleData = {
 } as const;
 
 export const curriculumUIMessages = {
+  // Curriculum Info
+  [CurriculumUITextKey.CURRICULUM_TARGET_JOB]: { ko: '대상 직무', en: 'Target Jobs' },
+  [CurriculumUITextKey.CURRICULUM_RECOMMENDED_LEVEL]: { ko: '추천 레벨', en: 'Recommended Level' },
+  [CurriculumUITextKey.CURRICULUM_CREATED_AT]: { ko: '생성일', en: 'Created At' },
+
   // Level
   [CurriculumUITextKey.LEVEL_ENTRY]: { ko: '신입', en: 'Entry' },
   [CurriculumUITextKey.LEVEL_JUNIOR]: { ko: '주니어', en: 'Junior' },
@@ -147,6 +175,24 @@ export const curriculumUIMessages = {
   [CurriculumUITextKey.IMPORTANCE_REQUIRED]: { ko: '필수', en: 'Required' },
   [CurriculumUITextKey.IMPORTANCE_RECOMMENDED]: { ko: '권장', en: 'Recommended' },
   [CurriculumUITextKey.IMPORTANCE_NICE_TO_HAVE]: { ko: '알아두면 좋음', en: 'Nice to have' },
+
+  // Table of Contents
+  [CurriculumUITextKey.TABLE_OF_CONTENTS]: { ko: '목차', en: 'Table of Contents' },
+  [CurriculumUITextKey.INTRODUCTION]: { ko: '개요 및 소개', en: 'Introduction' },
+  [CurriculumUITextKey.SKILL_STACK]: { ko: '기술 스택', en: 'Skill Stack' },
+  [CurriculumUITextKey.RECOMMENDED_RESOURCES]: { ko: '추천 학습 자료', en: 'Recommended Resources' },
+  [CurriculumUITextKey.WEEK_1]: { ko: '1주차', en: 'Week 1' },
+  [CurriculumUITextKey.WEEK_2]: { ko: '2주차', en: 'Week 2' },
+  [CurriculumUITextKey.WEEK_3]: { ko: '3주차', en: 'Week 3' },
+  [CurriculumUITextKey.WEEK_4]: { ko: '4주차', en: 'Week 4' },
+  [CurriculumUITextKey.WEEK_5]: { ko: '5주차', en: 'Week 5' },
+  [CurriculumUITextKey.WEEK_6]: { ko: '6주차', en: 'Week 6' },
+  [CurriculumUITextKey.WEEK_7]: { ko: '7주차', en: 'Week 7' },
+  [CurriculumUITextKey.WEEK_8]: { ko: '8주차', en: 'Week 8' },
+  [CurriculumUITextKey.WEEK_9]: { ko: '9주차', en: 'Week 9' },
+  [CurriculumUITextKey.WEEK_10]: { ko: '10주차', en: 'Week 10' },
+  [CurriculumUITextKey.WEEK_11]: { ko: '11주차', en: 'Week 11' },
+  [CurriculumUITextKey.WEEK_12]: { ko: '12주차', en: 'Week 12' },
 
   // Resource Type
   [CurriculumUITextKey.RESOURCE_TYPE_COURSE]: { ko: '강의', en: 'Course' },

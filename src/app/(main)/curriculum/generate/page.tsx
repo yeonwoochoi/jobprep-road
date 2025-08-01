@@ -7,9 +7,9 @@ import { Container } from "@/components/ui/Container";
 import { CurriculumMessageKey } from "@/locale/messages/curriculum";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { FadeIn, FadeInStagger } from "@/components/ui/FadeIn";
-import IndustrySelector from "@/components/common/IndustrySelector";
-import JobTagCloud from "@/components/common/JobTagCloud";
-import ResumeUploader from "@/components/common/ResumeUploader";
+import IndustrySelector from "@/components/curriculum/IndustrySelector";
+import JobTagCloud from "@/components/curriculum/JobTagCloud";
+import ResumeUploader from "@/components/curriculum/ResumeUploader";
 import GenerateLoading, { GenerationStatus } from "@/components/common/GenerateLoading";
 import { useRouter } from "next/navigation";
 import { dynamicFetch } from "@/lib/api";
@@ -127,7 +127,7 @@ export default function Page() {
 
       if (res.status === 'success' && res.data) {
         setCurrentStatus('success');
-setTempData(JSON.stringify(res.data, null, 2));
+        setTempData(JSON.stringify(res.data, null, 2));
 
         // TODO: 생성된 데이터를 어딘가에 저장하고 결과 페이지로 이동
         // 예를 들어, Recoil, Zustand, Redux 같은 상태 관리 라이브러리에 저장하거나,
@@ -149,7 +149,7 @@ setTempData(JSON.stringify(res.data, null, 2));
 
   return (
     <>
-      <FadeInStagger className="mt-24 sm:mt-32 lg:mt-40">
+      <FadeInStagger className="mt-0 sm:mt-8 lg:mt-16">
         <SectionIntro
           title={<LocaleText keyOrLocaleData={MessageKey.GENERATE_HEADER_TITLE}/>}
         >

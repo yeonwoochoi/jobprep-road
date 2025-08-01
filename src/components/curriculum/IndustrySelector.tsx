@@ -22,14 +22,14 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
             key={id}
             onClick={() => onSelect(id)}
             className={clsx(
-              'cursor-pointer p-4 border-2 rounded-xl text-center transition-all duration-200 flex flex-col items-center justify-center h-full',
+              'min-w-0 cursor-pointer p-4 border-2 rounded-xl text-center transition-all duration-200 flex flex-col items-center justify-center h-full',
               selectedIndustry === id
                 ? 'border-neutral-800 bg-neutral-100 shadow-wd'
                 : 'border-neutral-200 hover:border-neutral-400 hover:shadow-sm'
             )}
           >
             <Icon className="h-6 w-6 mb-2 text-neutral-600"/>
-            <span className="font-semibold text-sm text-neutral-800">
+            <span className="font-semibold text-sm text-neutral-800 break-words">
               <LocaleText keyOrLocaleData={nameKey}/>
             </span>
           </div>

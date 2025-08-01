@@ -29,6 +29,7 @@ import { MessageKey } from "@/locale/message";
 import { MenuIcon, XIcon } from "@/components/ui/Icons";
 import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
 import ContactInfo from "@/components/ui/ContactInfo";
+import { SidebarProvider, useSidebar } from "@/contexts/SidebarContext";
 
 const MainLayoutContext = createContext<{
   logoHovered: boolean
@@ -181,6 +182,8 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
 
   const shouldReduceMotion = useReducedMotion()
 
+  const { isSidebarVisible } = useSidebar()
+
   useEffect(() => {
     // 현재 페이지 링크 클릭 시 메뉴 닫고 애니메이션 초기화
     // usePathname을 key로 써서 같은 경로는 리렌더링 안 되기 때문
@@ -261,7 +264,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
       <motion.div
         layout
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-        className="relative flex flex-auto overflow-hidden bg-white pt-14"
+        className="relative flex flex-auto bg-white pt-14"
       >
         <motion.div className="relative isolate flex flex-col w-full pt-16">
           <GridPattern
@@ -270,7 +273,18 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
             interactive
           />
 
-          <main className="w-full flex-auto">{children}</main>
+          <main className="w-full flex-auto">
+            <Container className="mt-24">
+              <div className="flex gap-x-20">
+                <div className="w-full">
+                  {children}
+                </div>
+                {isSidebarVisible && (
+                  <div id="toc-portal-exit" className="hidden w-60 lg:block" />
+                )}
+              </div>
+            </Container>
+          </main>
 
           <Footer/>
         </motion.div>
@@ -285,9 +299,11 @@ export default function MainLayout({ children }: { children: ReactNode }) {
 
   return (
     <MainLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
-      <MainLayoutInner key={pathname}>
-        {children}
-      </MainLayoutInner>
+      <SidebarProvider>
+        <MainLayoutInner key={pathname}>
+          {children}
+        </MainLayoutInner>
+      </SidebarProvider>
     </MainLayoutContext.Provider>
   )
 }

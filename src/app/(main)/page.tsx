@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 function CtoSection() {
   return (
-    <Container className="mt-24 sm:mt-32 md:mt-56">
+    <Container className="mt-0 sm:mt-8 md:mt-32">
       <FadeIn className="max-w-3xl">
         <h1 className="font-display text-5xl font-medium tracking-tight text-balance text-neutral-950 sm:text-7xl">
           <LocaleText keyOrLocaleData={MessageKey.HOME_TITLE_PREFIX} />

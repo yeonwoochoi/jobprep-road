@@ -1,0 +1,19 @@
+// TODO (예시)
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Curriculum {
+  id          Int      @id @default(autoincrement()) // PostgreSQL의 SERIAL 타입으로 자동 매핑됩니다.
+  title       String
+  description String
+  data        Json     // 거대한 커리큘럼 JSON 데이터를 여기에 통째로 저장합니다.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
