@@ -8,7 +8,8 @@ import clsx from "clsx";
 import { createPortal } from "react-dom";
 import { useSidebar } from "@/contexts/SidebarContext";
 
-type HeadingIds = { id: string, key: keyof typeof MessageKey}[]
+type HeadingData = { id: string, key: keyof typeof MessageKey}
+type HeadingIds = HeadingData[]
 
 const tocItems: HeadingIds = [
   { id: 'introduction', key: MessageKey.INTRODUCTION },
@@ -29,7 +30,7 @@ const tocItems: HeadingIds = [
 ]
 
 function useTableOfContents(headingIds: HeadingIds, contentId: string) {
-  let [headings, setHeadings] = useState<{ id: string; key: string; level: number; active: boolean }[]>([]);
+  let [headings, setHeadings] = useState<(HeadingData & { level: number; active: boolean })[]>([]);
   const pathname = usePathname()
 
   useEffect(() => {

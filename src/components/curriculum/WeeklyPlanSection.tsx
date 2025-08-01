@@ -25,7 +25,9 @@ const ClipboardListIcon = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 )
 
-export const weekMessageKeys: { [key: number]: MessageKey } = {
+type MessageKeyValue = typeof MessageKey[keyof typeof MessageKey];
+
+export const weekMessageKeys: { [key: number]: MessageKeyValue } = {
   1: MessageKey.WEEK_1,
   2: MessageKey.WEEK_2,
   3: MessageKey.WEEK_3,
