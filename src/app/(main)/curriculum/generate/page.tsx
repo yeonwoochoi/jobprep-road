@@ -45,8 +45,7 @@ export default function Page() {
   const [selectedJobs, setSelectedJobs] = useState(new Set<string>())
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
   const [currentStatus, setCurrentStatus] = useState<GenerationStatus>('idle')
-  const isLoading = useMemo(() => currentStatus !== 'idle', [currentStatus]);
-  const [tempData, setTempData] = useState<string>('');
+  const isLoading = useMemo(() => currentStatus !== 'idle', [currentStatus])
 
   const router = useRouter()
   const { language } = useLanguage()
@@ -127,7 +126,6 @@ export default function Page() {
 
       if (res.status === 'success' && res.data) {
         setCurrentStatus('success');
-        setTempData(JSON.stringify(res.data, null, 2));
 
         // TODO: 생성된 데이터를 어딘가에 저장하고 결과 페이지로 이동
         // 예를 들어, Recoil, Zustand, Redux 같은 상태 관리 라이브러리에 저장하거나,
@@ -135,7 +133,7 @@ export default function Page() {
         // 결과 페이지에서 해당 ID로 데이터를 다시 조회할 수 있다.
         // 지금은 alert로 생성된 데이터의 일부를 보여준다.
         alert('커리큘럼 생성 성공!');
-        // router.push(`/curriculum/${some_id}`); // 실제 결과 페이지 이동 로직
+        router.push(`/curriculum/1`); // TODO: 실제 결과 페이지 이동 로직
       } else if (res.status === 'error') {
         throw new Error(res.error);
       }
@@ -179,7 +177,6 @@ export default function Page() {
         </Container>
       </FadeInStagger>
       {isLoading && <GenerateLoading status={currentStatus}/>}
-      {tempData ? tempData : null}
     </>
   )
 }
