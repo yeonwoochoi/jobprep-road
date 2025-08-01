@@ -76,12 +76,11 @@ export default function RecommendedResourceSection({ recommendedResources }: { r
                 <h3 className="mt-4 text-base font-semibold text-neutral-800">
                   {resource.title}
                 </h3>
-                <p className="mt-2 text-sm leading-6 text-neutral-600 line-clamp-3">
+                <p className="mt-2 text-sm/6 text-neutral-600">
                   {resource.description}
                 </p>
               </div>
-              <ExternalLinkIcon
-                className="absolute top-5 right-5 h-5 w-5 text-neutral-400 transition-colors group-hover:text-neutral-600"/>
+              <ExternalLinkIcon className="absolute top-5 right-5 h-5 w-5 text-neutral-400 transition-colors group-hover:text-neutral-600"/>
             </a>
           )
         })}
