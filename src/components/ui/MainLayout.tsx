@@ -87,7 +87,7 @@ function InfoSection() {
     <div className="relative bg-neutral-950 text-white before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
       <Container>
         <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 py-12 sm:py-16">
-          <ContactInfo invert className="py-4" />
+          <ContactInfo invert className="py-4 space-y-8" />
           <div>
             <div className="py-4">
               <div className="font-bold text-xl">

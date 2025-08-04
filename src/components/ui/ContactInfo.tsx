@@ -38,7 +38,7 @@ export default function ContactInfo({ invert = false, className, ...props }: Con
           chldusdn20@gmail.com
         </button>
       </div>
-      <div className="pt-8">
+      <div>
         <div className={clsx('font-bold text-xl', invert ? 'text-white' : 'text-neutral-950')}>
           <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_PHONE_TITLE}/>
         </div>

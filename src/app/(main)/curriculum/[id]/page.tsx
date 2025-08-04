@@ -10,6 +10,16 @@ import CurriculumSection from "@/components/curriculum/CurriculumSection";
 import CurriculumHeader from "@/components/curriculum/CurriculumHeader";
 import SkillSection from "@/components/curriculum/SkillSection";
 import RecommendedResourceSection from "@/components/curriculum/RecommendedResourceSection";
+import { Metadata } from "next";
+import { cookies } from "next/headers";
+import { Locale } from "@/locale";
+import { generatePageMetadata } from "@/_meta/metadata-utils";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata("curriculum/[id]", lang)
+}
 
 export default function Page() {
   const { metadata, skillTree, recommendedResources, weeklyPlan } = mockData.data as Curriculum

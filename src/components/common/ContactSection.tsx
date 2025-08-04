@@ -21,7 +21,7 @@ export function ContactSection() {
             </div>
             <div className="mt-10 border-t border-white/10 pt-10">
               <h3 className="font-display text-base font-semibold text-white">
-                <ContactInfo invert/>
+                <ContactInfo className="space-y-8" invert/>
               </h3>
             </div>
           </div>

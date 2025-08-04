@@ -57,7 +57,7 @@ export default function LoginInput() {
       />
       <button
         type="submit"
-        className="bg-black hover:bg-gray-700 rounded-full text-white py-3 mt-4 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        className="bg-black hover:bg-neutral-700 rounded-full text-white py-3 mt-4 disabled:bg-neutral-400 disabled:cursor-not-allowed"
         disabled={isPending}
       >
         {isPending ? t({ ko: '로그인 중...', en: 'Logging in...' }, language) : t({ ko: '로그인', en: 'Login' }, language)}

@@ -4,10 +4,11 @@ import { AuthMessageKey, authMessages } from "@/locale/messages/auth";
 import { IndustryMessageKey, JobMessageKey, industryMessages } from "@/locale/messages/industry";
 import {
   CurriculumMessageKey,
+  CurriculumUITextKey,
   curriculumMessages,
-  curriculumUIMessages,
-  CurriculumUITextKey
+  curriculumUIMessages
 } from "@/locale/messages/curriculum";
+import { ContactMessageKey, contactMessages } from "@/locale/messages/contact";
 
 export type LocaleData = Record<string, { 'ko': string, 'en': string }>
 
@@ -18,7 +19,8 @@ export const MessageKey = {
   ...IndustryMessageKey,
   ...JobMessageKey,
   ...CurriculumMessageKey,
-  ...CurriculumUITextKey
+  ...CurriculumUITextKey,
+  ...ContactMessageKey
 }
 
 export const messages: LocaleData = {
@@ -27,5 +29,6 @@ export const messages: LocaleData = {
   ...authMessages,
   ...industryMessages,
   ...curriculumMessages,
-  ...curriculumUIMessages
+  ...curriculumUIMessages,
+  ...contactMessages
 }

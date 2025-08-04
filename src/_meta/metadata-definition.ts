@@ -51,6 +51,46 @@ export const pageMetadata: Record<string, PageMetadata> = {
       description: 'Job Prep Road password reset page.',
     },
   },
+  'curriculum': {
+    ko: {
+      title: '커리큘럼',
+      description: '취업 준비를 위한 다양한 커리큘럼을 탐색해 보세요.',
+    },
+    en: {
+      title: 'Curriculum',
+      description: 'Explore various curricula to prepare for your career.',
+    },
+  },
+  'curriculum/generate': {
+    ko: {
+      title: '커리큘럼 생성',
+      description: '나만의 맞춤형 취업 준비 커리큘럼을 생성하세요.',
+    },
+    en: {
+      title: 'Generate Curriculum',
+      description: 'Create your personalized career preparation curriculum.',
+    },
+  },
+  'curriculum/[id]': {
+    ko: {
+      title: '커리큘럼 상세',
+      description: '선택한 커리큘럼의 세부 정보를 확인하세요.',
+    },
+    en: {
+      title: 'Curriculum Details',
+      description: 'View detailed information about the selected curriculum.',
+    },
+  },
+  'contact': {
+    ko: {
+      title: '문의하기',
+      description: '취준로드 서비스와 관련하여 문의사항을 남겨주세요.',
+    },
+    en: {
+      title: 'Contact',
+      description: 'Leave your inquiries about the Job Prep Road service.',
+    },
+  },
 };
 
 // 기본/공통 메타데이터 (siteName 등)
