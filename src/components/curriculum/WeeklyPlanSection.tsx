@@ -5,6 +5,7 @@ import { WeeklyPlan } from '@/types/curriculum';
 import CurriculumSection from "@/components/curriculum/CurriculumSection";
 import { MessageKey } from "@/locale/message";
 import LocaleText from "@/components/common/LocaleText";
+import clsx from "clsx";
 
 // --- 아이콘 정의 ---
 const ChevronDownIcon = (props: SVGProps<SVGSVGElement>) => (
@@ -55,19 +56,28 @@ export function WeeklyPlanSection({ weeklyPlan }: { weeklyPlan: WeeklyPlan[] }) 
   return (
     <>
       {weeklyPlan.map((weekData, index) => (
-        <CurriculumSection key={`Week-${weekData.week}`} category={<LocaleText keyOrLocaleData={weekMessageKeys[weekData.week]}/>} contentId={`week-${weekData.week}`}>
-          <div key={weekData.week} className="rounded-lg border border-neutral-200 bg-neutral-50">
+        <CurriculumSection
+          key={`Week-${weekData.week}`}
+          category={<LocaleText keyOrLocaleData={weekMessageKeys[weekData.week]}/>}
+          contentId={`week-${weekData.week}`}
+        >
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50">
             {/* 아코디언 헤더 (클릭 가능한 영역) */}
             <button
               onClick={() => handleToggle(index)}
               className="flex w-full items-center justify-between p-5 text-left"
             >
-              <div className="flex items-baseline gap-x-3">
+              <div className="flex flex-wrap items-baseline gap-x-3">
                 <span className="text-sm font-semibold text-neutral-500">{weekData.week}주차</span>
                 <h3 className="text-lg font-semibold text-neutral-800">{weekData.title}</h3>
               </div>
               <ChevronDownIcon
-                className={`h-6 w-6 text-neutral-500 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`}
+                className={
+                  clsx(
+                    'h-6 w-6 text-neutral-500 transition-transform duration-300',
+                    openIndex === index ? 'rotate-180' : ''
+                  )
+                }
               />
             </button>
 
