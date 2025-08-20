@@ -1,11 +1,12 @@
-
 # 취준로드 (Job-prep Road)
 
 ## 프로젝트 개요
+
 - 업종 및 직무를 선택한 취준생에게 기업 요구사항을 분석해 맞춤형 취업 준비 커리큘럼을 AI 기반으로 자동 생성하는 서비스
 - IT 직군 중심, 향후 타 업종 확장 가능
 
 ## 주요 기능
+
 - 사용자 인증 (이메일, Google/GitHub OAuth)
 - 업종/직무 태그 선택 및 다중 선택 지원
 - AI(GPT-4) 기반 커리큘럼 자동 생성 (필수 스킬, 학습 로드맵, 추천 리소스)
@@ -13,6 +14,7 @@
 - 관리자용 크롤링 데이터 관리 및 AI 설정 대시보드
 
 ## 기술 스택
+
 - 프론트엔드: Next.js (App Router), TailwindCSS
 - 백엔드: Next.js API Routes, NextAuth.js (인증)
 - 데이터베이스: PostgreSQL + Prisma ORM

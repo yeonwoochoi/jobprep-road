@@ -1,15 +1,15 @@
-import { ComponentPropsWithoutRef } from 'react'
-import clsx from 'clsx'
-import { MessageKey } from "@/locale/message";
-import LocaleText from "@/components/common/LocaleText";
+import { ComponentPropsWithoutRef } from 'react';
+import clsx from 'clsx';
+import { MessageKey } from '@/locale/message';
+import LocaleText from '@/components/common/LocaleText';
 
 export function Logomark({
   invert = false,
   filled = false,
   ...props
 }: ComponentPropsWithoutRef<'svg'> & {
-  invert?: boolean
-  filled?: boolean
+  invert?: boolean;
+  filled?: boolean;
 }) {
   return (
     <svg viewBox="0 0 32 32" aria-hidden="true" {...props}>
@@ -55,7 +55,7 @@ export function Logomark({
         <circle cx="20.5" cy="15.5" r="1.5" />
       </g>
     </svg>
-  )
+  );
 }
 
 export function Logo({
@@ -65,9 +65,9 @@ export function Logo({
   fillOnHover = false,
   ...props
 }: ComponentPropsWithoutRef<'svg'> & {
-  invert?: boolean
-  filled?: boolean
-  fillOnHover?: boolean
+  invert?: boolean;
+  filled?: boolean;
+  fillOnHover?: boolean;
 }) {
   return (
     <svg
@@ -85,13 +85,10 @@ export function Logo({
       <text
         x="40"
         y="22"
-        className={clsx(
-          'text-xl font-bold',
-          invert ? 'fill-white' : 'fill-neutral-950'
-        )}
+        className={clsx('text-xl font-bold', invert ? 'fill-white' : 'fill-neutral-950')}
       >
         <LocaleText keyOrLocaleData={MessageKey.HEADER_COMPANY_NAME} />
       </text>
     </svg>
-  )
+  );
 }

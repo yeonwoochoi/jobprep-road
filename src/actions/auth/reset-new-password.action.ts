@@ -1,4 +1,4 @@
-'use server'
+'use server';
 
 import { createFormAction } from '@/utils/formActions';
 import { dynamicFetch } from '@/lib/api';
@@ -16,13 +16,13 @@ export const resetNewPassword = createFormAction(
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { Cookie: `reset_token=${token}` },
-    })
+    });
 
     if (res.status === 'error') {
-      throw new Error(res.error)
+      throw new Error(res.error);
     }
 
-    cookieStore.delete('reset_token')
-    return null
+    cookieStore.delete('reset_token');
+    return null;
   }
-)
+);

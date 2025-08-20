@@ -1,4 +1,4 @@
-import type { ToastOptions } from 'react-toastify'
+import type { ToastOptions } from 'react-toastify';
 
 export const defaultToastOptions: ToastOptions = {
   position: 'top-right',
@@ -8,4 +8,4 @@ export const defaultToastOptions: ToastOptions = {
   pauseOnHover: true,
   draggable: true,
   theme: 'colored',
-}
+};

@@ -1,4 +1,4 @@
-import { LocaleData } from "@/locale/message";
+import { LocaleData } from '@/locale/message';
 
 export enum CurriculumMessageKey {
   // --- Header ---
@@ -162,9 +162,18 @@ export const curriculumMessages: LocaleData = {
 
 export const curriculumUIMessages = {
   // Curriculum Info
-  [CurriculumUITextKey.CURRICULUM_TARGET_JOB]: { ko: '대상 직무', en: 'Target Jobs' },
-  [CurriculumUITextKey.CURRICULUM_RECOMMENDED_LEVEL]: { ko: '추천 레벨', en: 'Recommended Level' },
-  [CurriculumUITextKey.CURRICULUM_CREATED_AT]: { ko: '생성일', en: 'Created At' },
+  [CurriculumUITextKey.CURRICULUM_TARGET_JOB]: {
+    ko: '대상 직무',
+    en: 'Target Jobs',
+  },
+  [CurriculumUITextKey.CURRICULUM_RECOMMENDED_LEVEL]: {
+    ko: '추천 레벨',
+    en: 'Recommended Level',
+  },
+  [CurriculumUITextKey.CURRICULUM_CREATED_AT]: {
+    ko: '생성일',
+    en: 'Created At',
+  },
 
   // Level
   [CurriculumUITextKey.LEVEL_ENTRY]: { ko: '신입', en: 'Entry' },
@@ -173,14 +182,29 @@ export const curriculumUIMessages = {
 
   // Importance
   [CurriculumUITextKey.IMPORTANCE_REQUIRED]: { ko: '필수', en: 'Required' },
-  [CurriculumUITextKey.IMPORTANCE_RECOMMENDED]: { ko: '권장', en: 'Recommended' },
-  [CurriculumUITextKey.IMPORTANCE_NICE_TO_HAVE]: { ko: '알아두면 좋음', en: 'Nice to have' },
+  [CurriculumUITextKey.IMPORTANCE_RECOMMENDED]: {
+    ko: '권장',
+    en: 'Recommended',
+  },
+  [CurriculumUITextKey.IMPORTANCE_NICE_TO_HAVE]: {
+    ko: '알아두면 좋음',
+    en: 'Nice to have',
+  },
 
   // Table of Contents
-  [CurriculumUITextKey.TABLE_OF_CONTENTS]: { ko: '목차', en: 'Table of Contents' },
-  [CurriculumUITextKey.INTRODUCTION]: { ko: '개요 및 소개', en: 'Introduction' },
+  [CurriculumUITextKey.TABLE_OF_CONTENTS]: {
+    ko: '목차',
+    en: 'Table of Contents',
+  },
+  [CurriculumUITextKey.INTRODUCTION]: {
+    ko: '개요 및 소개',
+    en: 'Introduction',
+  },
   [CurriculumUITextKey.SKILL_STACK]: { ko: '기술 스택', en: 'Skill Stack' },
-  [CurriculumUITextKey.RECOMMENDED_RESOURCES]: { ko: '추천 학습 자료', en: 'Recommended Resources' },
+  [CurriculumUITextKey.RECOMMENDED_RESOURCES]: {
+    ko: '추천 학습 자료',
+    en: 'Recommended Resources',
+  },
   [CurriculumUITextKey.WEEK_1]: { ko: '1주차', en: 'Week 1' },
   [CurriculumUITextKey.WEEK_2]: { ko: '2주차', en: 'Week 2' },
   [CurriculumUITextKey.WEEK_3]: { ko: '3주차', en: 'Week 3' },
@@ -198,6 +222,12 @@ export const curriculumUIMessages = {
   [CurriculumUITextKey.RESOURCE_TYPE_COURSE]: { ko: '강의', en: 'Course' },
   [CurriculumUITextKey.RESOURCE_TYPE_ARTICLE]: { ko: '아티클', en: 'Article' },
   [CurriculumUITextKey.RESOURCE_TYPE_BOOK]: { ko: '도서', en: 'Book' },
-  [CurriculumUITextKey.RESOURCE_TYPE_OFFICIAL_DOCS]: { ko: '공식문서', en: 'Docs' },
-  [CurriculumUITextKey.RESOURCE_TYPE_PROJECT]: { ko: '프로젝트', en: 'Project' },
+  [CurriculumUITextKey.RESOURCE_TYPE_OFFICIAL_DOCS]: {
+    ko: '공식문서',
+    en: 'Docs',
+  },
+  [CurriculumUITextKey.RESOURCE_TYPE_PROJECT]: {
+    ko: '프로젝트',
+    en: 'Project',
+  },
 } as const;

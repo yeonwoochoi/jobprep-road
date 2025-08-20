@@ -1,31 +1,31 @@
-import { FadeIn } from "@/components/ui/FadeIn";
-import { Button } from "@/components/ui/Button";
-import LocaleText from "@/components/common/LocaleText";
-import { MessageKey } from "@/locale/message";
-import { GridPattern } from "@/components/ui/GridPattern";
+import { FadeIn } from '@/components/ui/FadeIn';
+import { Button } from '@/components/ui/Button';
+import LocaleText from '@/components/common/LocaleText';
+import { MessageKey } from '@/locale/message';
+import { GridPattern } from '@/components/ui/GridPattern';
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col h-screen relative isolate items-center justify-center text-center pb-20">
+    <div className="relative isolate flex h-screen flex-col items-center justify-center pb-20 text-center">
       <GridPattern
         className="absolute inset-x-0 -top-14 -z-10 h-full w-full mask-[linear-gradient(to_bottom_left,white_40%,transparent_50%)] fill-neutral-50 stroke-neutral-950/5"
         yOffset={-96}
         interactive
       />
       <FadeIn>
-        <p className="font-semibold text-base text-neutral-900">
-          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_TITLE}/>
+        <p className="text-base font-semibold text-neutral-900">
+          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_TITLE} />
         </p>
-        <h1 className="mt-4 font-medium text-5xl sm:text-7xl tracking-tight text-balance">
-          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_SUBTITLE}/>
+        <h1 className="mt-4 text-5xl font-medium tracking-tight text-balance sm:text-7xl">
+          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_SUBTITLE} />
         </h1>
         <p className="mt-6 text-lg font-medium text-pretty text-neutral-500 sm:text-xl/8">
-          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_DESCRIPTION}/>
+          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_DESCRIPTION} />
         </p>
-        <Button href="/" className="text-lg w-[150px] h-12 mt-6">
-          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_HOME_BUTTON}/>
+        <Button href="/" className="mt-6 h-12 w-[150px] text-lg">
+          <LocaleText keyOrLocaleData={MessageKey.NOT_FOUND_HOME_BUTTON} />
         </Button>
       </FadeIn>
     </div>
-  )
+  );
 }

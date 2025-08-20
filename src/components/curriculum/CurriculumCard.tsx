@@ -1,7 +1,3 @@
 export default function CurriculumCard() {
-  return (
-    <div>
-      Curriculum Card
-    </div>
-  )
+  return <div>Curriculum Card</div>;
 }

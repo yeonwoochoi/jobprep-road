@@ -1,8 +1,8 @@
-'use client'
+'use client';
 
-import { useLanguage } from "@/contexts/LanguageContext";
-import { t } from "@/locale";
-import { MessageKey } from "@/locale/message";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t } from '@/locale';
+import { MessageKey } from '@/locale/message';
 
 interface LocaleTextProps {
   keyOrLocaleData: keyof typeof MessageKey | { ko: string; en: string };

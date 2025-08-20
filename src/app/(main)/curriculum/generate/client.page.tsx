@@ -1,22 +1,22 @@
-'use client'
+'use client';
 
-import { SectionIntro } from "@/components/ui/SectionIntro";
-import LocaleText from "@/components/common/LocaleText";
-import { MessageKey } from "@/locale/message";
-import { Container } from "@/components/ui/Container";
-import { CurriculumMessageKey } from "@/locale/messages/curriculum";
-import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
-import { FadeIn, FadeInStagger } from "@/components/ui/FadeIn";
-import IndustrySelector from "@/components/curriculum/IndustrySelector";
-import JobTagCloud from "@/components/curriculum/JobTagCloud";
-import ResumeUploader from "@/components/curriculum/ResumeUploader";
-import GenerateLoading, { GenerationStatus } from "@/components/common/GenerateLoading";
-import { useRouter } from "next/navigation";
-import { dynamicFetch } from "@/lib/api";
-import { Curriculum } from "@/types/curriculum";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { industryIdToNameKeyMap, jobIdToNameKeyMap } from "@/data/jobData";
-import { t } from "@/locale";
+import { SectionIntro } from '@/components/ui/SectionIntro';
+import LocaleText from '@/components/common/LocaleText';
+import { MessageKey } from '@/locale/message';
+import { Container } from '@/components/ui/Container';
+import { CurriculumMessageKey } from '@/locale/messages/curriculum';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
+import IndustrySelector from '@/components/curriculum/IndustrySelector';
+import JobTagCloud from '@/components/curriculum/JobTagCloud';
+import ResumeUploader from '@/components/curriculum/ResumeUploader';
+import GenerateLoading, { GenerationStatus } from '@/components/common/GenerateLoading';
+import { useRouter } from 'next/navigation';
+import { dynamicFetch } from '@/lib/api';
+import { Curriculum } from '@/types/curriculum';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { industryIdToNameKeyMap, jobIdToNameKeyMap } from '@/data/constants/jobData';
+import { t } from '@/locale';
 
 interface StepSectionProps {
   step: number;
@@ -27,75 +27,71 @@ interface StepSectionProps {
 function StepSection({ step, titleKey, children }: StepSectionProps) {
   return (
     <FadeIn>
-      <h2 className="mb-6 block font-display text-base font-semibold uppercase">
-        STEP {step}
-      </h2>
+      <h2 className="font-display mb-6 block text-base font-semibold uppercase">STEP {step}</h2>
       <h3 className="text-3xl font-bold text-neutral-900">
-        <LocaleText keyOrLocaleData={titleKey}/>
+        <LocaleText keyOrLocaleData={titleKey} />
       </h3>
-      <div className="mt-6">
-        {children}
-      </div>
+      <div className="mt-6">{children}</div>
     </FadeIn>
-  )
+  );
 }
 
 export default function ClientPage() {
-  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null)
-  const [selectedJobs, setSelectedJobs] = useState(new Set<string>())
-  const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
-  const [currentStatus, setCurrentStatus] = useState<GenerationStatus>('idle')
+  const [selectedIndustry, setSelectedIndustry] = useState<string | null>(null);
+  const [selectedJobs, setSelectedJobs] = useState(new Set<string>());
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+  const [currentStatus, setCurrentStatus] = useState<GenerationStatus>('idle');
   const isLoading = useMemo(() => currentStatus !== 'idle', [currentStatus]);
   const [tempData, setTempData] = useState<string>('');
 
-  const router = useRouter()
-  const { language } = useLanguage()
+  const router = useRouter();
+  const { language } = useLanguage();
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
-      event.preventDefault()
-      event.returnValue = ''
-    }
+      event.preventDefault();
+      event.returnValue = '';
+    };
     if (isLoading) {
-      window.addEventListener('beforeunload', handleBeforeUnload)
+      window.addEventListener('beforeunload', handleBeforeUnload);
     }
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload)
-    }
-  }, [isLoading])
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [isLoading]);
 
   const handleIndustrySelect = useCallback((industryId: string) => {
     setSelectedIndustry(industryId);
     setSelectedJobs(new Set());
-  }, [])
+  }, []);
 
   const handleJobToggle = useCallback((jobId: string) => {
     setSelectedJobs((prev) => {
-      const newJobs = new Set(prev)
+      const newJobs = new Set(prev);
       if (newJobs.has(jobId)) {
-        newJobs.delete(jobId)
+        newJobs.delete(jobId);
       } else {
-        newJobs.add(jobId)
+        newJobs.add(jobId);
       }
-      return newJobs
-    })
-  }, [])
+      return newJobs;
+    });
+  }, []);
 
   const handleAddFiles = useCallback((newFiles: File[]) => {
     setUploadedFiles((prevFiles) => {
-      const existingFiles= new Set(prevFiles.map(f => `${f.name}-${f.size}`))
-      const uniqueFiles = newFiles.filter(f => !existingFiles.has(`${f.name}-${f.size}`))
-      return [...prevFiles, ...uniqueFiles]
-    })
-  }, [])
+      const existingFiles = new Set(prevFiles.map((f) => `${f.name}-${f.size}`));
+      const uniqueFiles = newFiles.filter((f) => !existingFiles.has(`${f.name}-${f.size}`));
+      return [...prevFiles, ...uniqueFiles];
+    });
+  }, []);
 
   const handleRemoveFiles = useCallback((fileToRemove: File) => {
-    setUploadedFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove))
-  }, [])
+    setUploadedFiles((prevFiles) => prevFiles.filter((file) => file !== fileToRemove));
+  }, []);
 
   const isGenerateButtonEnabled = useMemo(() => {
-    return selectedJobs.size > 0 && uploadedFiles.length > 0
-  }, [uploadedFiles, selectedJobs])
+    return selectedJobs.size > 0 && uploadedFiles.length > 0;
+  }, [uploadedFiles, selectedJobs]);
 
   const handleGenerate = async () => {
     if (!isGenerateButtonEnabled || isLoading) return;
@@ -105,24 +101,23 @@ export default function ClientPage() {
     try {
       const industryNameKey = industryIdToNameKeyMap.get(selectedIndustry!);
       const industryText = industryNameKey ? t(industryNameKey, language) : selectedIndustry;
-      const targetJobTexts = Array.from(selectedJobs).map(jobId => {
+      const targetJobTexts = Array.from(selectedJobs).map((jobId) => {
         const jobNameKey = jobIdToNameKeyMap.get(jobId);
         // 만약 키를 찾으면 번역된 텍스트를, 못찾으면 원래 id를 반환
-        return jobNameKey ? t(jobNameKey, language).replace(/^#/, "") : jobId;
+        return jobNameKey ? t(jobNameKey, language).replace(/^#/, '') : jobId;
       });
 
+      const formData = new FormData();
+      formData.append('industry', industryText!);
+      formData.append('targetJobs', JSON.stringify(targetJobTexts));
+      uploadedFiles.forEach((file) => {
+        formData.append('files', file);
+      });
 
-      const formData = new FormData()
-      formData.append('industry', industryText!)
-      formData.append('targetJobs', JSON.stringify(targetJobTexts))
-      uploadedFiles.forEach(file => {
-        formData.append('files', file)
-      })
-
-      setCurrentStatus('generating')
+      setCurrentStatus('generating');
       const res = await dynamicFetch<Curriculum>('/api/curriculum/generate', {
         method: 'POST',
-        body: formData as BodyInit
+        body: formData as BodyInit,
       });
 
       if (res.status === 'success' && res.data) {
@@ -140,19 +135,17 @@ export default function ClientPage() {
         throw new Error(res.error);
       }
     } catch (error) {
-      setCurrentStatus('error')
-      alert(error)
+      setCurrentStatus('error');
+      alert(error);
     } finally {
-      setCurrentStatus('idle')
+      setCurrentStatus('idle');
     }
-  }
+  };
 
   return (
     <>
       <FadeInStagger className="mt-0 sm:mt-8 lg:mt-16">
-        <SectionIntro
-          title={<LocaleText keyOrLocaleData={MessageKey.GENERATE_HEADER_TITLE}/>}
-        >
+        <SectionIntro title={<LocaleText keyOrLocaleData={MessageKey.GENERATE_HEADER_TITLE} />}>
           <p>
             <LocaleText keyOrLocaleData={MessageKey.GENERATE_HEADER_DESCRIPTION} />
           </p>
@@ -160,26 +153,37 @@ export default function ClientPage() {
         <Container>
           <div className="flex flex-col gap-y-20 py-20">
             <StepSection step={1} titleKey={MessageKey.GENERATE_STEP1_TITLE}>
-              <IndustrySelector selectedIndustry={selectedIndustry} onSelect={handleIndustrySelect}/>
-              <JobTagCloud industryId={selectedIndustry} selectedJobs={selectedJobs} onToggle={handleJobToggle}/>
+              <IndustrySelector
+                selectedIndustry={selectedIndustry}
+                onSelect={handleIndustrySelect}
+              />
+              <JobTagCloud
+                industryId={selectedIndustry}
+                selectedJobs={selectedJobs}
+                onToggle={handleJobToggle}
+              />
             </StepSection>
             <StepSection step={2} titleKey={MessageKey.GENERATE_STEP2_TITLE}>
-              <ResumeUploader uploadedFiles={uploadedFiles} onAddFiles={handleAddFiles} onRemoveFile={handleRemoveFiles}/>
+              <ResumeUploader
+                uploadedFiles={uploadedFiles}
+                onAddFiles={handleAddFiles}
+                onRemoveFile={handleRemoveFiles}
+              />
             </StepSection>
             <FadeIn>
               <button
                 onClick={handleGenerate}
                 disabled={!isGenerateButtonEnabled || isLoading}
-                className="bg-neutral-950 text-white hover:bg-neutral-800 rounded-4xl cursor-pointer w-full py-4 text-lg font-bold disabled:bg-neutral-300 disabled:cursor-not-allowed"
+                className="w-full cursor-pointer rounded-4xl bg-neutral-950 py-4 text-lg font-bold text-white hover:bg-neutral-800 disabled:cursor-not-allowed disabled:bg-neutral-300"
               >
-                <LocaleText keyOrLocaleData={MessageKey.GENERATE_CTA_BUTTON}/>
+                <LocaleText keyOrLocaleData={MessageKey.GENERATE_CTA_BUTTON} />
               </button>
             </FadeIn>
           </div>
         </Container>
       </FadeInStagger>
-      {isLoading && <GenerateLoading status={currentStatus}/>}
+      {isLoading && <GenerateLoading status={currentStatus} />}
       {tempData ? tempData : null}
     </>
-  )
+  );
 }

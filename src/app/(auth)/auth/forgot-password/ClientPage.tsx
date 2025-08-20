@@ -1,49 +1,51 @@
-'use client'
+'use client';
 
-import { TextField } from "@/components/ui/TextField";
-import { t } from "@/locale";
-import { useActionState, useEffect, useState } from "react";
-import { sendVerificationCodeAction } from "@/actions/auth/send-verification-code.action";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { useToast } from "@/hooks/useToast";
-import { useRouter, useSearchParams } from "next/navigation";
-import { FormActionResult } from "@/utils/formActions";
+import { TextField } from '@/components/ui/TextField';
+import { t } from '@/locale';
+import { useActionState, useEffect, useState } from 'react';
+import { sendVerificationCodeAction } from '@/actions/auth/send-verification-code.action';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useToast } from '@/hooks/useToast';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { FormActionResult } from '@/utils/formActions';
 
 export default function ClientPage() {
-  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(sendVerificationCodeAction, {
-    status: 'idle'
-  })
+  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(
+    sendVerificationCodeAction,
+    {
+      status: 'idle',
+    }
+  );
 
-  const searchParams = useSearchParams()
-  const error = searchParams.get('error') as string
+  const searchParams = useSearchParams();
+  const error = searchParams.get('error') as string;
 
   useEffect(() => {
     if (error) {
-      toastError('잘못된 접근입니다.')
+      toastError('잘못된 접근입니다.');
     }
-  }, [])
-
+  }, []);
 
   const [email, setEmail] = useState('');
-  const { language } = useLanguage()
-  const { toastSuccess, toastError } = useToast()
-  const router = useRouter()
+  const { language } = useLanguage();
+  const { toastSuccess, toastError } = useToast();
+  const router = useRouter();
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
-        toastError(state.error)
+        toastError(state.error);
       } else if (state.status === 'success') {
-        toastSuccess(t({ ko: '메일이 전송되었습니다.', en: 'Email has been sent.' }, language))
-        router.push(`/auth/forgot-password/verify?email=${encodeURIComponent(email)}`)
+        toastSuccess(t({ ko: '메일이 전송되었습니다.', en: 'Email has been sent.' }, language));
+        router.push(`/auth/forgot-password/verify?email=${encodeURIComponent(email)}`);
       }
     }
-  }, [state])
+  }, [state]);
 
   return (
-    <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-6 w-full">
+    <form action={formAction} className="mt-10 grid w-full grid-cols-1 gap-y-6">
       <TextField
-        label={t({ ko: "이메일", en: "Email Address" }, language)}
+        label={t({ ko: '이메일', en: 'Email Address' }, language)}
         name="email"
         type="email"
         autoComplete="email"
@@ -53,15 +55,13 @@ export default function ClientPage() {
       />
       <button
         type="submit"
-        className="bg-black hover:bg-gray-700 rounded-full text-white py-3 mt-4 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        className="mt-4 rounded-full bg-black py-3 text-white hover:bg-gray-700 disabled:cursor-not-allowed disabled:bg-gray-400"
         disabled={isPending}
       >
-        {
-          isPending
-            ? t({ ko: '전송중...', en: 'Sending...' }, language)
-            : t({ ko: '메일 보내기', en: 'Send Email' }, language)
-        }
+        {isPending
+          ? t({ ko: '전송중...', en: 'Sending...' }, language)
+          : t({ ko: '메일 보내기', en: 'Send Email' }, language)}
       </button>
     </form>
-  )
+  );
 }

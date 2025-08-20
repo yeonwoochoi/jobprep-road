@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
-import { CurriculumMessageKey } from "@/locale/messages/curriculum";
-import { CSSProperties, useEffect, useState } from "react";
-import { Loader } from "lucide-react";
-import LocaleText from "@/components/common/LocaleText";
+import { CurriculumMessageKey } from '@/locale/messages/curriculum';
+import { CSSProperties, useEffect, useState } from 'react';
+import { Loader } from 'lucide-react';
+import LocaleText from '@/components/common/LocaleText';
 
 export type GenerationStatus = 'idle' | 'preparing' | 'generating' | 'success' | 'error';
 
@@ -49,7 +49,6 @@ function AnimatedMessage({ messageKey }: AnimatedMessageProps) {
   );
 }
 
-
 interface GenerateLoadingProps {
   status: GenerationStatus;
 }
@@ -58,12 +57,12 @@ export default function GenerateLoading({ status }: GenerateLoadingProps) {
   const messageKey = statusToMessageKey[status];
 
   useEffect(() => {
-    document.body.classList.add('loading-overlay-active')
+    document.body.classList.add('loading-overlay-active');
 
     return () => {
-      document.body.classList.remove('loading-overlay-active')
-    }
-  }, [])
+      document.body.classList.remove('loading-overlay-active');
+    };
+  }, []);
 
   if (!messageKey) {
     return null;
@@ -72,7 +71,7 @@ export default function GenerateLoading({ status }: GenerateLoadingProps) {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm">
       <Loader className="h-16 w-16 animate-spin text-neutral-800" />
-      <div className="mt-8 text-xl font-semibold text-neutral-700 text-center w-full max-w-lg px-4 h-8 relative overflow-hidden">
+      <div className="relative mt-8 h-8 w-full max-w-lg overflow-hidden px-4 text-center text-xl font-semibold text-neutral-700">
         {/*
           핵심 포인트:
           messageKey를 React의 `key` prop으로 사용합니다.

@@ -26,7 +26,6 @@ export type Importance = 'required' | 'recommended' | 'nice_to_have';
  */
 export type ResourceType = 'course' | 'article' | 'book' | 'official_docs' | 'project';
 
-
 // === Metadata ===
 
 /**
@@ -45,7 +44,6 @@ export interface CurriculumMeta {
   /** 생성일 (ISO 8601 문자열) */
   createdAt: string;
 }
-
 
 // === Skill ===
 
@@ -74,7 +72,6 @@ export interface SkillCategory {
   skills: Skill[];
 }
 
-
 // === Recommended Resource ===
 
 /**
@@ -95,7 +92,6 @@ export interface RecommendedResource {
   /** 플랫폼 정보 (예: '인프런', 'Udemy') */
   platform?: string;
 }
-
 
 // === Weekly Plan ===
 
@@ -127,7 +123,6 @@ export interface WeeklyPlan {
   /** 주차별 과제 또는 프로젝트 */
   weeklyTask?: string;
 }
-
 
 // === Curriculum ===
 

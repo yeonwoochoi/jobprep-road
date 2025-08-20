@@ -1,4 +1,4 @@
-import { LocaleData } from "@/locale/message";
+import { LocaleData } from '@/locale/message';
 
 export enum AuthMessageKey {
   AUTH_EMAIL_LABEL = 'AUTH_EMAIL_LABEL',
@@ -59,4 +59,4 @@ export const authMessages: LocaleData = {
     ko: '비밀번호 재설정 메일을 보내드립니다.',
     en: 'We’ll send you an email to reset your password.',
   },
-} as const
+} as const;

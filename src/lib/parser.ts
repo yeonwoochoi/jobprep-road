@@ -1,6 +1,6 @@
-import mammoth from 'mammoth'
-import pdf from 'pdf-parse'
-import { parseHwpWithLibrary } from "@/lib/hwpParser";
+import mammoth from 'mammoth';
+import pdf from 'pdf-parse';
+import { parseHwpWithLibrary } from '@/lib/hwpParser';
 
 export async function parseFilesToText(files: File[]): Promise<string> {
   let combinedText = '';
@@ -26,7 +26,9 @@ export async function parseFilesToText(files: File[]): Promise<string> {
         text = data.text;
       }
       // DOCX 파일 처리
-      else if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      else if (
+        file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      ) {
         const buffer = Buffer.from(arrayBuffer);
         const result = await mammoth.extractRawText({ buffer });
         text = result.value;

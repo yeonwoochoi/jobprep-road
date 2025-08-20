@@ -1,20 +1,20 @@
-'use server'
+'use server';
 
-import { createFormAction } from "@/utils/formActions";
-import { dynamicFetch } from "@/lib/api";
+import { createFormAction } from '@/utils/formActions';
+import { dynamicFetch } from '@/lib/api';
 
 export const sendVerificationCodeAction = createFormAction(
-  ["email"] as const,
-  { email: "Email" },
+  ['email'] as const,
+  { email: 'Email' },
   async ({ email }) => {
     const res = await dynamicFetch('/api/auth/send-reset-code', {
-      method: "POST",
-      body: JSON.stringify({ email })
-    })
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    });
 
     if (res.status === 'error') {
-      throw new Error(res.error)
+      throw new Error(res.error);
     }
-    return null
+    return null;
   }
-)
+);

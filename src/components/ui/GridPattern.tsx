@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { ComponentPropsWithoutRef, useEffect, useId, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { ComponentPropsWithoutRef, useEffect, useId, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
 function Block({
   x,
   y,
   ...props
 }: Omit<ComponentPropsWithoutRef<typeof motion.path>, 'x' | 'y'> & {
-  x: number
-  y: number
+  x: number;
+  y: number;
 }) {
   return (
     <motion.path
@@ -17,7 +17,7 @@ function Block({
       d="M45.119 4.5a11.5 11.5 0 0 0-11.277 9.245l-25.6 128C6.82 148.861 12.262 155.5 19.52 155.5h63.366a11.5 11.5 0 0 0 11.277-9.245l25.6-128c1.423-7.116-4.02-13.755-11.277-13.755H45.119Z"
       {...props}
     />
-  )
+  );
 }
 
 export function GridPattern({
@@ -25,16 +25,16 @@ export function GridPattern({
   interactive = false,
   ...props
 }: ComponentPropsWithoutRef<'svg'> & {
-  yOffset?: number
-  interactive?: boolean
+  yOffset?: number;
+  interactive?: boolean;
 }) {
-  const id = useId()
-  const ref = useRef<SVGSVGElement | null>(null)
-  const currentBlock = useRef<[number, number] | null>(null)
-  const counter = useRef(0)
-  const [hoveredBlocks, setHoveredBlocks] = useState<
-    Array<[x: number, y: number, key: number]>
-    >([])
+  const id = useId();
+  const ref = useRef<SVGSVGElement | null>(null);
+  const currentBlock = useRef<[number, number] | null>(null);
+  const counter = useRef(0);
+  const [hoveredBlocks, setHoveredBlocks] = useState<Array<[x: number, y: number, key: number]>>(
+    []
+  );
   const staticBlocks = [
     [1, 1],
     [2, 2],
@@ -42,52 +42,52 @@ export function GridPattern({
     [6, 2],
     [7, 4],
     [5, 5],
-  ]
+  ];
 
   useEffect(() => {
     if (!interactive) {
-      return
+      return;
     }
 
     function onMouseMove(event: MouseEvent) {
       if (!ref.current) {
-        return
+        return;
       }
 
-      const rect = ref.current?.getBoundingClientRect()
-      let x = event.clientX - rect.left
-      let y = event.clientY - rect.top
+      const rect = ref.current?.getBoundingClientRect();
+      let x = event.clientX - rect.left;
+      let y = event.clientY - rect.top;
       if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
-        return
+        return;
       }
 
-      x = x - rect.width / 2 - 32
-      y = y - yOffset
-      x += Math.tan(32 / 160) * y
-      x = Math.floor(x / 96)
-      y = Math.floor(y / 160)
+      x = x - rect.width / 2 - 32;
+      y = y - yOffset;
+      x += Math.tan(32 / 160) * y;
+      x = Math.floor(x / 96);
+      y = Math.floor(y / 160);
 
       if (currentBlock.current?.[0] === x && currentBlock.current?.[1] === y) {
-        return
+        return;
       }
 
-      currentBlock.current = [x, y]
+      currentBlock.current = [x, y];
 
       setHoveredBlocks((blocks) => {
-        const key = counter.current++
-        const block = [x, y, key] as (typeof hoveredBlocks)[number]
+        const key = counter.current++;
+        const block = [x, y, key] as (typeof hoveredBlocks)[number];
         return [...blocks, block].filter(
-          (block) => !(block[0] === x && block[1] === y && block[2] !== key),
-        )
-      })
+          (block) => !(block[0] === x && block[1] === y && block[2] !== key)
+        );
+      });
     }
 
-    window.addEventListener('mousemove', onMouseMove)
+    window.addEventListener('mousemove', onMouseMove);
 
     return () => {
-      window.removeEventListener('mousemove', onMouseMove)
-    }
-  }, [yOffset, interactive])
+      window.removeEventListener('mousemove', onMouseMove);
+    };
+  }, [yOffset, interactive]);
 
   return (
     <svg ref={ref} aria-hidden="true" {...props}>
@@ -104,9 +104,7 @@ export function GridPattern({
             animate={{ opacity: [0, 1, 0] }}
             transition={{ duration: 1, times: [0, 0, 1] }}
             onAnimationComplete={() => {
-              setHoveredBlocks((blocks) =>
-                blocks.filter((b) => b[2] !== block[2]),
-              )
+              setHoveredBlocks((blocks) => blocks.filter((b) => b[2] !== block[2]));
             }}
           />
         ))}
@@ -125,5 +123,5 @@ export function GridPattern({
         </pattern>
       </defs>
     </svg>
-  )
+  );
 }

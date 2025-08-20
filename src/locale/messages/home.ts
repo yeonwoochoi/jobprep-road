@@ -1,4 +1,4 @@
-import { LocaleData } from "@/locale/message";
+import { LocaleData } from '@/locale/message';
 
 export enum HomeMessageKey {
   // HOME
@@ -87,7 +87,7 @@ export const homeMessages: LocaleData = {
   },
   [HomeMessageKey.HOME_SERVICE_STEP_1_DESC]: {
     ko: '취업 희망 업종과 직무를 선택하면, 최신 채용 공고 데이터를 분석해 핵심 요구사항을 뽑아드립니다.',
-    en: 'Choose your desired industry and role, and we\'ll analyze the latest job postings to extract core requirements.',
+    en: "Choose your desired industry and role, and we'll analyze the latest job postings to extract core requirements.",
   },
   [HomeMessageKey.HOME_SERVICE_STEP_2_TITLE]: {
     ko: '2단계. AI 커리큘럼 생성',
@@ -207,4 +207,4 @@ export const homeMessages: LocaleData = {
     ko: '언어',
     en: 'Language',
   },
-} as const
+} as const;

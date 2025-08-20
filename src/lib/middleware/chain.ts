@@ -14,7 +14,7 @@ export function chain(middlewares: Middleware[]) {
 
       const currentMiddleware = middlewares[index];
       return currentMiddleware(request, () => invoke(index + 1));
-    }
-    return invoke(0)
+    };
+    return invoke(0);
   };
 }

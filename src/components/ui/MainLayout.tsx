@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   ComponentType,
@@ -11,34 +11,34 @@ import {
   useEffect,
   useId,
   useRef,
-  useState
-} from "react";
-import { usePathname } from "next/navigation";
-import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
+  useState,
+} from 'react';
+import { usePathname } from 'next/navigation';
+import { motion, MotionConfig, useReducedMotion } from 'framer-motion';
 
-import { GridPattern } from '@/components/ui/GridPattern'
-import Footer from "@/components/ui/Footer";
-import { Container } from "@/components/ui/Container";
-import Link from "next/link";
-import { Logo, Logomark } from "@/components/ui/Logo";
-import clsx from "clsx";
-import { Button } from "@/components/ui/Button";
-import { SocialMedia } from "@/components/ui/SocialMedia";
-import LocaleText from "@/components/common/LocaleText";
-import { MessageKey } from "@/locale/message";
-import { MenuIcon, XIcon } from "@/components/ui/Icons";
-import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
-import ContactInfo from "@/components/ui/ContactInfo";
-import { SidebarProvider, useSidebar } from "@/contexts/SidebarContext";
+import { GridPattern } from '@/components/ui/GridPattern';
+import Footer from '@/components/ui/Footer';
+import { Container } from '@/components/ui/Container';
+import Link from 'next/link';
+import { Logo, Logomark } from '@/components/ui/Logo';
+import clsx from 'clsx';
+import { Button } from '@/components/ui/Button';
+import { SocialMedia } from '@/components/ui/SocialMedia';
+import LocaleText from '@/components/common/LocaleText';
+import { MessageKey } from '@/locale/message';
+import { MenuIcon, XIcon } from '@/components/ui/Icons';
+import LanguageToggleButton from '@/components/ui/LanguageToggleButton';
+import ContactInfo from '@/components/ui/ContactInfo';
+import { SidebarProvider, useSidebar } from '@/contexts/SidebarContext';
 
 const MainLayoutContext = createContext<{
-  logoHovered: boolean
-  setLogoHovered: Dispatch<SetStateAction<boolean>>
-} | null>(null)
+  logoHovered: boolean;
+  setLogoHovered: Dispatch<SetStateAction<boolean>>;
+} | null>(null);
 
 function Navigation() {
   return (
-    <nav className="mt-px text-white text-5xl font-medium tracking-tight">
+    <nav className="mt-px text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
         <NavigationItem href="/">
           <LocaleText keyOrLocaleData={MessageKey.HEADER_HOME} />
@@ -56,7 +56,7 @@ function Navigation() {
         </NavigationItem>
       </NavigationRow>
     </nav>
-  )
+  );
 }
 
 function NavigationRow({ children }: { children: ReactNode }) {
@@ -66,37 +66,36 @@ function NavigationRow({ children }: { children: ReactNode }) {
         <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
       </Container>
     </div>
-  )
+  );
 }
 
-function NavigationItem({ href, children, }: { href: string, children: ReactNode }) {
+function NavigationItem({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
       href={href}
       className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
     >
       {children}
-      <span
-        className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100"/>
+      <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
     </Link>
-  )
+  );
 }
 
 function InfoSection() {
   return (
     <div className="relative bg-neutral-950 text-white before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
       <Container>
-        <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 py-12 sm:py-16">
-          <ContactInfo invert className="py-4 space-y-8" />
+        <div className="grid grid-cols-1 gap-y-10 py-12 sm:grid-cols-2 sm:py-16">
+          <ContactInfo invert className="space-y-8 py-4" />
           <div>
             <div className="py-4">
-              <div className="font-bold text-xl">
+              <div className="text-xl font-bold">
                 <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_SOCIAL_TITLE} />
               </div>
               <SocialMedia className="mt-4" invert />
             </div>
             <div className="py-4">
-              <div className="font-bold text-xl">
+              <div className="text-xl font-bold">
                 <LocaleText keyOrLocaleData={MessageKey.HEADER_CONTACT_LANGUAGE_TITLE} />
               </div>
               <LanguageToggleButton invert className="mt-4" />
@@ -105,20 +104,27 @@ function InfoSection() {
         </div>
       </Container>
     </div>
-  )
+  );
 }
 
 type HeaderPropsType = {
-  panelId: string,
-  icon: ComponentType<{ className?: string }>
-  expanded: boolean
-  onToggle: () => void
-  toggleRef: RefObject<HTMLButtonElement | null>
-  invert?: boolean
-}
+  panelId: string;
+  icon: ComponentType<{ className?: string }>;
+  expanded: boolean;
+  onToggle: () => void;
+  toggleRef: RefObject<HTMLButtonElement | null>;
+  invert?: boolean;
+};
 
-function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = false }: HeaderPropsType) {
-  const { logoHovered, setLogoHovered } = useContext(MainLayoutContext)!
+function Header({
+  panelId,
+  icon: Icon,
+  expanded,
+  onToggle,
+  toggleRef,
+  invert = false,
+}: HeaderPropsType) {
+  const { logoHovered, setLogoHovered } = useContext(MainLayoutContext)!;
 
   return (
     <Container>
@@ -129,19 +135,11 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          />
-          <Logo
-            className="h-8 hidden sm:block"
-            invert={invert}
-            filled={logoHovered}
-          />
+          <Logomark className="h-8 sm:hidden" invert={invert} filled={logoHovered} />
+          <Logo className="hidden h-8 sm:block" invert={invert} filled={logoHovered} />
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/auth/login" invert={invert} className="w-20 h-11">
+          <Button href="/auth/login" invert={invert} className="h-11 w-20">
             <LocaleText keyOrLocaleData={MessageKey.HEADER_LOGIN_BUTTON} />
           </Button>
           <button
@@ -152,13 +150,13 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
             aria-controls={panelId}
             aria-label="Toggle navigation"
             className={clsx(
-              'group rounded-full -m-2.5 p-2.5 transition',
+              'group -m-2.5 rounded-full p-2.5 transition',
               invert ? 'hover:bg-white/10' : 'bg-neutral-950/10'
             )}
           >
             <Icon
               className={clsx(
-                'w-6 h-6',
+                'h-6 w-6',
                 invert
                   ? 'fill-white group-hover:fill-neutral-200'
                   : 'fill-neutral-950 group-hover:fill-neutral-700'
@@ -168,54 +166,56 @@ function Header({ panelId, icon: Icon, expanded, onToggle, toggleRef, invert = f
         </div>
       </div>
     </Container>
-  )
+  );
 }
 
 function MainLayoutInner({ children }: { children: ReactNode }) {
-  const panelId = useId()
-  const [expanded, setExpanded] = useState(false) // 메뉴의 열림/닫힘 상태
-  const [isTransitioning, setIsTransitioning] = useState(false) // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
+  const panelId = useId();
+  const [expanded, setExpanded] = useState(false); // 메뉴의 열림/닫힘 상태
+  const [isTransitioning, setIsTransitioning] = useState(false); // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
 
-  const openRef = useRef<HTMLButtonElement | null>(null)
-  const closeRef = useRef<HTMLButtonElement | null>(null)
-  const navRef = useRef<HTMLDivElement | null>(null)
+  const openRef = useRef<HTMLButtonElement | null>(null);
+  const closeRef = useRef<HTMLButtonElement | null>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
 
-  const shouldReduceMotion = useReducedMotion()
+  const shouldReduceMotion = useReducedMotion();
 
-  const { isSidebarVisible } = useSidebar()
+  const { isSidebarVisible } = useSidebar();
 
   useEffect(() => {
     // 현재 페이지 링크 클릭 시 메뉴 닫고 애니메이션 초기화
     // usePathname을 key로 써서 같은 경로는 리렌더링 안 되기 때문
     function onClick(event: MouseEvent) {
-      if (event.target instanceof HTMLElement
-        && event.target.closest('a')?.href === window.location.href) {
-        setIsTransitioning(false)
-        setExpanded(false)
+      if (
+        event.target instanceof HTMLElement &&
+        event.target.closest('a')?.href === window.location.href
+      ) {
+        setIsTransitioning(false);
+        setExpanded(false);
       }
     }
 
-    window.addEventListener('click', onClick)
+    window.addEventListener('click', onClick);
     return () => {
-      window.removeEventListener('click', onClick)
-    }
-  }, [])
+      window.removeEventListener('click', onClick);
+    };
+  }, []);
 
   useEffect(() => {
     if (!expanded) {
-      openRef.current?.focus({ preventScroll: true })
+      openRef.current?.focus({ preventScroll: true });
     } else {
-      closeRef.current?.focus({ preventScroll: true })
+      closeRef.current?.focus({ preventScroll: true });
     }
-  }, [expanded])
+  }, [expanded]);
 
   const toggleMenu = () => {
-    setIsTransitioning(true)
-    setExpanded((expanded) => !expanded)
-  }
+    setIsTransitioning(true);
+    setExpanded((expanded) => !expanded);
+  };
 
   return (
-    <MotionConfig transition={(shouldReduceMotion || !isTransitioning) ? { duration: 0 } : undefined}>
+    <MotionConfig transition={shouldReduceMotion || !isTransitioning ? { duration: 0 } : undefined}>
       {/* Header */}
       <header>
         {/* Expand 전 Header */}
@@ -254,8 +254,8 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
                 onToggle={toggleMenu}
               />
             </div>
-            <Navigation/>
-            <InfoSection/>
+            <Navigation />
+            <InfoSection />
           </motion.div>
         </motion.div>
       </header>
@@ -266,7 +266,7 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
         style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
         className="relative flex flex-auto bg-white pt-14"
       >
-        <motion.div className="relative isolate flex flex-col w-full pt-16">
+        <motion.div className="relative isolate flex w-full flex-col pt-16">
           <GridPattern
             className="absolute inset-x-0 -top-14 -z-10 h-[1000px] w-full mask-[linear-gradient(to_bottom_left,white_40%,transparent_50%)] fill-neutral-50 stroke-neutral-950/5"
             yOffset={-96}
@@ -276,34 +276,28 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
           <main className="w-full flex-auto">
             <Container className="mt-24">
               <div className="flex gap-x-20">
-                <div className="w-full">
-                  {children}
-                </div>
-                {isSidebarVisible && (
-                  <div id="toc-portal-exit" className="hidden w-60 lg:block" />
-                )}
+                <div className="w-full">{children}</div>
+                {isSidebarVisible && <div id="toc-portal-exit" className="hidden w-60 lg:block" />}
               </div>
             </Container>
           </main>
 
-          <Footer/>
+          <Footer />
         </motion.div>
       </motion.div>
     </MotionConfig>
-  )
+  );
 }
 
 export default function MainLayout({ children }: { children: ReactNode }) {
-  const pathname = usePathname()
-  const [logoHovered, setLogoHovered] = useState(false)
+  const pathname = usePathname();
+  const [logoHovered, setLogoHovered] = useState(false);
 
   return (
     <MainLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
       <SidebarProvider>
-        <MainLayoutInner key={pathname}>
-          {children}
-        </MainLayoutInner>
+        <MainLayoutInner key={pathname}>{children}</MainLayoutInner>
       </SidebarProvider>
     </MainLayoutContext.Provider>
-  )
+  );
 }

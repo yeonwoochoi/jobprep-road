@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
-import LanguageToggleButton from "@/components/ui/LanguageToggleButton";
-import { GridPattern } from "@/components/ui/GridPattern";
-import PageTransitionWrapper from "@/components/common/PageTransitionWrapper";
+import { ReactNode } from 'react';
+import LanguageToggleButton from '@/components/ui/LanguageToggleButton';
+import { GridPattern } from '@/components/ui/GridPattern';
+import PageTransitionWrapper from '@/components/common/PageTransitionWrapper';
 
 export default function Layout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <div className="flex h-screen flex-col">
       <header className="flex items-center justify-end p-6">
-        <LanguageToggleButton/>
+        <LanguageToggleButton />
       </header>
       <main className="my-auto">
         <GridPattern
@@ -15,11 +15,9 @@ export default function Layout({ children }: Readonly<{ children: ReactNode }>) 
           yOffset={-96}
           interactive
         />
-        <div className="flex flex-col flex-1 items-center justify-center pb-24">
+        <div className="flex flex-1 flex-col items-center justify-center pb-24">
           <PageTransitionWrapper>
-            <div className="w-full sm:w-lg px-8">
-              {children}
-            </div>
+            <div className="w-full px-8 sm:w-lg">{children}</div>
           </PageTransitionWrapper>
         </div>
       </main>

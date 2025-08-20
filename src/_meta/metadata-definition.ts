@@ -1,4 +1,4 @@
-import { Locale } from '@/locale'
+import { Locale } from '@/locale';
 
 type PageMetadata = {
   [key in Locale]: {
@@ -11,17 +11,18 @@ type PageMetadata = {
 };
 
 export const pageMetadata: Record<string, PageMetadata> = {
-  'home': {
+  home: {
     ko: {
       title: '나만의 취업 준비 로드맵',
       description: '취업 준비 과정을 체계적으로 관리하고, 나만의 로드맵을 만드세요.',
     },
     en: {
       title: 'Your Personalized Career Prep Roadmap',
-      description: 'Systematically manage your job preparation process and create your own roadmap.',
+      description:
+        'Systematically manage your job preparation process and create your own roadmap.',
     },
   },
-  'login': {
+  login: {
     ko: {
       title: '로그인',
       description: '취준로드 서비스에 로그인하여 나만의 취업 로드맵을 시작하세요.',
@@ -31,7 +32,7 @@ export const pageMetadata: Record<string, PageMetadata> = {
       description: 'Log in to Job Prep Road and start your personalized career roadmap.',
     },
   },
-  'signup': {
+  signup: {
     ko: {
       title: '회원가입',
       description: '취준로드에 가입하고 나만의 취업 준비 로드맵을 만드세요.',
@@ -51,7 +52,7 @@ export const pageMetadata: Record<string, PageMetadata> = {
       description: 'Job Prep Road password reset page.',
     },
   },
-  'curriculum': {
+  curriculum: {
     ko: {
       title: '커리큘럼',
       description: '취업 준비를 위한 다양한 커리큘럼을 탐색해 보세요.',
@@ -81,7 +82,7 @@ export const pageMetadata: Record<string, PageMetadata> = {
       description: 'View detailed information about the selected curriculum.',
     },
   },
-  'contact': {
+  contact: {
     ko: {
       title: '문의하기',
       description: '취준로드 서비스와 관련하여 문의사항을 남겨주세요.',

@@ -20,7 +20,7 @@ import {
   Store,
   Truck,
   Users,
-  UtensilsCrossed
+  UtensilsCrossed,
 } from 'lucide-react';
 import { IndustryMessageKey, JobMessageKey } from '@/locale/messages/industry';
 
@@ -60,10 +60,22 @@ export const jobData: Industry[] = [
     nameKey: IndustryMessageKey.INDUSTRY_LEGAL_AFFAIRS,
     jobs: [
       { id: 'legal-affairs', nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_LEGAL },
-      { id: 'office-support', nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_OFFICE_SUPPORT },
-      { id: 'general-affairs', nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_GENERAL_AFFAIRS },
-      { id: 'asset-management', nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_ASSET_MANAGEMENT },
-      { id: 'contract-management', nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_CONTRACT_MANAGEMENT },
+      {
+        id: 'office-support',
+        nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_OFFICE_SUPPORT,
+      },
+      {
+        id: 'general-affairs',
+        nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_GENERAL_AFFAIRS,
+      },
+      {
+        id: 'asset-management',
+        nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_ASSET_MANAGEMENT,
+      },
+      {
+        id: 'contract-management',
+        nameKey: JobMessageKey.JOB_LEGAL_AFFAIRS_CONTRACT_MANAGEMENT,
+      },
     ],
   },
   {
@@ -99,7 +111,10 @@ export const jobData: Industry[] = [
     jobs: [
       { id: 'brand-marketing', nameKey: JobMessageKey.JOB_MARKETING_BRAND },
       { id: 'digital-marketing', nameKey: JobMessageKey.JOB_MARKETING_DIGITAL },
-      { id: 'performance-marketing', nameKey: JobMessageKey.JOB_MARKETING_PERFORMANCE },
+      {
+        id: 'performance-marketing',
+        nameKey: JobMessageKey.JOB_MARKETING_PERFORMANCE,
+      },
       { id: 'content-marketing', nameKey: JobMessageKey.JOB_MARKETING_CONTENT },
       { id: 'ad-planning-ae', nameKey: JobMessageKey.JOB_MARKETING_AE },
       { id: 'md', nameKey: JobMessageKey.JOB_MARKETING_MD },
@@ -137,12 +152,21 @@ export const jobData: Industry[] = [
     icon: Ship,
     nameKey: IndustryMessageKey.INDUSTRY_LOGISTICS,
     jobs: [
-      { id: 'logistics-management', nameKey: JobMessageKey.JOB_LOGISTICS_MANAGEMENT },
+      {
+        id: 'logistics-management',
+        nameKey: JobMessageKey.JOB_LOGISTICS_MANAGEMENT,
+      },
       { id: 'scm', nameKey: JobMessageKey.JOB_LOGISTICS_SCM },
-      { id: 'overseas-sales', nameKey: JobMessageKey.JOB_LOGISTICS_OVERSEAS_SALES },
+      {
+        id: 'overseas-sales',
+        nameKey: JobMessageKey.JOB_LOGISTICS_OVERSEAS_SALES,
+      },
       { id: 'trade-admin', nameKey: JobMessageKey.JOB_LOGISTICS_TRADE_ADMIN },
       { id: 'forwarding', nameKey: JobMessageKey.JOB_LOGISTICS_FORWARDING },
-      { id: 'customs-agent', nameKey: JobMessageKey.JOB_LOGISTICS_CUSTOMS_AGENT },
+      {
+        id: 'customs-agent',
+        nameKey: JobMessageKey.JOB_LOGISTICS_CUSTOMS_AGENT,
+      },
     ],
   },
   {
@@ -152,7 +176,10 @@ export const jobData: Industry[] = [
     jobs: [
       { id: 'delivery', nameKey: JobMessageKey.JOB_TRANSPORT_DELIVERY },
       { id: 'driver', nameKey: JobMessageKey.JOB_TRANSPORT_DRIVER },
-      { id: 'logistics-center', nameKey: JobMessageKey.JOB_TRANSPORT_LOGISTICS_CENTER },
+      {
+        id: 'logistics-center',
+        nameKey: JobMessageKey.JOB_TRANSPORT_LOGISTICS_CENTER,
+      },
       { id: 'jiip-leased', nameKey: JobMessageKey.JOB_TRANSPORT_JIIP },
       { id: 'freight', nameKey: JobMessageKey.JOB_TRANSPORT_FREIGHT },
     ],
@@ -190,8 +217,14 @@ export const jobData: Industry[] = [
     jobs: [
       { id: 'banking', nameKey: JobMessageKey.JOB_FINANCE_BANKING },
       { id: 'investment', nameKey: JobMessageKey.JOB_FINANCE_INVESTMENT },
-      { id: 'insurance-planning', nameKey: JobMessageKey.JOB_FINANCE_INSURANCE },
-      { id: 'asset-management-finance', nameKey: JobMessageKey.JOB_FINANCE_ASSET_MANAGEMENT },
+      {
+        id: 'insurance-planning',
+        nameKey: JobMessageKey.JOB_FINANCE_INSURANCE,
+      },
+      {
+        id: 'asset-management-finance',
+        nameKey: JobMessageKey.JOB_FINANCE_ASSET_MANAGEMENT,
+      },
       { id: 'analyst', nameKey: JobMessageKey.JOB_FINANCE_ANALYST },
       { id: 'ib', nameKey: JobMessageKey.JOB_FINANCE_IB },
     ],
@@ -205,7 +238,10 @@ export const jobData: Industry[] = [
       { id: 'chef', nameKey: JobMessageKey.JOB_FOOD_CHEF },
       { id: 'fnb-planning', nameKey: JobMessageKey.JOB_FOOD_FNB_PLANNING },
       { id: 'nutritionist', nameKey: JobMessageKey.JOB_FOOD_NUTRITIONIST },
-      { id: 'menu-development', nameKey: JobMessageKey.JOB_FOOD_MENU_DEVELOPMENT },
+      {
+        id: 'menu-development',
+        nameKey: JobMessageKey.JOB_FOOD_MENU_DEVELOPMENT,
+      },
       { id: 'bakery', nameKey: JobMessageKey.JOB_FOOD_BAKER },
     ],
   },
@@ -214,11 +250,17 @@ export const jobData: Industry[] = [
     icon: Store,
     nameKey: IndustryMessageKey.INDUSTRY_RETAIL,
     jobs: [
-      { id: 'store-management', nameKey: JobMessageKey.JOB_RETAIL_STORE_MANAGEMENT },
+      {
+        id: 'store-management',
+        nameKey: JobMessageKey.JOB_RETAIL_STORE_MANAGEMENT,
+      },
       { id: 'retail-sales', nameKey: JobMessageKey.JOB_RETAIL_SALES },
       { id: 'retail-md', nameKey: JobMessageKey.JOB_RETAIL_MD },
       { id: 'supervisor', nameKey: JobMessageKey.JOB_RETAIL_SUPERVISOR },
-      { id: 'franchise-management', nameKey: JobMessageKey.JOB_RETAIL_FRANCHISE_MANAGEMENT },
+      {
+        id: 'franchise-management',
+        nameKey: JobMessageKey.JOB_RETAIL_FRANCHISE_MANAGEMENT,
+      },
     ],
   },
   {
@@ -226,12 +268,24 @@ export const jobData: Industry[] = [
     icon: GanttChartSquare,
     nameKey: IndustryMessageKey.INDUSTRY_ENGINEERING,
     jobs: [
-      { id: 'mechanical-design', nameKey: JobMessageKey.JOB_ENGINEERING_MECHANICAL },
-      { id: 'electrical-design', nameKey: JobMessageKey.JOB_ENGINEERING_ELECTRICAL },
+      {
+        id: 'mechanical-design',
+        nameKey: JobMessageKey.JOB_ENGINEERING_MECHANICAL,
+      },
+      {
+        id: 'electrical-design',
+        nameKey: JobMessageKey.JOB_ENGINEERING_ELECTRICAL,
+      },
       { id: 'cad-cam', nameKey: JobMessageKey.JOB_ENGINEERING_CAD_CAM },
       { id: 'cae', nameKey: JobMessageKey.JOB_ENGINEERING_CAE },
-      { id: 'semiconductor-design', nameKey: JobMessageKey.JOB_ENGINEERING_SEMICONDUCTOR },
-      { id: 'chemical-engineering', nameKey: JobMessageKey.JOB_ENGINEERING_CHEMICAL },
+      {
+        id: 'semiconductor-design',
+        nameKey: JobMessageKey.JOB_ENGINEERING_SEMICONDUCTOR,
+      },
+      {
+        id: 'chemical-engineering',
+        nameKey: JobMessageKey.JOB_ENGINEERING_CHEMICAL,
+      },
     ],
   },
   {
@@ -239,12 +293,30 @@ export const jobData: Industry[] = [
     icon: Factory,
     nameKey: IndustryMessageKey.INDUSTRY_MANUFACTURING,
     jobs: [
-      { id: 'production-management', nameKey: JobMessageKey.JOB_MANUFACTURING_PRODUCTION_MGM },
-      { id: 'quality-management', nameKey: JobMessageKey.JOB_MANUFACTURING_QUALITY_MGM },
-      { id: 'process-management', nameKey: JobMessageKey.JOB_MANUFACTURING_PROCESS_MGM },
-      { id: 'equipment-maintenance', nameKey: JobMessageKey.JOB_MANUFACTURING_EQUIPMENT_MAINTENANCE },
-      { id: 'production-tech', nameKey: JobMessageKey.JOB_MANUFACTURING_PRODUCTION_TECH },
-      { id: 'safety-management', nameKey: JobMessageKey.JOB_MANUFACTURING_SAFETY_MGM },
+      {
+        id: 'production-management',
+        nameKey: JobMessageKey.JOB_MANUFACTURING_PRODUCTION_MGM,
+      },
+      {
+        id: 'quality-management',
+        nameKey: JobMessageKey.JOB_MANUFACTURING_QUALITY_MGM,
+      },
+      {
+        id: 'process-management',
+        nameKey: JobMessageKey.JOB_MANUFACTURING_PROCESS_MGM,
+      },
+      {
+        id: 'equipment-maintenance',
+        nameKey: JobMessageKey.JOB_MANUFACTURING_EQUIPMENT_MAINTENANCE,
+      },
+      {
+        id: 'production-tech',
+        nameKey: JobMessageKey.JOB_MANUFACTURING_PRODUCTION_TECH,
+      },
+      {
+        id: 'safety-management',
+        nameKey: JobMessageKey.JOB_MANUFACTURING_SAFETY_MGM,
+      },
     ],
   },
   {
@@ -253,10 +325,22 @@ export const jobData: Industry[] = [
     nameKey: IndustryMessageKey.INDUSTRY_EDUCATION,
     jobs: [
       { id: 'instructor', nameKey: JobMessageKey.JOB_EDUCATION_INSTRUCTOR },
-      { id: 'education-planning', nameKey: JobMessageKey.JOB_EDUCATION_PLANNING },
-      { id: 'material-development', nameKey: JobMessageKey.JOB_EDUCATION_MATERIAL_DEV },
-      { id: 'kindergarten-teacher', nameKey: JobMessageKey.JOB_EDUCATION_KINDERGARTEN },
-      { id: 'education-counseling', nameKey: JobMessageKey.JOB_EDUCATION_COUNSELING },
+      {
+        id: 'education-planning',
+        nameKey: JobMessageKey.JOB_EDUCATION_PLANNING,
+      },
+      {
+        id: 'material-development',
+        nameKey: JobMessageKey.JOB_EDUCATION_MATERIAL_DEV,
+      },
+      {
+        id: 'kindergarten-teacher',
+        nameKey: JobMessageKey.JOB_EDUCATION_KINDERGARTEN,
+      },
+      {
+        id: 'education-counseling',
+        nameKey: JobMessageKey.JOB_EDUCATION_COUNSELING,
+      },
     ],
   },
   {
@@ -264,12 +348,30 @@ export const jobData: Industry[] = [
     icon: HardHat,
     nameKey: IndustryMessageKey.INDUSTRY_CONSTRUCTION,
     jobs: [
-      { id: 'architectural-design', nameKey: JobMessageKey.JOB_CONSTRUCTION_ARCHITECTURAL_DESIGN },
-      { id: 'construction-building', nameKey: JobMessageKey.JOB_CONSTRUCTION_BUILDING },
-      { id: 'interior-design', nameKey: JobMessageKey.JOB_CONSTRUCTION_INTERIOR },
-      { id: 'facility-management', nameKey: JobMessageKey.JOB_CONSTRUCTION_FACILITY_MGM },
-      { id: 'civil-engineering', nameKey: JobMessageKey.JOB_CONSTRUCTION_CIVIL_ENGINEERING },
-      { id: 'supervision', nameKey: JobMessageKey.JOB_CONSTRUCTION_SUPERVISION },
+      {
+        id: 'architectural-design',
+        nameKey: JobMessageKey.JOB_CONSTRUCTION_ARCHITECTURAL_DESIGN,
+      },
+      {
+        id: 'construction-building',
+        nameKey: JobMessageKey.JOB_CONSTRUCTION_BUILDING,
+      },
+      {
+        id: 'interior-design',
+        nameKey: JobMessageKey.JOB_CONSTRUCTION_INTERIOR,
+      },
+      {
+        id: 'facility-management',
+        nameKey: JobMessageKey.JOB_CONSTRUCTION_FACILITY_MGM,
+      },
+      {
+        id: 'civil-engineering',
+        nameKey: JobMessageKey.JOB_CONSTRUCTION_CIVIL_ENGINEERING,
+      },
+      {
+        id: 'supervision',
+        nameKey: JobMessageKey.JOB_CONSTRUCTION_SUPERVISION,
+      },
     ],
   },
   {
@@ -279,9 +381,15 @@ export const jobData: Industry[] = [
     jobs: [
       { id: 'nurse', nameKey: JobMessageKey.JOB_MEDICAL_NURSE },
       { id: 'pharma-bio', nameKey: JobMessageKey.JOB_MEDICAL_PHARM_BIO },
-      { id: 'clinical-research', nameKey: JobMessageKey.JOB_MEDICAL_CLINICAL_RESEARCH },
+      {
+        id: 'clinical-research',
+        nameKey: JobMessageKey.JOB_MEDICAL_CLINICAL_RESEARCH,
+      },
       { id: 'medical-equipment', nameKey: JobMessageKey.JOB_MEDICAL_EQUIPMENT },
-      { id: 'hospital-admin', nameKey: JobMessageKey.JOB_MEDICAL_HOSPITAL_ADMIN },
+      {
+        id: 'hospital-admin',
+        nameKey: JobMessageKey.JOB_MEDICAL_HOSPITAL_ADMIN,
+      },
       { id: 'pharmacist', nameKey: JobMessageKey.JOB_MEDICAL_PHARMACIST },
     ],
   },
@@ -293,8 +401,14 @@ export const jobData: Industry[] = [
       { id: 'pd-producer', nameKey: JobMessageKey.JOB_MEDIA_PD },
       { id: 'reporter', nameKey: JobMessageKey.JOB_MEDIA_REPORTER },
       { id: 'video-editing', nameKey: JobMessageKey.JOB_MEDIA_VIDEO_EDITING },
-      { id: 'sports-marketing', nameKey: JobMessageKey.JOB_MEDIA_SPORTS_MARKETING },
-      { id: 'content-planning', nameKey: JobMessageKey.JOB_MEDIA_CONTENT_PLANNING },
+      {
+        id: 'sports-marketing',
+        nameKey: JobMessageKey.JOB_MEDIA_SPORTS_MARKETING,
+      },
+      {
+        id: 'content-planning',
+        nameKey: JobMessageKey.JOB_MEDIA_CONTENT_PLANNING,
+      },
       { id: 'curator', nameKey: JobMessageKey.JOB_MEDIA_CURATOR },
     ],
   },
@@ -304,23 +418,26 @@ export const jobData: Industry[] = [
     nameKey: IndustryMessageKey.INDUSTRY_PUBLIC_WELFARE,
     jobs: [
       { id: 'social-worker', nameKey: JobMessageKey.JOB_PUBLIC_SOCIAL_WORKER },
-      { id: 'public-institution', nameKey: JobMessageKey.JOB_PUBLIC_INSTITUTION },
+      {
+        id: 'public-institution',
+        nameKey: JobMessageKey.JOB_PUBLIC_INSTITUTION,
+      },
       { id: 'npo', nameKey: JobMessageKey.JOB_PUBLIC_NPO },
       { id: 'job-counselor', nameKey: JobMessageKey.JOB_PUBLIC_JOB_COUNSELOR },
       { id: 'caregiver', nameKey: JobMessageKey.JOB_PUBLIC_CARE_WORKER },
     ],
   },
-]
+];
 
 // 업종 ID -> NameKey 맵
 export const industryIdToNameKeyMap = new Map<string, IndustryMessageKey>(
-  jobData.map(industry => [industry.id, industry.nameKey])
+  jobData.map((industry) => [industry.id, industry.nameKey])
 );
 
 // 직무 ID -> NameKey 맵
 export const jobIdToNameKeyMap = new Map<string, JobMessageKey>();
-jobData.forEach(industry => {
-  industry.jobs.forEach(job => {
+jobData.forEach((industry) => {
+  industry.jobs.forEach((job) => {
     jobIdToNameKeyMap.set(job.id, job.nameKey);
   });
 });

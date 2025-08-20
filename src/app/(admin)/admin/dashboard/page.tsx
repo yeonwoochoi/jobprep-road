@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>/admin/dashboard</div>
+  return <div>/admin/dashboard</div>;
 }

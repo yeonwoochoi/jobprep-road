@@ -1,45 +1,48 @@
-'use client'
+'use client';
 
-import { useActionState, useEffect } from "react";
-import { loginAction } from "@/actions/auth/login.action";
-import { MessageKey } from "@/locale/message";
-import { t } from "@/locale";
-import { useLanguage } from "@/contexts/LanguageContext";
-import { TextField, TextFieldWithAction } from "@/components/ui/TextField";
-import { useToast } from '@/hooks/useToast'
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import LocaleText from "@/components/common/LocaleText";
-import { FormActionResult } from "@/utils/formActions";
+import { useActionState, useEffect } from 'react';
+import { loginAction } from '@/actions/auth/login.action';
+import { MessageKey } from '@/locale/message';
+import { t } from '@/locale';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { TextField, TextFieldWithAction } from '@/components/ui/TextField';
+import { useToast } from '@/hooks/useToast';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import LocaleText from '@/components/common/LocaleText';
+import { FormActionResult } from '@/utils/formActions';
 
 export default function LoginInput() {
-  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(loginAction, {
-    status: 'idle'
-  })
+  const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(
+    loginAction,
+    {
+      status: 'idle',
+    }
+  );
 
-  const { language } = useLanguage()
-  const { toastError } = useToast()
-  const router = useRouter()
+  const { language } = useLanguage();
+  const { toastError } = useToast();
+  const router = useRouter();
   const forgotPasswordButton = (
-    <Link href="/auth/forgot-password" className="text-neutral-500 hover:underline ">
-      <LocaleText keyOrLocaleData={MessageKey.AUTH_FORGOT_PASSWORD_BUTTON}/>
+    <Link href="/auth/forgot-password" className="text-neutral-500 hover:underline">
+      <LocaleText keyOrLocaleData={MessageKey.AUTH_FORGOT_PASSWORD_BUTTON} />
     </Link>
-  )
+  );
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
-        toastError(state.error)
+        toastError(state.error);
       } else if (state.status === 'success') {
-        router.push("/")
+        router.push('/');
       }
     }
-  }, [state])
+  }, [state]);
 
   return (
-    <form action={formAction} className="mt-10 grid grid-cols-1 gap-y-6 w-full">
+    <form action={formAction} className="mt-10 grid w-full grid-cols-1 gap-y-6">
       <TextField
-        label={t({ ko: "이메일", en: "Email Address" }, language)}
+        label={t({ ko: '이메일', en: 'Email Address' }, language)}
         name="email"
         type="email"
         autoComplete="email"
@@ -47,7 +50,7 @@ export default function LoginInput() {
         disabled={isPending}
       />
       <TextFieldWithAction
-        label={t({ ko: "비밀번호", en: "Password" }, language)}
+        label={t({ ko: '비밀번호', en: 'Password' }, language)}
         name="password"
         type="password"
         autoComplete="current-password"
@@ -57,11 +60,13 @@ export default function LoginInput() {
       />
       <button
         type="submit"
-        className="bg-black hover:bg-neutral-700 rounded-full text-white py-3 mt-4 disabled:bg-neutral-400 disabled:cursor-not-allowed"
+        className="mt-4 rounded-full bg-black py-3 text-white hover:bg-neutral-700 disabled:cursor-not-allowed disabled:bg-neutral-400"
         disabled={isPending}
       >
-        {isPending ? t({ ko: '로그인 중...', en: 'Logging in...' }, language) : t({ ko: '로그인', en: 'Login' }, language)}
+        {isPending
+          ? t({ ko: '로그인 중...', en: 'Logging in...' }, language)
+          : t({ ko: '로그인', en: 'Login' }, language)}
       </button>
     </form>
-  )
+  );
 }
