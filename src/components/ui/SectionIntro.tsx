@@ -1,16 +1,16 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
-import { ComponentPropsWithoutRef, ReactNode } from 'react';
-import { Container } from '@/components/ui/Container';
-import { FadeIn } from '@/components/ui/FadeIn';
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
 
 type SectionIntroProps = {
-  title: string | ReactNode;
-  eyebrow?: string | ReactNode;
-  children?: ReactNode;
-  smaller?: boolean;
-  invert?: boolean;
-};
+  title: string | ReactNode
+  eyebrow?: string | ReactNode
+  children?: ReactNode
+  smaller?: boolean
+  invert?: boolean
+}
 
 export function SectionIntro({
   title,
@@ -54,5 +54,5 @@ export function SectionIntro({
         )}
       </FadeIn>
     </Container>
-  );
+  )
 }

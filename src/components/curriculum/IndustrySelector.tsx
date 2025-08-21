@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { jobData } from '@/data/constants/jobData';
-import clsx from 'clsx';
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { jobData } from '@/data/constants/jobData'
+import clsx from 'clsx'
 
 interface IndustrySelectorProps {
-  selectedIndustry: string | null;
-  onSelect: (industryId: string) => void;
+  selectedIndustry: string | null
+  onSelect: (industryId: string) => void
 }
 
 export default function IndustrySelector({ selectedIndustry, onSelect }: IndustrySelectorProps) {
@@ -36,5 +36,5 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
         ))}
       </div>
     </div>
-  );
+  )
 }

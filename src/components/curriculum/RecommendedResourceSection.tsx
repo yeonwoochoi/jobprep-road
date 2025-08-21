@@ -1,5 +1,5 @@
-import { RecommendedResource, ResourceType } from '@/types/curriculum';
-import React, { SVGProps } from 'react';
+import { RecommendedResource, ResourceType } from '@/types/curriculum'
+import React, { SVGProps } from 'react'
 
 const ResourceIcons: Record<ResourceType, (props: SVGProps<SVGSVGElement>) => any> = {
   course: (props) => (
@@ -35,7 +35,7 @@ const ResourceIcons: Record<ResourceType, (props: SVGProps<SVGSVGElement>) => an
       <path d="M10 2a.75.75 0 01.75.75v5.5h5.5a.75.75 0 010 1.5h-5.5v5.5a.75.75 0 01-1.5 0v-5.5h-5.5a.75.75 0 010-1.5h5.5v-5.5A.75.75 0 0110 2z" />
     </svg>
   ),
-};
+}
 
 const resourceTypeDetails = {
   course: { label: '강의', Icon: ResourceIcons.course },
@@ -43,27 +43,27 @@ const resourceTypeDetails = {
   book: { label: '도서', Icon: ResourceIcons.book },
   official_docs: { label: '공식 문서', Icon: ResourceIcons.official_docs },
   project: { label: '프로젝트', Icon: ResourceIcons.project },
-};
+}
 
 const ExternalLinkIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 20 20" fill="currentColor" {...props}>
     <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
     <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
   </svg>
-);
+)
 
 export default function RecommendedResourceSection({
   recommendedResources,
 }: {
-  recommendedResources: RecommendedResource[];
+  recommendedResources: RecommendedResource[]
 }) {
-  if (!recommendedResources || recommendedResources.length === 0) return null;
+  if (!recommendedResources || recommendedResources.length === 0) return null
 
   return (
     <section>
       <div className="grid grid-cols-1 gap-4">
         {recommendedResources.map((resource) => {
-          const { label, Icon } = resourceTypeDetails[resource.type];
+          const { label, Icon } = resourceTypeDetails[resource.type]
           return (
             <a
               key={resource.resourceId}
@@ -87,9 +87,9 @@ export default function RecommendedResourceSection({
               </div>
               <ExternalLinkIcon className="absolute top-5 right-5 h-5 w-5 text-neutral-400 transition-colors group-hover:text-neutral-600" />
             </a>
-          );
+          )
         })}
       </div>
     </section>
-  );
+  )
 }

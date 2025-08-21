@@ -1,15 +1,15 @@
-'use client';
+'use client'
 
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
-import { createPortal } from 'react-dom';
-import { useSidebar } from '@/contexts/SidebarContext';
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import clsx from 'clsx'
+import { createPortal } from 'react-dom'
+import { useSidebar } from '@/contexts/SidebarContext'
 
-type HeadingData = { id: string; key: keyof typeof MessageKey };
-type HeadingIds = HeadingData[];
+type HeadingData = { id: string; key: keyof typeof MessageKey }
+type HeadingIds = HeadingData[]
 
 const tocItems: HeadingIds = [
   { id: 'introduction', key: MessageKey.INTRODUCTION },
@@ -27,45 +27,45 @@ const tocItems: HeadingIds = [
   { id: 'week-10', key: MessageKey.WEEK_10 },
   { id: 'week-11', key: MessageKey.WEEK_11 },
   { id: 'week-12', key: MessageKey.WEEK_12 },
-];
+]
 
 function useTableOfContents(headingIds: HeadingIds, contentId: string) {
-  let [headings, setHeadings] = useState<(HeadingData & { level: number; active: boolean })[]>([]);
-  const pathname = usePathname();
+  let [headings, setHeadings] = useState<(HeadingData & { level: number; active: boolean })[]>([])
+  const pathname = usePathname()
 
   useEffect(() => {
-    const root = document.getElementById(contentId);
-    if (!root) return;
+    const root = document.getElementById(contentId)
+    if (!root) return
 
-    setHeadings(headingIds.map((heading) => ({ ...heading, level: 2, active: false })));
+    setHeadings(headingIds.map((heading) => ({ ...heading, level: 2, active: false })))
 
     // Content Element 랑 id 매핑
-    const contentElements = new Map<Element, string>();
+    const contentElements = new Map<Element, string>()
     headingIds.forEach(({ id }) => {
-      const currentElement = root.querySelector(`#${id}`);
-      if (!currentElement) return;
-      contentElements.set(currentElement, id);
-    });
+      const currentElement = root.querySelector(`#${id}`)
+      if (!currentElement) return
+      contentElements.set(currentElement, id)
+    })
 
-    let scrollPaddingTop = getComputedStyle(document.documentElement).scrollPaddingTop;
-    if (scrollPaddingTop === 'auto') scrollPaddingTop = '0px';
+    let scrollPaddingTop = getComputedStyle(document.documentElement).scrollPaddingTop
+    if (scrollPaddingTop === 'auto') scrollPaddingTop = '0px'
 
     // Viewport에 보이는 element 감시
-    const visibleElements = new Set<Element>();
+    const visibleElements = new Set<Element>()
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            visibleElements.add(entry.target);
+            visibleElements.add(entry.target)
           } else {
-            visibleElements.delete(entry.target);
+            visibleElements.delete(entry.target)
           }
-        });
+        })
 
         // Viewport에 보이는 첫 element
         const firstVisibleContentElement = Array.from(contentElements.entries()).find(
           ([element]: [Element, string]) => visibleElements.has(element)
-        );
+        )
 
         // firstVisibleContentElement에 해당하는 element만 active = true
         setHeadings((current) =>
@@ -73,35 +73,35 @@ function useTableOfContents(headingIds: HeadingIds, contentId: string) {
             ...heading,
             active: heading.id === firstVisibleContentElement?.[1],
           }))
-        );
+        )
       },
       { rootMargin: `-${scrollPaddingTop} 0px 0px` }
-    );
+    )
 
-    Array.from(contentElements.keys()).forEach((element) => observer.observe(element));
+    Array.from(contentElements.keys()).forEach((element) => observer.observe(element))
 
-    return () => observer.disconnect();
-  }, [pathname, headingIds, contentId]);
+    return () => observer.disconnect()
+  }, [pathname, headingIds, contentId])
 
-  return headings;
+  return headings
 }
 
 export default function TableOfContents({ contentId }: { contentId: string }) {
-  const headings = useTableOfContents(tocItems, contentId);
-  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null);
-  const { isSidebarVisible, setIsSidebarVisible } = useSidebar();
+  const headings = useTableOfContents(tocItems, contentId)
+  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null)
+  const { isSidebarVisible, setIsSidebarVisible } = useSidebar()
 
   useEffect(() => {
-    setIsSidebarVisible(true);
-    return () => setIsSidebarVisible(false);
-  }, [setIsSidebarVisible]);
+    setIsSidebarVisible(true)
+    return () => setIsSidebarVisible(false)
+  }, [setIsSidebarVisible])
 
   useEffect(() => {
     if (isSidebarVisible) {
-      const node = document.getElementById('toc-portal-exit');
-      setPortalNode(node);
+      const node = document.getElementById('toc-portal-exit')
+      setPortalNode(node)
     }
-  }, [isSidebarVisible]);
+  }, [isSidebarVisible])
 
   const tocContent = (
     <nav className="sticky top-16">
@@ -132,10 +132,10 @@ export default function TableOfContents({ contentId }: { contentId: string }) {
         ))}
       </ul>
     </nav>
-  );
+  )
 
   if (portalNode) {
-    return createPortal(tocContent, portalNode);
+    return createPortal(tocContent, portalNode)
   }
-  return null;
+  return null
 }

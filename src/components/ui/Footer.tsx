@@ -1,7 +1,7 @@
-import { Container } from '@/components/ui/Container';
-import { FadeIn } from '@/components/ui/FadeIn';
-import { Logo } from '@/components/ui/Logo';
-import Link from 'next/link';
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Logo } from '@/components/ui/Logo'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -18,5 +18,5 @@ export default function Footer() {
         </div>
       </FadeIn>
     </Container>
-  );
+  )
 }

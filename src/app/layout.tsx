@@ -1,18 +1,18 @@
-import { ReactNode } from 'react';
-import { cookies } from 'next/headers';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { ReactNode } from 'react'
+import { cookies } from 'next/headers'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
-import '@/styles/tailwind.css';
-import { ToastProvider } from '@/components/ui/ToastProvider';
-import { Metadata } from 'next';
-import { Locale } from '@/locale';
-import { commonMetadata } from '@/_meta/metadata-definition';
+import '@/styles/tailwind.css'
+import { ToastProvider } from '@/components/ui/ToastProvider'
+import { Metadata } from 'next'
+import { Locale } from '@/locale'
+import { commonMetadata } from '@/_meta/metadata-definition'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko';
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
 
-  const commonMeta = commonMetadata;
+  const commonMeta = commonMetadata
 
   return {
     title: {
@@ -31,13 +31,13 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
     },
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'),
-  };
+  }
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {
-  const cookieStore = await cookies();
-  const langCookie = cookieStore.get('lang' as any);
-  const lang = langCookie?.value === 'en' ? 'en' : 'ko';
+  const cookieStore = await cookies()
+  const langCookie = cookieStore.get('lang' as any)
+  const lang = langCookie?.value === 'en' ? 'en' : 'ko'
 
   return (
     <html lang={lang}>
@@ -46,5 +46,5 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
         <ToastProvider />
       </body>
     </html>
-  );
+  )
 }

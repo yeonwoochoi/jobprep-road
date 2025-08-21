@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import clsx from 'clsx';
-import React from 'react';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { ChevronRight } from 'lucide-react';
-import { ActiveMenu, PROFILE_MENU_ITEMS as menuItems } from '@/data/constants/profileMenu';
+import clsx from 'clsx'
+import React from 'react'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { ChevronRight } from 'lucide-react'
+import { ActiveMenu, PROFILE_MENU_ITEMS as menuItems } from '@/data/constants/profileMenu'
 
 interface ProfileSidebarProps {
-  className?: string;
-  activeMenu: ActiveMenu;
-  setActiveMenu: React.Dispatch<React.SetStateAction<ActiveMenu>>;
+  className?: string
+  activeMenu: ActiveMenu
+  setActiveMenu: React.Dispatch<React.SetStateAction<ActiveMenu>>
 }
 
 export default function ProfileSidebar({
@@ -44,5 +44,5 @@ export default function ProfileSidebar({
         ))}
       </div>
     </div>
-  );
+  )
 }

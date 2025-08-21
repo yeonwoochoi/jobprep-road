@@ -1,8 +1,8 @@
-import { FadeIn } from '@/components/ui/FadeIn';
-import { Button } from '@/components/ui/Button';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { GridPattern } from '@/components/ui/GridPattern';
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { GridPattern } from '@/components/ui/GridPattern'
 
 export default function NotFound() {
   return (
@@ -27,5 +27,5 @@ export default function NotFound() {
         </Button>
       </FadeIn>
     </div>
-  );
+  )
 }

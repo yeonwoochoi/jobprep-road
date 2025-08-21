@@ -1,17 +1,17 @@
-import clsx from 'clsx';
-import { ActiveMenu, PROFILE_MENU_ITEMS as menuItems } from '@/data/constants/profileMenu';
-import LocaleText from '@/components/common/LocaleText';
+import clsx from 'clsx'
+import { ActiveMenu, PROFILE_MENU_ITEMS as menuItems } from '@/data/constants/profileMenu'
+import LocaleText from '@/components/common/LocaleText'
 
 interface ProfileContentCardProps {
-  activeMenu: ActiveMenu;
-  className?: string;
+  activeMenu: ActiveMenu
+  className?: string
 }
 
 export default function ProfileContentCard({ activeMenu, className }: ProfileContentCardProps) {
-  const currentMenuItem = menuItems.find((item) => item.key === activeMenu);
+  const currentMenuItem = menuItems.find((item) => item.key === activeMenu)
 
   if (!currentMenuItem) {
-    return null;
+    return null
   }
 
   return (
@@ -24,5 +24,5 @@ export default function ProfileContentCard({ activeMenu, className }: ProfileCon
 
       <div className="p-6">Content</div>
     </section>
-  );
+  )
 }

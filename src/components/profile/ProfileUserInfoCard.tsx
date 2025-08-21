@@ -1,13 +1,13 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 interface UserInfoCardProps {
-  email: string;
-  name: string;
-  className?: string;
+  email: string
+  name: string
+  className?: string
 }
 
 export default function ProfileUserInfoCard({ email, name, className }: UserInfoCardProps) {
-  const initial = name && name.length > 0 ? name.charAt(0).toUpperCase() : '?';
+  const initial = name && name.length > 0 ? name.charAt(0).toUpperCase() : '?'
 
   return (
     <div
@@ -30,5 +30,5 @@ export default function ProfileUserInfoCard({ email, name, className }: UserInfo
       {/* 사용자 이메일 */}
       <p className="text-center text-sm break-words text-neutral-500">{email}</p>
     </div>
-  );
+  )
 }

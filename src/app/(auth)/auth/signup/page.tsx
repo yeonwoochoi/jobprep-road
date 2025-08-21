@@ -1,17 +1,17 @@
-import Link from 'next/link';
-import { Logo } from '@/components/ui/Logo';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import SignupInput from '@/components/auth/SignupInput';
-import { generatePageMetadata } from '@/_meta/metadata-utils';
-import { Metadata } from 'next';
-import { cookies } from 'next/headers';
-import { Locale } from '@/locale';
+import Link from 'next/link'
+import { Logo } from '@/components/ui/Logo'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import SignupInput from '@/components/auth/SignupInput'
+import { generatePageMetadata } from '@/_meta/metadata-utils'
+import { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { Locale } from '@/locale'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko';
-  return generatePageMetadata('signup', lang);
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata('signup', lang)
 }
 
 export default function Page() {
@@ -34,5 +34,5 @@ export default function Page() {
       </div>
       <SignupInput />
     </>
-  );
+  )
 }

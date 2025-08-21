@@ -1,21 +1,21 @@
-import { Metadata } from 'next';
-import { Locale } from '@/locale';
-import { commonMetadata, pageMetadata } from '@/_meta/metadata-definition';
+import { Metadata } from 'next'
+import { Locale } from '@/locale'
+import { commonMetadata, pageMetadata } from '@/_meta/metadata-definition'
 
 export function generatePageMetadata(pageKey: keyof typeof pageMetadata, lang: Locale): Metadata {
-  const pageMeta = pageMetadata[pageKey];
-  const commonMeta = commonMetadata;
+  const pageMeta = pageMetadata[pageKey]
+  const commonMeta = commonMetadata
 
   if (!pageMeta) {
-    console.warn(`[Metadata] No metadata found for key: ${pageKey}`);
+    console.warn(`[Metadata] No metadata found for key: ${pageKey}`)
     return {
       title: commonMeta[lang].siteName,
       description: commonMeta[lang].description,
-    };
+    }
   }
 
-  const title = pageMeta[lang].title;
-  const description = pageMeta[lang].description;
+  const title = pageMeta[lang].title
+  const description = pageMeta[lang].description
 
   return {
     title: title,
@@ -28,5 +28,5 @@ export function generatePageMetadata(pageKey: keyof typeof pageMetadata, lang: L
       type: 'website',
       images: [{ url: '/thumbnail.png' }],
     },
-  };
+  }
 }

@@ -1,4 +1,4 @@
-import type { LucideIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react'
 import {
   Calculator,
   Factory,
@@ -21,23 +21,23 @@ import {
   Truck,
   Users,
   UtensilsCrossed,
-} from 'lucide-react';
-import { IndustryMessageKey, JobMessageKey } from '@/locale/messages/industry';
+} from 'lucide-react'
+import { IndustryMessageKey, JobMessageKey } from '@/locale/messages/industry'
 
 // --- 타입 정의 (Type Definitions) ---
 
 /** 각 업종의 구조 */
 export interface Industry {
-  id: string; // 상태 관리를 위한 고유 식별자 (예: 'dev')
-  icon: LucideIcon; // 업종을 나타내는 아이콘
-  nameKey: IndustryMessageKey; // 실제 텍스트를 참조하기 위한 키
-  jobs: Job[]; // 해당 업종에 속한 직무 목록
+  id: string // 상태 관리를 위한 고유 식별자 (예: 'dev')
+  icon: LucideIcon // 업종을 나타내는 아이콘
+  nameKey: IndustryMessageKey // 실제 텍스트를 참조하기 위한 키
+  jobs: Job[] // 해당 업종에 속한 직무 목록
 }
 
 /** 각 직무의 구조 */
 export interface Job {
-  id: string; // 상태 관리를 위한 고유하고 안정적인 식별자 (예: 'frontend')
-  nameKey: JobMessageKey; // 실제 텍스트를 참조하기 위한 키
+  id: string // 상태 관리를 위한 고유하고 안정적인 식별자 (예: 'frontend')
+  nameKey: JobMessageKey // 실제 텍스트를 참조하기 위한 키
 }
 
 // --- 실제 데이터 (Data Declaration) ---
@@ -427,17 +427,17 @@ export const jobData: Industry[] = [
       { id: 'caregiver', nameKey: JobMessageKey.JOB_PUBLIC_CARE_WORKER },
     ],
   },
-];
+]
 
 // 업종 ID -> NameKey 맵
 export const industryIdToNameKeyMap = new Map<string, IndustryMessageKey>(
   jobData.map((industry) => [industry.id, industry.nameKey])
-);
+)
 
 // 직무 ID -> NameKey 맵
-export const jobIdToNameKeyMap = new Map<string, JobMessageKey>();
+export const jobIdToNameKeyMap = new Map<string, JobMessageKey>()
 jobData.forEach((industry) => {
   industry.jobs.forEach((job) => {
-    jobIdToNameKeyMap.set(job.id, job.nameKey);
-  });
-});
+    jobIdToNameKeyMap.set(job.id, job.nameKey)
+  })
+})

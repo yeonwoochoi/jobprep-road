@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { useCallback, useState } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { Locale, t } from '@/locale';
-import { MessageKey } from '@/locale/message';
-import { DragEvent, ChangeEvent } from 'react';
-import clsx from 'clsx';
-import { CloudUpload, FileText, XCircle } from 'lucide-react';
-import LocaleText from '@/components/common/LocaleText';
+import { useCallback, useState } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { Locale, t } from '@/locale'
+import { MessageKey } from '@/locale/message'
+import { DragEvent, ChangeEvent } from 'react'
+import clsx from 'clsx'
+import { CloudUpload, FileText, XCircle } from 'lucide-react'
+import LocaleText from '@/components/common/LocaleText'
 
 interface ResumeUploaderProps {
-  uploadedFiles: File[];
-  onAddFiles: (files: File[]) => void;
-  onRemoveFile: (file: File) => void;
+  uploadedFiles: File[]
+  onAddFiles: (files: File[]) => void
+  onRemoveFile: (file: File) => void
 }
 
 export default function ResumeUploader({
@@ -20,67 +20,67 @@ export default function ResumeUploader({
   onAddFiles,
   onRemoveFile,
 }: ResumeUploaderProps) {
-  const [isDragging, setIsDragging] = useState(false);
-  const { language } = useLanguage();
+  const [isDragging, setIsDragging] = useState(false)
+  const { language } = useLanguage()
 
   const handleFiles = useCallback(
     (files: FileList | null) => {
-      if (!files || files.length === 0) return;
+      if (!files || files.length === 0) return
 
-      const allowedExtensions = ['pdf', 'docx', 'hwp', 'txt'];
+      const allowedExtensions = ['pdf', 'docx', 'hwp', 'txt']
 
       const validFiles = Array.from(files).filter((file) => {
-        const fileExtension = file.name.split('.').pop()?.toLowerCase();
-        return fileExtension && allowedExtensions.includes(fileExtension);
-      });
+        const fileExtension = file.name.split('.').pop()?.toLowerCase()
+        return fileExtension && allowedExtensions.includes(fileExtension)
+      })
 
       if (validFiles.length !== files.length) {
-        alert(t(MessageKey.GENERATE_FILE_UNSUPPORTED_ALERT, language));
+        alert(t(MessageKey.GENERATE_FILE_UNSUPPORTED_ALERT, language))
       }
 
       if (validFiles.length > 0) {
-        onAddFiles(validFiles);
+        onAddFiles(validFiles)
       }
     },
     [onAddFiles, language]
-  );
+  )
 
   // 드래그가 업로드 영역에 진입했을 때 (UI를 드래그 상태로 변경)
   const handleDragEnter = useCallback((e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-  }, []);
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragging(true)
+  }, [])
 
   // 드래그가 업로드 영역에서 벗어났을 때 (드래그 상태 해제)
   const handleDragLeave = useCallback((e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-  }, []);
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragging(false)
+  }, [])
 
   // 드래그가 업로드 영역 위에 머무는 동안 (기본 이벤트 막아야 drop 가능)
   const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }, []);
+    e.preventDefault()
+    e.stopPropagation()
+  }, [])
 
   // 드래그된 파일이 업로드 영역에 드롭되었을 때 (파일 처리)
   const handleDrop = useCallback((e: DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(false);
-    handleFiles(e.dataTransfer.files);
-  }, []);
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragging(false)
+    handleFiles(e.dataTransfer.files)
+  }, [])
 
   const handleFileInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      handleFiles(e.target.files);
+      handleFiles(e.target.files)
       // 동일한 파일을 연속으로 업로드할 수 있도록 input의 value를 초기화
-      e.target.value = '';
+      e.target.value = ''
     },
     [handleFiles]
-  );
+  )
 
   return (
     <>
@@ -152,5 +152,5 @@ export default function ResumeUploader({
         </p>
       </div>
     </>
-  );
+  )
 }

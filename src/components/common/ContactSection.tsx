@@ -1,9 +1,9 @@
-import { Container } from '@/components/ui/Container';
-import { FadeIn } from '@/components/ui/FadeIn';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { Button } from '@/components/ui/Button';
-import ContactInfo from '@/components/ui/ContactInfo';
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { Button } from '@/components/ui/Button'
+import ContactInfo from '@/components/ui/ContactInfo'
 
 export function ContactSection() {
   return (
@@ -28,5 +28,5 @@ export function ContactSection() {
         </div>
       </FadeIn>
     </Container>
-  );
+  )
 }

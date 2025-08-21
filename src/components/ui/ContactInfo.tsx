@@ -1,29 +1,29 @@
-'use client';
+'use client'
 
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { t } from '@/locale';
-import clsx from 'clsx';
-import { useToast } from '@/hooks/useToast';
-import { ComponentPropsWithoutRef } from 'react';
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { t } from '@/locale'
+import clsx from 'clsx'
+import { useToast } from '@/hooks/useToast'
+import { ComponentPropsWithoutRef } from 'react'
 
 type ContactInfoProps = {
-  invert?: boolean;
-} & ComponentPropsWithoutRef<'div'>;
+  invert?: boolean
+} & ComponentPropsWithoutRef<'div'>
 
 export default function ContactInfo({ invert = false, className, ...props }: ContactInfoProps) {
-  const { language } = useLanguage();
-  const { toastSuccess, toastError } = useToast();
+  const { language } = useLanguage()
+  const { toastSuccess, toastError } = useToast()
 
   const handleCopy = async (value: string) => {
     try {
-      await navigator.clipboard.writeText(value);
-      toastSuccess(t(MessageKey.COPY_SUCCESS, language));
+      await navigator.clipboard.writeText(value)
+      toastSuccess(t(MessageKey.COPY_SUCCESS, language))
     } catch (err) {
-      toastError(t(MessageKey.COPY_FAILURE, language));
+      toastError(t(MessageKey.COPY_FAILURE, language))
     }
-  };
+  }
 
   return (
     <div className={className} {...props}>
@@ -60,5 +60,5 @@ export default function ContactInfo({ invert = false, className, ...props }: Con
         </button>
       </div>
     </div>
-  );
+  )
 }

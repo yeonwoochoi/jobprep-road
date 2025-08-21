@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { useState, SVGProps } from 'react';
-import { WeeklyPlan } from '@/types/curriculum';
-import CurriculumSection from '@/components/curriculum/CurriculumSection';
-import { MessageKey } from '@/locale/message';
-import LocaleText from '@/components/common/LocaleText';
-import clsx from 'clsx';
+import { useState, SVGProps } from 'react'
+import { WeeklyPlan } from '@/types/curriculum'
+import CurriculumSection from '@/components/curriculum/CurriculumSection'
+import { MessageKey } from '@/locale/message'
+import LocaleText from '@/components/common/LocaleText'
+import clsx from 'clsx'
 
 // --- 아이콘 정의 ---
 const ChevronDownIcon = (props: SVGProps<SVGSVGElement>) => (
@@ -16,7 +16,7 @@ const ChevronDownIcon = (props: SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
     />
   </svg>
-);
+)
 
 const CheckCircleIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 20 20" fill="currentColor" {...props}>
@@ -26,15 +26,15 @@ const CheckCircleIcon = (props: SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
     />
   </svg>
-);
+)
 
 const ClipboardListIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
     <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
   </svg>
-);
+)
 
-type MessageKeyValue = (typeof MessageKey)[keyof typeof MessageKey];
+type MessageKeyValue = (typeof MessageKey)[keyof typeof MessageKey]
 
 export const weekMessageKeys: { [key: number]: MessageKeyValue } = {
   1: MessageKey.WEEK_1,
@@ -49,17 +49,17 @@ export const weekMessageKeys: { [key: number]: MessageKeyValue } = {
   10: MessageKey.WEEK_10,
   11: MessageKey.WEEK_11,
   12: MessageKey.WEEK_12,
-};
+}
 
 // --- 주간 계획 섹션 컴포넌트 ---
 export function WeeklyPlanSection({ weeklyPlan }: { weeklyPlan: WeeklyPlan[] }) {
   // 현재 열려있는 아코디언 아이템의 인덱스를 저장. 기본으로 0번째(1주차)를 열어둠.
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   // 아코디언을 토글하는 함수
   const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+    setOpenIndex(openIndex === index ? null : index)
+  }
 
   return (
     <>
@@ -121,5 +121,5 @@ export function WeeklyPlanSection({ weeklyPlan }: { weeklyPlan: WeeklyPlan[] }) 
         </CurriculumSection>
       ))}
     </>
-  );
+  )
 }

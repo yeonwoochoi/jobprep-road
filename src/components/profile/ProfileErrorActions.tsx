@@ -1,16 +1,16 @@
-'use client';
+'use client'
 
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
 
 export default function ProfileErrorActions() {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleRefresh = () => {
-    router.refresh(); // 현재 페이지의 데이터를 다시 요청 (전체 새로고침 아님)
-  };
+    router.refresh() // 현재 페이지의 데이터를 다시 요청 (전체 새로고침 아님)
+  }
 
   return (
     <div className="mt-8 flex items-center gap-x-4">
@@ -30,5 +30,5 @@ export default function ProfileErrorActions() {
         <LocaleText keyOrLocaleData={MessageKey.PROFILE_HOME_BUTTON} />
       </Link>
     </div>
-  );
+  )
 }

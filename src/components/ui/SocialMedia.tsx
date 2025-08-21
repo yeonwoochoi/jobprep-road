@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import clsx from 'clsx';
-import { GitHubIcon, NotionIcon, TwitterIcon } from '@/components/ui/Icons';
+import Link from 'next/link'
+import clsx from 'clsx'
+import { GitHubIcon, NotionIcon, TwitterIcon } from '@/components/ui/Icons'
 
 export const socialMediaProfiles = [
   { title: 'GitHub', href: 'https://github.com/yeonwoochoi', icon: GitHubIcon },
@@ -10,14 +10,14 @@ export const socialMediaProfiles = [
     icon: NotionIcon,
   },
   { title: 'X', href: 'https://x.com/choeyeonu53311', icon: TwitterIcon },
-];
+]
 
 export function SocialMedia({
   className,
   invert = false,
 }: {
-  className?: string;
-  invert?: boolean;
+  className?: string
+  invert?: boolean
 }) {
   return (
     <ul
@@ -40,5 +40,5 @@ export function SocialMedia({
         </li>
       ))}
     </ul>
-  );
+  )
 }

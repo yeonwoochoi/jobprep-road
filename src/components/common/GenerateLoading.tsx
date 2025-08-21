@@ -1,38 +1,38 @@
-'use client';
+'use client'
 
-import { CurriculumMessageKey } from '@/locale/messages/curriculum';
-import { CSSProperties, useEffect, useState } from 'react';
-import { Loader } from 'lucide-react';
-import LocaleText from '@/components/common/LocaleText';
+import { CurriculumMessageKey } from '@/locale/messages/curriculum'
+import { CSSProperties, useEffect, useState } from 'react'
+import { Loader } from 'lucide-react'
+import LocaleText from '@/components/common/LocaleText'
 
-export type GenerationStatus = 'idle' | 'preparing' | 'generating' | 'success' | 'error';
+export type GenerationStatus = 'idle' | 'preparing' | 'generating' | 'success' | 'error'
 
 const statusToMessageKey: Partial<Record<GenerationStatus, CurriculumMessageKey>> = {
   preparing: CurriculumMessageKey.GENERATE_STATUS_PREPARING,
   generating: CurriculumMessageKey.GENERATE_STATUS_GENERATING,
   success: CurriculumMessageKey.GENERATE_STATUS_SUCCESS,
   error: CurriculumMessageKey.GENERATE_STATUS_ERROR,
-};
+}
 
 // 애니메이션 상태를 관리할 자식 컴포넌트
 interface AnimatedMessageProps {
-  messageKey: CurriculumMessageKey;
+  messageKey: CurriculumMessageKey
 }
 
 function AnimatedMessage({ messageKey }: AnimatedMessageProps) {
   // 컴포넌트가 보일지 여부를 결정하는 상태
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   // 컴포넌트가 마운트된 직후에 isVisible 상태를 true로 변경하여 애니메이션을 트리거
   useEffect(() => {
     // requestAnimationFrame을 사용하거나 작은 timeout을 주어
     // 브라우저가 초기 상태(hidden)를 렌더링한 후 최종 상태(visible)로 변경하도록 보장
     const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 10); // 아주 작은 딜레이
+      setIsVisible(true)
+    }, 10) // 아주 작은 딜레이
 
-    return () => clearTimeout(timer);
-  }, []); // 이 useEffect는 컴포넌트 마운트 시 한 번만 실행됩니다.
+    return () => clearTimeout(timer)
+  }, []) // 이 useEffect는 컴포넌트 마운트 시 한 번만 실행됩니다.
 
   const style: CSSProperties = {
     // CSS transition 설정
@@ -40,32 +40,32 @@ function AnimatedMessage({ messageKey }: AnimatedMessageProps) {
     // isVisible 상태에 따라 동적으로 스타일 변경
     transform: isVisible ? 'translateY(0)' : 'translateY(100%)', // 아래에서 위로
     opacity: isVisible ? 1 : 0, // 투명에서 불투명으로
-  };
+  }
 
   return (
     <div style={style}>
       <LocaleText keyOrLocaleData={messageKey} />
     </div>
-  );
+  )
 }
 
 interface GenerateLoadingProps {
-  status: GenerationStatus;
+  status: GenerationStatus
 }
 
 export default function GenerateLoading({ status }: GenerateLoadingProps) {
-  const messageKey = statusToMessageKey[status];
+  const messageKey = statusToMessageKey[status]
 
   useEffect(() => {
-    document.body.classList.add('loading-overlay-active');
+    document.body.classList.add('loading-overlay-active')
 
     return () => {
-      document.body.classList.remove('loading-overlay-active');
-    };
-  }, []);
+      document.body.classList.remove('loading-overlay-active')
+    }
+  }, [])
 
   if (!messageKey) {
-    return null;
+    return null
   }
 
   return (
@@ -82,5 +82,5 @@ export default function GenerateLoading({ status }: GenerateLoadingProps) {
         <AnimatedMessage key={messageKey} messageKey={messageKey} />
       </div>
     </div>
-  );
+  )
 }

@@ -1,10 +1,10 @@
-import { CurriculumMeta } from '@/types/curriculum';
-import { CurriculumUITextKey } from '@/locale/messages/curriculum';
-import LocaleText from '@/components/common/LocaleText';
-import PDFExporter from '@/components/common/PDFExporter';
+import { CurriculumMeta } from '@/types/curriculum'
+import { CurriculumUITextKey } from '@/locale/messages/curriculum'
+import LocaleText from '@/components/common/LocaleText'
+import PDFExporter from '@/components/common/PDFExporter'
 
 export default function CurriculumHeader({ metaData }: { metaData: CurriculumMeta }) {
-  const { title, description, targetJobs, level, createdAt } = metaData;
+  const { title, description, targetJobs, level, createdAt } = metaData
 
   return (
     <div className="flex flex-col flex-wrap gap-y-8">
@@ -28,7 +28,7 @@ export default function CurriculumHeader({ metaData }: { metaData: CurriculumMet
               >
                 {job}
               </span>
-            );
+            )
           })}
         </p>
         <p>
@@ -46,5 +46,5 @@ export default function CurriculumHeader({ metaData }: { metaData: CurriculumMet
       </div>
       <PDFExporter />
     </div>
-  );
+  )
 }

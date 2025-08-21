@@ -1,6 +1,6 @@
-'use server';
+'use server'
 
-import { createFormAction } from '@/utils/formActions';
+import { createFormAction } from '@/utils/formActions'
 
 // TODO
 export const signupAction = createFormAction(
@@ -12,7 +12,7 @@ export const signupAction = createFormAction(
     lastName: 'Last Name',
   },
   async ({ email, password, firstName, lastName }) => {
-    console.log({ email, password, firstName, lastName });
-    return null;
+    console.log({ email, password, firstName, lastName })
+    return null
   }
-);
+)

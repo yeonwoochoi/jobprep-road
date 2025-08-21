@@ -1,4 +1,4 @@
-import { LocaleData } from '@/locale/message';
+import { LocaleData } from '@/locale/message'
 
 export enum IndustryMessageKey {
   INDUSTRY_PLANNING = 'INDUSTRY_PLANNING',
@@ -630,4 +630,4 @@ export const industryMessages: LocaleData = {
     ko: '#요양보호사',
     en: '#Caregiver',
   },
-} as const;
+} as const

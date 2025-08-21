@@ -1,26 +1,26 @@
-'use client';
+'use client'
 
-import { useMemo } from 'react';
-import { jobData } from '@/data/constants/jobData';
-import { MessageKey } from '@/locale/message';
-import LocaleText from '@/components/common/LocaleText';
-import clsx from 'clsx';
+import { useMemo } from 'react'
+import { jobData } from '@/data/constants/jobData'
+import { MessageKey } from '@/locale/message'
+import LocaleText from '@/components/common/LocaleText'
+import clsx from 'clsx'
 
 interface JobTagCloudProps {
-  industryId: string | null;
-  selectedJobs: Set<string>;
-  onToggle: (jobId: string) => void;
+  industryId: string | null
+  selectedJobs: Set<string>
+  onToggle: (jobId: string) => void
 }
 
 export default function JobTagCloud({ industryId, selectedJobs, onToggle }: JobTagCloudProps) {
   const currentJobs = useMemo(() => {
-    if (!industryId) return [];
-    const industry = jobData.find((item) => item.id === industryId);
-    return industry ? industry.jobs : [];
-  }, [industryId]);
+    if (!industryId) return []
+    const industry = jobData.find((item) => item.id === industryId)
+    return industry ? industry.jobs : []
+  }, [industryId])
 
   if (!industryId) {
-    return null;
+    return null
   }
 
   return (
@@ -48,5 +48,5 @@ export default function JobTagCloud({ industryId, selectedJobs, onToggle }: JobT
         ))}
       </div>
     </div>
-  );
+  )
 }

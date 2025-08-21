@@ -1,12 +1,12 @@
-import { ComponentPropsWithoutRef, ElementType } from 'react';
-import clsx from 'clsx';
+import { ComponentPropsWithoutRef, ElementType } from 'react'
+import clsx from 'clsx'
 
 type BorderProps<T extends ElementType> = {
-  as?: T;
-  className?: string;
-  position?: 'top' | 'left';
-  invert?: boolean;
-};
+  as?: T
+  className?: string
+  position?: 'top' | 'left'
+  invert?: boolean
+}
 
 export function Border<T extends ElementType = 'div'>({
   as,
@@ -15,7 +15,7 @@ export function Border<T extends ElementType = 'div'>({
   invert = false,
   ...props
 }: Omit<ComponentPropsWithoutRef<T>, keyof BorderProps<T>> & BorderProps<T>) {
-  let Component = as ?? 'div';
+  let Component = as ?? 'div'
   return (
     <Component
       className={clsx(
@@ -31,5 +31,5 @@ export function Border<T extends ElementType = 'div'>({
       )}
       {...props}
     />
-  );
+  )
 }

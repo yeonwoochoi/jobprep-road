@@ -1,15 +1,15 @@
-import { ReactNode, useId } from 'react';
-import { FadeIn } from '@/components/ui/FadeIn';
-import { Border } from '@/components/ui/Border';
+import { ReactNode, useId } from 'react'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Border } from '@/components/ui/Border'
 
 interface SectionProps {
-  category: string | ReactNode;
-  contentId: string;
-  children: ReactNode;
+  category: string | ReactNode
+  contentId: string
+  children: ReactNode
 }
 
 export default function CurriculumSection({ category, contentId, children }: SectionProps) {
-  const id = useId();
+  const id = useId()
 
   return (
     <FadeIn key={id} className="mt-20">
@@ -22,5 +22,5 @@ export default function CurriculumSection({ category, contentId, children }: Sec
         </div>
       </Border>
     </FadeIn>
-  );
+  )
 }

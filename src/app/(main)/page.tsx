@@ -1,28 +1,28 @@
-import { Container } from '@/components/ui/Container';
-import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
-import { Button } from '@/components/ui/Button';
-import { MessageKey } from '@/locale/message';
-import LocaleText from '@/components/common/LocaleText';
-import { generatePageMetadata } from '@/_meta/metadata-utils';
-import { ContactSection } from '@/components/common/ContactSection';
-import { SectionIntro } from '@/components/ui/SectionIntro';
-import { List, ListItem } from '@/components/ui/List';
-import { StylizedImage } from '@/components/ui/StylizedImage';
-import imageLaptop from '@/images/laptop.jpg';
-import { Metadata } from 'next';
-import { cookies } from 'next/headers';
-import { Locale } from '@/locale';
-import { ReactNode, useId } from 'react';
+import { Container } from '@/components/ui/Container'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
+import { Button } from '@/components/ui/Button'
+import { MessageKey } from '@/locale/message'
+import LocaleText from '@/components/common/LocaleText'
+import { generatePageMetadata } from '@/_meta/metadata-utils'
+import { ContactSection } from '@/components/common/ContactSection'
+import { SectionIntro } from '@/components/ui/SectionIntro'
+import { List, ListItem } from '@/components/ui/List'
+import { StylizedImage } from '@/components/ui/StylizedImage'
+import imageLaptop from '@/images/laptop.jpg'
+import { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { Locale } from '@/locale'
+import { ReactNode, useId } from 'react'
 
-import Feature1Icon from '@/images/icons/why-us-feature-1.svg';
-import Feature2Icon from '@/images/icons/why-us-feature-2.svg';
-import Feature3Icon from '@/images/icons/why-us-feature-3.svg';
-import Image, { ImageProps } from 'next/image';
+import Feature1Icon from '@/images/icons/why-us-feature-1.svg'
+import Feature2Icon from '@/images/icons/why-us-feature-2.svg'
+import Feature3Icon from '@/images/icons/why-us-feature-3.svg'
+import Image, { ImageProps } from 'next/image'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko';
-  return generatePageMetadata('home', lang);
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata('home', lang)
 }
 
 function CtoSection() {
@@ -42,7 +42,7 @@ function CtoSection() {
         </Button>
       </FadeIn>
     </Container>
-  );
+  )
 }
 
 function ServiceSection() {
@@ -83,14 +83,14 @@ function ServiceSection() {
         </div>
       </Container>
     </div>
-  );
+  )
 }
 
 type WhyUsDistinction = {
-  icon: ImageProps['src'];
-  title: string | ReactNode;
-  description: string | ReactNode;
-};
+  icon: ImageProps['src']
+  title: string | ReactNode
+  description: string | ReactNode
+}
 
 function WhyUsSection() {
   const distinctions: WhyUsDistinction[] = [
@@ -109,7 +109,7 @@ function WhyUsSection() {
       title: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_3_TITLE} />,
       description: <LocaleText keyOrLocaleData={MessageKey.HOME_WHY_US_FEATURE_3_DESC} />,
     },
-  ];
+  ]
 
   return (
     <div className="mt-16 py-16 sm:py-32">
@@ -127,18 +127,18 @@ function WhyUsSection() {
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {distinctions.map((distinction, index) => {
-            return <WhyUsCard key={`why-us-card-${index}`} {...distinction} />;
+            return <WhyUsCard key={`why-us-card-${index}`} {...distinction} />
           })}
         </FadeInStagger>
       </Container>
     </div>
-  );
+  )
 }
 
 function WhyUsCard({ icon: iconSrc, title, description }: WhyUsDistinction) {
-  const id = useId();
-  const titleId = `distinction-title-${id}`;
-  const descriptionId = `distinction-desc-${id}`;
+  const id = useId()
+  const titleId = `distinction-title-${id}`
+  const descriptionId = `distinction-desc-${id}`
 
   return (
     <FadeIn key={id} className="flex">
@@ -164,7 +164,7 @@ function WhyUsCard({ icon: iconSrc, title, description }: WhyUsDistinction) {
         </p>
       </article>
     </FadeIn>
-  );
+  )
 }
 
 export default function Home() {
@@ -175,5 +175,5 @@ export default function Home() {
       <WhyUsSection />
       <ContactSection />
     </>
-  );
+  )
 }

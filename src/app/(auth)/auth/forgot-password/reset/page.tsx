@@ -1,71 +1,71 @@
-'use client';
+'use client'
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { FormEvent, startTransition, useActionState, useEffect, useState } from 'react';
-import { fetchApi } from '@/lib/api';
-import { FormActionResult } from '@/utils/formActions';
-import { resetNewPassword } from '@/actions/auth/reset-new-password.action';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useToast } from '@/hooks/useToast';
-import { t } from '@/locale';
-import { TextField } from '@/components/ui/TextField';
+import { useRouter, useSearchParams } from 'next/navigation'
+import { FormEvent, startTransition, useActionState, useEffect, useState } from 'react'
+import { fetchApi } from '@/lib/api'
+import { FormActionResult } from '@/utils/formActions'
+import { resetNewPassword } from '@/actions/auth/reset-new-password.action'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useToast } from '@/hooks/useToast'
+import { t } from '@/locale'
+import { TextField } from '@/components/ui/TextField'
 
 export default function Page() {
-  const searchParams = useSearchParams();
-  const email = searchParams.get('email') as string;
-  const router = useRouter();
+  const searchParams = useSearchParams()
+  const email = searchParams.get('email') as string
+  const router = useRouter()
 
-  const { language } = useLanguage();
-  const { toastSuccess, toastError } = useToast();
+  const { language } = useLanguage()
+  const { toastSuccess, toastError } = useToast()
 
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [isTouched, setIsTouched] = useState(false);
-  const [isMatch, setIsMatch] = useState(true);
-  const [showError, setShowError] = useState(false);
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [isTouched, setIsTouched] = useState(false)
+  const [isMatch, setIsMatch] = useState(true)
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     // 1. 토큰 유효성 검사
     const validateToken = async () => {
       const response = await fetchApi('/api/auth/verify-reset-token', {
         method: 'POST',
-      });
+      })
 
       if (response.status === 'error') {
-        throw new Error('Invalid token');
+        throw new Error('Invalid token')
       }
-    };
-    validateToken().catch(() => router.replace(`/auth/forgot-password?error=no_token`));
+    }
+    validateToken().catch(() => router.replace(`/auth/forgot-password?error=no_token`))
 
     // 2. beforeunload 핸들러 추가 (페이지 언로드 시 실행)
     const handleUnload = () => {
-      const url = '/api/auth/clear-reset-token';
-      const data = new Blob([JSON.stringify({})], { type: 'application/json' });
-      navigator.sendBeacon(url, data);
-    };
+      const url = '/api/auth/clear-reset-token'
+      const data = new Blob([JSON.stringify({})], { type: 'application/json' })
+      navigator.sendBeacon(url, data)
+    }
 
-    window.addEventListener('beforeunload', handleUnload);
+    window.addEventListener('beforeunload', handleUnload)
 
     // 3. 컴포넌트 언마운트 시 실행될 클린업 함수
     return () => {
       // 이벤트 리스너 제거
-      window.removeEventListener('beforeunload', handleUnload);
+      window.removeEventListener('beforeunload', handleUnload)
 
       // 기존 API 호출 유지
-      fetchApi('/api/auth/clear-reset-token', { method: 'POST' }).catch(console.error);
-    };
-  }, [router]);
+      fetchApi('/api/auth/clear-reset-token', { method: 'POST' }).catch(console.error)
+    }
+  }, [router])
   const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(
     resetNewPassword,
     {
       status: 'idle',
     }
-  );
+  )
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
-        toastError(state.error);
+        toastError(state.error)
       } else if (state.status === 'success') {
         toastSuccess(
           t(
@@ -75,22 +75,22 @@ export default function Page() {
             },
             language
           )
-        );
-        router.push('/auth/login');
+        )
+        router.push('/auth/login')
       }
     }
-  }, [state]);
+  }, [state])
 
   useEffect(() => {
     if (password || confirmPassword) {
-      setIsTouched(true);
-      setIsMatch(password === confirmPassword);
+      setIsTouched(true)
+      setIsMatch(password === confirmPassword)
     }
-  }, [password, confirmPassword]);
+  }, [password, confirmPassword])
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsTouched(true);
+    e.preventDefault()
+    setIsTouched(true)
 
     if (!isMatch) {
       toastError(
@@ -101,19 +101,19 @@ export default function Page() {
           },
           language
         )
-      );
-      return;
+      )
+      return
     }
 
     // FormData 생성 및 서버 액션 실행
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
+    const formData = new FormData()
+    formData.append('email', email)
+    formData.append('password', password)
 
     startTransition(() => {
-      formAction(formData as FormData);
-    });
-  };
+      formAction(formData as FormData)
+    })
+  }
 
   return (
     <form onSubmit={handleSubmit} className="mt-10 grid w-full grid-cols-1">
@@ -160,5 +160,5 @@ export default function Page() {
           : t({ ko: '비밀번호 재설정', en: 'Reset Password' }, language)}
       </button>
     </form>
-  );
+  )
 }

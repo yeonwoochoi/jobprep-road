@@ -1,4 +1,4 @@
-import { LocaleData } from '@/locale/message';
+import { LocaleData } from '@/locale/message'
 
 export enum ContactMessageKey {
   FEEDBACK_SECTION_EYEBROW = 'FEEDBACK_SECTION_EYEBROW',
@@ -90,4 +90,4 @@ export const contactMessages: LocaleData = {
     ko: '소중한 의견 감사합니다.',
     en: 'Thank you for your feedback.',
   },
-} as const;
+} as const

@@ -1,25 +1,25 @@
-import { SectionIntro } from '@/components/ui/SectionIntro';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { Container } from '@/components/ui/Container';
-import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
-import { Border } from '@/components/ui/Border';
-import Link from 'next/link';
-import ContactForm from '@/components/common/ContactForm';
-import { Metadata } from 'next';
-import { generatePageMetadata } from '@/_meta/metadata-utils';
-import { Locale } from '@/locale';
-import { cookies } from 'next/headers';
+import { SectionIntro } from '@/components/ui/SectionIntro'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { Container } from '@/components/ui/Container'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
+import { Border } from '@/components/ui/Border'
+import Link from 'next/link'
+import ContactForm from '@/components/common/ContactForm'
+import { Metadata } from 'next'
+import { generatePageMetadata } from '@/_meta/metadata-utils'
+import { Locale } from '@/locale'
+import { cookies } from 'next/headers'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko';
-  return generatePageMetadata('contact', lang);
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata('contact', lang)
 }
 
 function ContactDetails() {
-  const email = 'chldusdn20@gmail.com';
-  const phone = '+82-10-8560-3465';
+  const email = 'chldusdn20@gmail.com'
+  const phone = '+82-10-8560-3465'
 
   return (
     <FadeIn className="pr-6">
@@ -87,7 +87,7 @@ function ContactDetails() {
         </dl>
       </Border>
     </FadeIn>
-  );
+  )
 }
 
 export default function Page() {
@@ -109,5 +109,5 @@ export default function Page() {
         </div>
       </Container>
     </FadeInStagger>
-  );
+  )
 }

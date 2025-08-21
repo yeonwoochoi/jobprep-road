@@ -1,4 +1,4 @@
-import { LocaleData } from '@/locale/message';
+import { LocaleData } from '@/locale/message'
 
 export enum CommonMessageKey {
   // NOT FOUND
@@ -54,4 +54,4 @@ export const commonMessages: LocaleData = {
     ko: '복사에 실패했습니다.',
     en: 'Failed to copy.',
   },
-} as const;
+} as const

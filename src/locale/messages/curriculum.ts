@@ -1,4 +1,4 @@
-import { LocaleData } from '@/locale/message';
+import { LocaleData } from '@/locale/message'
 
 export enum CurriculumMessageKey {
   // --- Header ---
@@ -158,7 +158,7 @@ export const curriculumMessages: LocaleData = {
     ko: '오류가 발생했습니다. 잠시 후 다시 시도해주세요.',
     en: 'An error occurred. Please try again in a moment.',
   },
-} as const;
+} as const
 
 export const curriculumUIMessages = {
   // Curriculum Info
@@ -230,4 +230,4 @@ export const curriculumUIMessages = {
     ko: '프로젝트',
     en: 'Project',
   },
-} as const;
+} as const

@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn';
-import clsx from 'clsx';
-import { Border } from '@/components/ui/Border';
+import { ReactNode } from 'react'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
+import clsx from 'clsx'
+import { Border } from '@/components/ui/Border'
 
 export function List({ children, className }: { children: ReactNode; className?: string }) {
   return (
@@ -10,7 +10,7 @@ export function List({ children, className }: { children: ReactNode; className?:
         {children}
       </ul>
     </FadeInStagger>
-  );
+  )
 }
 
 export function ListItem({ children, title }: { children: ReactNode; title?: string | ReactNode }) {
@@ -28,5 +28,5 @@ export function ListItem({ children, title }: { children: ReactNode; title?: str
         </Border>
       </FadeIn>
     </li>
-  );
+  )
 }

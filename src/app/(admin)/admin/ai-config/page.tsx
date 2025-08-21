@@ -1,3 +1,3 @@
 export default function Page() {
-  return <div>/admin/ai-config</div>;
+  return <div>/admin/ai-config</div>
 }

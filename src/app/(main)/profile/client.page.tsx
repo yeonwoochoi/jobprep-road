@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { Container } from '@/components/ui/Container';
-import { FadeIn } from '@/components/ui/FadeIn';
-import ProfileUserInfoCard from '@/components/profile/ProfileUserInfoCard';
-import ProfileSidebar from '@/components/profile/ProfileSidebar';
-import { useState } from 'react';
-import { UserData } from '@/types/user';
-import ProfileContentCard from '@/components/profile/ProfileContentCard';
-import { ActiveMenu } from '@/data/constants/profileMenu';
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
+import ProfileUserInfoCard from '@/components/profile/ProfileUserInfoCard'
+import ProfileSidebar from '@/components/profile/ProfileSidebar'
+import { useState } from 'react'
+import { UserData } from '@/types/user'
+import ProfileContentCard from '@/components/profile/ProfileContentCard'
+import { ActiveMenu } from '@/data/constants/profileMenu'
 
 interface ProfileClientPageProps {
-  user: UserData;
+  user: UserData
 }
 
 export default function ProfileClientPage({ user }: ProfileClientPageProps) {
-  const [activeMenu, setActiveMenu] = useState<ActiveMenu>('profileSettings');
+  const [activeMenu, setActiveMenu] = useState<ActiveMenu>('profileSettings')
 
   return (
     <Container className="mt-16 sm:mt-20">
@@ -33,5 +33,5 @@ export default function ProfileClientPage({ user }: ProfileClientPageProps) {
         </main>
       </div>
     </Container>
-  );
+  )
 }

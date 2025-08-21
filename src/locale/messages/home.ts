@@ -1,4 +1,4 @@
-import { LocaleData } from '@/locale/message';
+import { LocaleData } from '@/locale/message'
 
 export enum HomeMessageKey {
   // HOME
@@ -207,4 +207,4 @@ export const homeMessages: LocaleData = {
     ko: '언어',
     en: 'Language',
   },
-} as const;
+} as const

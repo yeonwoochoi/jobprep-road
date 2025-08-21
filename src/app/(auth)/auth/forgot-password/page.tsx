@@ -1,6 +1,6 @@
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import ClientPage from '@/app/(auth)/auth/forgot-password/ClientPage';
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import ClientPage from '@/app/(auth)/auth/forgot-password/ClientPage'
 
 export default function Page() {
   return (
@@ -14,5 +14,5 @@ export default function Page() {
       </div>
       <ClientPage />
     </>
-  );
+  )
 }

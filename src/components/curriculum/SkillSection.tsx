@@ -1,13 +1,13 @@
-import { Importance, SkillCategory } from '@/types/curriculum';
-import { useId } from 'react';
+import { Importance, SkillCategory } from '@/types/curriculum'
+import { useId } from 'react'
 
 export default function SkillSection({ skillTree }: { skillTree: SkillCategory[] }) {
-  const componentId = useId();
+  const componentId = useId()
   const importanceInfo: Record<Importance, { icon: string; className: string }> = {
     required: { icon: '★★★', className: 'text-neutral-700 font-bold' },
     recommended: { icon: '★★☆', className: 'text-neutral-600' },
     nice_to_have: { icon: '★☆☆', className: 'text-neutral-500' },
-  };
+  }
 
   return (
     <section className="flex flex-col gap-y-20">
@@ -19,7 +19,7 @@ export default function SkillSection({ skillTree }: { skillTree: SkillCategory[]
           <p className="sm:text-md/7 mt-4 text-gray-700">{description}</p>
           <div className="mt-12 grid grid-cols-1 gap-2 sm:grid-cols-2">
             {skills.map((skill) => {
-              const info = importanceInfo[skill.importance];
+              const info = importanceInfo[skill.importance]
               return (
                 <div
                   key={`${componentId}-${categoryName}-${skill.name}`}
@@ -33,11 +33,11 @@ export default function SkillSection({ skillTree }: { skillTree: SkillCategory[]
                   </div>
                   <p className="mt-2 text-sm text-neutral-600">{skill.description}</p>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       ))}
     </section>
-  );
+  )
 }

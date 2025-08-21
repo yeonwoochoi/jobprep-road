@@ -1,17 +1,17 @@
-import LoginInput from '@/components/auth/LoginInput';
-import Link from 'next/link';
-import { MessageKey } from '@/locale/message';
-import LocaleText from '@/components/common/LocaleText';
-import { Logo } from '@/components/ui/Logo';
-import { generatePageMetadata } from '@/_meta/metadata-utils';
-import { Metadata } from 'next';
-import { cookies } from 'next/headers';
-import { Locale } from '@/locale';
+import LoginInput from '@/components/auth/LoginInput'
+import Link from 'next/link'
+import { MessageKey } from '@/locale/message'
+import LocaleText from '@/components/common/LocaleText'
+import { Logo } from '@/components/ui/Logo'
+import { generatePageMetadata } from '@/_meta/metadata-utils'
+import { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { Locale } from '@/locale'
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko';
-  return generatePageMetadata('login', lang);
+  const cookieStore = await cookies()
+  const lang = (cookieStore.get('lang' as any)?.value as Locale) || 'ko'
+  return generatePageMetadata('login', lang)
 }
 
 export default function Page() {
@@ -33,5 +33,5 @@ export default function Page() {
       </div>
       <LoginInput />
     </>
-  );
+  )
 }

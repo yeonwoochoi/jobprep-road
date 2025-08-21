@@ -1,9 +1,9 @@
-'use server';
+'use server'
 
-import { createFormAction } from '@/utils/formActions';
-import { dynamicFetch } from '@/lib/api';
-import parse from 'set-cookie-parser';
-import { cookies } from 'next/headers';
+import { createFormAction } from '@/utils/formActions'
+import { dynamicFetch } from '@/lib/api'
+import parse from 'set-cookie-parser'
+import { cookies } from 'next/headers'
 
 // TODO
 export const verifyCodeAction = createFormAction(
@@ -13,16 +13,16 @@ export const verifyCodeAction = createFormAction(
     const res = await dynamicFetch('/api/auth/verify-reset-code', {
       method: 'POST',
       body: JSON.stringify({ email, verificationCode }),
-    });
+    })
 
     if (res.status === 'error') {
-      throw new Error(res.error);
+      throw new Error(res.error)
     } else if (res.status === 'success') {
-      const setCookieHeader = res.headers?.get('set-cookie');
+      const setCookieHeader = res.headers?.get('set-cookie')
       if (setCookieHeader) {
-        const cookieObj = parse(setCookieHeader)?.find((c) => c.name === 'reset_token');
+        const cookieObj = parse(setCookieHeader)?.find((c) => c.name === 'reset_token')
         if (cookieObj) {
-          const cookieStore = await cookies();
+          const cookieStore = await cookies()
           cookieStore.set({
             name: 'reset_token',
             value: cookieObj.value,
@@ -31,10 +31,10 @@ export const verifyCodeAction = createFormAction(
             secure: process.env.NODE_ENV === 'production',
             sameSite: cookieObj.sameSite as 'strict' | 'lax' | 'none',
             maxAge: cookieObj.maxAge,
-          });
+          })
         }
       }
     }
-    return null;
+    return null
   }
-);
+)

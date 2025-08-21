@@ -1,20 +1,20 @@
-import { FadeInStagger } from '@/components/ui/FadeIn';
-import { SectionIntro } from '@/components/ui/SectionIntro';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import ProfileClientPage from '@/app/(main)/profile/client.page';
-import { dynamicFetch } from '@/lib/api';
-import { UserData } from '@/types/user';
-import { Container } from '@/components/ui/Container';
-import ProfileErrorActions from '@/components/profile/ProfileErrorActions';
-import sampleUserDataJson from '@/data/mocks/userProfileMockData.json';
+import { FadeInStagger } from '@/components/ui/FadeIn'
+import { SectionIntro } from '@/components/ui/SectionIntro'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import ProfileClientPage from '@/app/(main)/profile/client.page'
+import { dynamicFetch } from '@/lib/api'
+import { UserData } from '@/types/user'
+import { Container } from '@/components/ui/Container'
+import ProfileErrorActions from '@/components/profile/ProfileErrorActions'
+import sampleUserDataJson from '@/data/mocks/userProfileMockData.json'
 
 export default async function Page() {
   // TODO: 실제 API 연동 시 주석 해제
   // const result = await dynamicFetch<UserData>('/api/user/me');
 
   // JSON 파일을 타입 단언(as)을 통해 UserData 타입으로 사용합니다.
-  const result = { status: 'success', data: sampleUserDataJson as UserData };
+  const result = { status: 'success', data: sampleUserDataJson as UserData }
 
   if (result.status === 'error' || !result.data) {
     return (
@@ -24,10 +24,10 @@ export default async function Page() {
         </p>
         <ProfileErrorActions />
       </Container>
-    );
+    )
   }
 
-  const userData = result.data;
+  const userData = result.data
 
   return (
     <FadeInStagger className="mt-0 sm:mt-8 lg:mt-16">
@@ -38,5 +38,5 @@ export default async function Page() {
       </SectionIntro>
       <ProfileClientPage user={userData} />
     </FadeInStagger>
-  );
+  )
 }

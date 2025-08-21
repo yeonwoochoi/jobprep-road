@@ -1,14 +1,14 @@
-import { Locale } from '@/locale';
+import { Locale } from '@/locale'
 
 type PageMetadata = {
   [key in Locale]: {
-    title: string; // 여기에는 페이지 고유의 제목만!
-    description: string;
-    ogTitle?: string;
-    ogDescription?: string;
-    ogUrl?: string;
-  };
-};
+    title: string // 여기에는 페이지 고유의 제목만!
+    description: string
+    ogTitle?: string
+    ogDescription?: string
+    ogUrl?: string
+  }
+}
 
 export const pageMetadata: Record<string, PageMetadata> = {
   home: {
@@ -92,7 +92,7 @@ export const pageMetadata: Record<string, PageMetadata> = {
       description: 'Leave your inquiries about the Job Prep Road service.',
     },
   },
-};
+}
 
 // 기본/공통 메타데이터 (siteName 등)
 export const commonMetadata = {
@@ -104,4 +104,4 @@ export const commonMetadata = {
     siteName: 'Job Prep Road',
     description: 'All about job preparation. Start your career journey with Job Prep Road.',
   },
-};
+}

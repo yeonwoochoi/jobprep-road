@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import {
   ComponentType,
@@ -12,29 +12,29 @@ import {
   useId,
   useRef,
   useState,
-} from 'react';
-import { usePathname } from 'next/navigation';
-import { motion, MotionConfig, useReducedMotion } from 'framer-motion';
+} from 'react'
+import { usePathname } from 'next/navigation'
+import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
-import { GridPattern } from '@/components/ui/GridPattern';
-import Footer from '@/components/ui/Footer';
-import { Container } from '@/components/ui/Container';
-import Link from 'next/link';
-import { Logo, Logomark } from '@/components/ui/Logo';
-import clsx from 'clsx';
-import { Button } from '@/components/ui/Button';
-import { SocialMedia } from '@/components/ui/SocialMedia';
-import LocaleText from '@/components/common/LocaleText';
-import { MessageKey } from '@/locale/message';
-import { MenuIcon, XIcon } from '@/components/ui/Icons';
-import LanguageToggleButton from '@/components/ui/LanguageToggleButton';
-import ContactInfo from '@/components/ui/ContactInfo';
-import { SidebarProvider, useSidebar } from '@/contexts/SidebarContext';
+import { GridPattern } from '@/components/ui/GridPattern'
+import Footer from '@/components/ui/Footer'
+import { Container } from '@/components/ui/Container'
+import Link from 'next/link'
+import { Logo, Logomark } from '@/components/ui/Logo'
+import clsx from 'clsx'
+import { Button } from '@/components/ui/Button'
+import { SocialMedia } from '@/components/ui/SocialMedia'
+import LocaleText from '@/components/common/LocaleText'
+import { MessageKey } from '@/locale/message'
+import { MenuIcon, XIcon } from '@/components/ui/Icons'
+import LanguageToggleButton from '@/components/ui/LanguageToggleButton'
+import ContactInfo from '@/components/ui/ContactInfo'
+import { SidebarProvider, useSidebar } from '@/contexts/SidebarContext'
 
 const MainLayoutContext = createContext<{
-  logoHovered: boolean;
-  setLogoHovered: Dispatch<SetStateAction<boolean>>;
-} | null>(null);
+  logoHovered: boolean
+  setLogoHovered: Dispatch<SetStateAction<boolean>>
+} | null>(null)
 
 function Navigation() {
   return (
@@ -56,7 +56,7 @@ function Navigation() {
         </NavigationItem>
       </NavigationRow>
     </nav>
-  );
+  )
 }
 
 function NavigationRow({ children }: { children: ReactNode }) {
@@ -66,7 +66,7 @@ function NavigationRow({ children }: { children: ReactNode }) {
         <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
       </Container>
     </div>
-  );
+  )
 }
 
 function NavigationItem({ href, children }: { href: string; children: ReactNode }) {
@@ -78,7 +78,7 @@ function NavigationItem({ href, children }: { href: string; children: ReactNode 
       {children}
       <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
     </Link>
-  );
+  )
 }
 
 function InfoSection() {
@@ -104,17 +104,17 @@ function InfoSection() {
         </div>
       </Container>
     </div>
-  );
+  )
 }
 
 type HeaderPropsType = {
-  panelId: string;
-  icon: ComponentType<{ className?: string }>;
-  expanded: boolean;
-  onToggle: () => void;
-  toggleRef: RefObject<HTMLButtonElement | null>;
-  invert?: boolean;
-};
+  panelId: string
+  icon: ComponentType<{ className?: string }>
+  expanded: boolean
+  onToggle: () => void
+  toggleRef: RefObject<HTMLButtonElement | null>
+  invert?: boolean
+}
 
 function Header({
   panelId,
@@ -124,7 +124,7 @@ function Header({
   toggleRef,
   invert = false,
 }: HeaderPropsType) {
-  const { logoHovered, setLogoHovered } = useContext(MainLayoutContext)!;
+  const { logoHovered, setLogoHovered } = useContext(MainLayoutContext)!
 
   return (
     <Container>
@@ -166,21 +166,21 @@ function Header({
         </div>
       </div>
     </Container>
-  );
+  )
 }
 
 function MainLayoutInner({ children }: { children: ReactNode }) {
-  const panelId = useId();
-  const [expanded, setExpanded] = useState(false); // 메뉴의 열림/닫힘 상태
-  const [isTransitioning, setIsTransitioning] = useState(false); // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
+  const panelId = useId()
+  const [expanded, setExpanded] = useState(false) // 메뉴의 열림/닫힘 상태
+  const [isTransitioning, setIsTransitioning] = useState(false) // 메뉴 열림/닫힘 전환 애니메이션 진행 여부 상태
 
-  const openRef = useRef<HTMLButtonElement | null>(null);
-  const closeRef = useRef<HTMLButtonElement | null>(null);
-  const navRef = useRef<HTMLDivElement | null>(null);
+  const openRef = useRef<HTMLButtonElement | null>(null)
+  const closeRef = useRef<HTMLButtonElement | null>(null)
+  const navRef = useRef<HTMLDivElement | null>(null)
 
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion()
 
-  const { isSidebarVisible } = useSidebar();
+  const { isSidebarVisible } = useSidebar()
 
   useEffect(() => {
     // 현재 페이지 링크 클릭 시 메뉴 닫고 애니메이션 초기화
@@ -190,29 +190,29 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
         event.target instanceof HTMLElement &&
         event.target.closest('a')?.href === window.location.href
       ) {
-        setIsTransitioning(false);
-        setExpanded(false);
+        setIsTransitioning(false)
+        setExpanded(false)
       }
     }
 
-    window.addEventListener('click', onClick);
+    window.addEventListener('click', onClick)
     return () => {
-      window.removeEventListener('click', onClick);
-    };
-  }, []);
+      window.removeEventListener('click', onClick)
+    }
+  }, [])
 
   useEffect(() => {
     if (!expanded) {
-      openRef.current?.focus({ preventScroll: true });
+      openRef.current?.focus({ preventScroll: true })
     } else {
-      closeRef.current?.focus({ preventScroll: true });
+      closeRef.current?.focus({ preventScroll: true })
     }
-  }, [expanded]);
+  }, [expanded])
 
   const toggleMenu = () => {
-    setIsTransitioning(true);
-    setExpanded((expanded) => !expanded);
-  };
+    setIsTransitioning(true)
+    setExpanded((expanded) => !expanded)
+  }
 
   return (
     <MotionConfig transition={shouldReduceMotion || !isTransitioning ? { duration: 0 } : undefined}>
@@ -286,12 +286,12 @@ function MainLayoutInner({ children }: { children: ReactNode }) {
         </motion.div>
       </motion.div>
     </MotionConfig>
-  );
+  )
 }
 
 export default function MainLayout({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const [logoHovered, setLogoHovered] = useState(false);
+  const pathname = usePathname()
+  const [logoHovered, setLogoHovered] = useState(false)
 
   return (
     <MainLayoutContext.Provider value={{ logoHovered, setLogoHovered }}>
@@ -299,5 +299,5 @@ export default function MainLayout({ children }: { children: ReactNode }) {
         <MainLayoutInner key={pathname}>{children}</MainLayoutInner>
       </SidebarProvider>
     </MainLayoutContext.Provider>
-  );
+  )
 }

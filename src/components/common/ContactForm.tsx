@@ -1,79 +1,79 @@
-'use client';
+'use client'
 
-import { Bug, FileText, Lightbulb, MessageSquare } from 'lucide-react';
-import { MessageKey } from '@/locale/message';
-import { ChangeEvent, useActionState, useEffect, useState } from 'react';
-import { FadeIn } from '@/components/ui/FadeIn';
-import LocaleText from '@/components/common/LocaleText';
-import clsx from 'clsx';
-import { Button } from '@/components/ui/Button';
-import { feedbackAction } from '@/actions/contact/feedback.action';
-import { FormActionResult } from '@/utils/formActions';
-import { useToast } from '@/hooks/useToast';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { t } from '@/locale';
+import { Bug, FileText, Lightbulb, MessageSquare } from 'lucide-react'
+import { MessageKey } from '@/locale/message'
+import { ChangeEvent, useActionState, useEffect, useState } from 'react'
+import { FadeIn } from '@/components/ui/FadeIn'
+import LocaleText from '@/components/common/LocaleText'
+import clsx from 'clsx'
+import { Button } from '@/components/ui/Button'
+import { feedbackAction } from '@/actions/contact/feedback.action'
+import { FormActionResult } from '@/utils/formActions'
+import { useToast } from '@/hooks/useToast'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { t } from '@/locale'
 
 const feedbackTypes = [
   { id: 'idea', icon: Lightbulb, labelKey: MessageKey.FEEDBACK_TYPE_IDEA },
   { id: 'bug', icon: Bug, labelKey: MessageKey.FEEDBACK_TYPE_BUG },
   { id: 'content', icon: FileText, labelKey: MessageKey.FEEDBACK_TYPE_CONTENT },
   { id: 'etc', icon: MessageSquare, labelKey: MessageKey.FEEDBACK_TYPE_ETC },
-] as const;
+] as const
 
-type FeedbackTypeId = (typeof feedbackTypes)[number]['id'];
+type FeedbackTypeId = (typeof feedbackTypes)[number]['id']
 
 type ContactFormData = {
-  type: FeedbackTypeId | null;
-  title: string;
-  message: string;
-};
+  type: FeedbackTypeId | null
+  title: string
+  message: string
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     type: null,
     title: '',
     message: '',
-  });
+  })
 
   const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(
     feedbackAction,
     {
       status: 'idle',
     }
-  );
+  )
 
-  const { toastSuccess, toastError } = useToast();
-  const { language } = useLanguage();
+  const { toastSuccess, toastError } = useToast()
+  const { language } = useLanguage()
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
-        toastError(state.error);
+        toastError(state.error)
       } else if (state.status === 'success') {
-        toastSuccess(t(MessageKey.FEEDBACK_SUBMIT_SUCCESS, language));
+        toastSuccess(t(MessageKey.FEEDBACK_SUBMIT_SUCCESS, language))
         setFormData({
           type: null,
           title: '',
           message: '',
-        });
+        })
       }
     }
-  }, [state]);
+  }, [state])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const handleTypeSelect = (type: FeedbackTypeId) => {
     setFormData((prevData) => ({
       ...prevData,
       type: type,
-    }));
-  };
+    }))
+  }
 
   return (
     <FadeIn className="lg:order-last">
@@ -91,8 +91,8 @@ export default function ContactForm() {
               </label>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {feedbackTypes.map((type) => {
-                  const Icon = type.icon;
-                  const isSelected = formData.type === type.id;
+                  const Icon = type.icon
+                  const isSelected = formData.type === type.id
                   return (
                     <button
                       key={type.id}
@@ -112,7 +112,7 @@ export default function ContactForm() {
                         <LocaleText keyOrLocaleData={type.labelKey} />
                       </span>
                     </button>
-                  );
+                  )
                 })}
               </div>
             </div>
@@ -169,5 +169,5 @@ export default function ContactForm() {
         </div>
       </form>
     </FadeIn>
-  );
+  )
 }

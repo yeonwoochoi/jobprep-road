@@ -1,13 +1,13 @@
-import Link from 'next/link';
-import clsx from 'clsx';
-import { ComponentPropsWithoutRef } from 'react';
+import Link from 'next/link'
+import clsx from 'clsx'
+import { ComponentPropsWithoutRef } from 'react'
 
 type ButtonProps = {
-  invert?: boolean;
+  invert?: boolean
 } & (
   | ComponentPropsWithoutRef<typeof Link>
   | (ComponentPropsWithoutRef<'button'> & { href?: undefined })
-);
+)
 
 export function Button({ invert = false, className, children, ...props }: ButtonProps) {
   className = clsx(
@@ -22,21 +22,21 @@ export function Button({ invert = false, className, children, ...props }: Button
           'bg-neutral-950 text-white hover:bg-neutral-800 disabled:opacity-60',
           'disabled:bg-neutral-400 disabled:opacity-70',
         ]
-  );
+  )
 
-  const inner = <span className="relative top-px">{children}</span>;
+  const inner = <span className="relative top-px">{children}</span>
 
   if (typeof props.href === 'undefined') {
     return (
       <button className={className} {...props}>
         {inner}
       </button>
-    );
+    )
   }
 
   return (
     <Link className={className} {...props}>
       {inner}
     </Link>
-  );
+  )
 }

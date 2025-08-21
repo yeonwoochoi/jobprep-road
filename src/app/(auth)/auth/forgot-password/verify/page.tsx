@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { redirect, useRouter, useSearchParams } from 'next/navigation';
-import { useActionState, useEffect, useTransition } from 'react';
-import { FormActionResult } from '@/utils/formActions';
-import { verifyCodeAction } from '@/actions/auth/verify-code.action';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useToast } from '@/hooks/useToast';
-import { t } from '@/locale';
-import { sendVerificationCodeAction } from '@/actions/auth/send-verification-code.action';
-import { TextField } from '@/components/ui/TextField';
+import { redirect, useRouter, useSearchParams } from 'next/navigation'
+import { useActionState, useEffect, useTransition } from 'react'
+import { FormActionResult } from '@/utils/formActions'
+import { verifyCodeAction } from '@/actions/auth/verify-code.action'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useToast } from '@/hooks/useToast'
+import { t } from '@/locale'
+import { sendVerificationCodeAction } from '@/actions/auth/send-verification-code.action'
+import { TextField } from '@/components/ui/TextField'
 
 export default function Page() {
-  const searchParams = useSearchParams();
-  const email = searchParams.get('email') as string;
+  const searchParams = useSearchParams()
+  const email = searchParams.get('email') as string
   if (!email || email === 'undefined' || email === 'null') {
-    redirect('/auth/forgot-password');
+    redirect('/auth/forgot-password')
   }
 
   const [state, formAction, isVerifying] = useActionState<FormActionResult<null>, FormData>(
@@ -22,38 +22,38 @@ export default function Page() {
     {
       status: 'idle',
     }
-  );
-  const [isResending, startTransition] = useTransition();
+  )
+  const [isResending, startTransition] = useTransition()
 
-  const { language } = useLanguage();
-  const { toastSuccess, toastError } = useToast();
-  const router = useRouter();
+  const { language } = useLanguage()
+  const { toastSuccess, toastError } = useToast()
+  const router = useRouter()
 
   useEffect(() => {
     if (state) {
       if (state.status === 'error') {
-        toastError(state.error);
+        toastError(state.error)
       } else if (state.status === 'success') {
-        toastSuccess(t({ ko: '인증이 완료되었습니다.', en: 'Verification completed.' }, language));
-        router.push(`/auth/forgot-password/reset?email=${encodeURIComponent(email)}`);
+        toastSuccess(t({ ko: '인증이 완료되었습니다.', en: 'Verification completed.' }, language))
+        router.push(`/auth/forgot-password/reset?email=${encodeURIComponent(email)}`)
       }
     }
-  }, [state]);
+  }, [state])
 
   const resendVerificationCode = () => {
     startTransition(async () => {
-      const formData = new FormData();
-      formData.append('email', email);
+      const formData = new FormData()
+      formData.append('email', email)
 
-      const result = await sendVerificationCodeAction(null, formData as FormData);
+      const result = await sendVerificationCodeAction(null, formData as FormData)
 
       if (result.status === 'success') {
-        toastSuccess(t({ ko: '메일이 전송되었습니다.', en: 'Email has been sent.' }, language));
+        toastSuccess(t({ ko: '메일이 전송되었습니다.', en: 'Email has been sent.' }, language))
       } else if (result.status === 'error') {
-        toastError(result.error);
+        toastError(result.error)
       }
-    });
-  };
+    })
+  }
 
   return (
     <form action={formAction} className="mt-10 grid w-full grid-cols-1 gap-y-4">
@@ -92,5 +92,5 @@ export default function Page() {
           : t({ ko: '확인', en: 'Verify' }, language)}
       </button>
     </form>
-  );
+  )
 }

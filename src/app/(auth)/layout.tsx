@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import LanguageToggleButton from '@/components/ui/LanguageToggleButton';
-import { GridPattern } from '@/components/ui/GridPattern';
-import PageTransitionWrapper from '@/components/common/PageTransitionWrapper';
+import { ReactNode } from 'react'
+import LanguageToggleButton from '@/components/ui/LanguageToggleButton'
+import { GridPattern } from '@/components/ui/GridPattern'
+import PageTransitionWrapper from '@/components/common/PageTransitionWrapper'
 
 export default function Layout({ children }: Readonly<{ children: ReactNode }>) {
   return (
@@ -22,5 +22,5 @@ export default function Layout({ children }: Readonly<{ children: ReactNode }>) 
         </div>
       </main>
     </div>
-  );
+  )
 }

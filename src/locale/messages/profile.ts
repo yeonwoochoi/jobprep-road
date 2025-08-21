@@ -1,4 +1,4 @@
-import { LocaleData } from '@/locale/message';
+import { LocaleData } from '@/locale/message'
 
 export enum ProfileMessageKey {
   PROFILE_HEADER_EYEBROW = 'PROFILE_HEADER_EYEBROW',
@@ -64,4 +64,4 @@ export const profileMessages: LocaleData = {
     ko: '홈으로 가기',
     en: 'Go to Home',
   },
-};
+}
