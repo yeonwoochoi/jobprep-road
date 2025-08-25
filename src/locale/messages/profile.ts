@@ -4,6 +4,8 @@ export enum ProfileMessageKey {
   PROFILE_HEADER_EYEBROW = 'PROFILE_HEADER_EYEBROW',
   PROFILE_HEADER_TITLE = 'PROFILE_HEADER_TITLE',
   PROFILE_HEADER_DESCRIPTION = 'PROFILE_HEADER_DESCRIPTION',
+  PROFILE_DIFFICULTY = 'PROFILE_DIFFICULTY',
+  PROFILE_CURRICULUM_DETAIL_BUTTON = 'PROFILE_CURRICULUM_DETAIL_BUTTON',
 
   // Sidebar Menu
   PROFILE_MENU_HEADER = 'PROFILE_MENU_HEADER',
@@ -63,5 +65,14 @@ export const profileMessages: LocaleData = {
   PROFILE_HOME_BUTTON: {
     ko: '홈으로 가기',
     en: 'Go to Home',
+  },
+
+  PROFILE_DIFFICULTY: {
+    ko: '난이도',
+    en: 'Difficulty',
+  },
+  PROFILE_CURRICULUM_DETAIL_BUTTON: {
+    ko: '결과 보기',
+    en: 'View Result',
   },
 }

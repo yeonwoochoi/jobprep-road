@@ -4,7 +4,7 @@ export interface CurriculumSummary extends CurriculumMeta {
   id: string
 }
 
-export interface UserData {
+export interface ProfileData {
   id: string // 사용자 ID
   name: string
   email: string
