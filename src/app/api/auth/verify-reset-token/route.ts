@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
   try {
-    const token = request.cookies.get('reset_token')?.value || undefined
+    const token = request.cookies.get('reset_token')?.value
     if (!token) {
       return NextResponse.json(
         { error: '인증 토큰이 없습니다. 다시 인증해주세요' },

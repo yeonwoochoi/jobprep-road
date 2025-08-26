@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { FormEvent, startTransition, useActionState, useEffect, useState } from 'react'
 import { fetchApi } from '@/lib/api'
 import { FormActionResult } from '@/utils/formActions'
-import { resetNewPassword } from '@/actions/auth/reset-new-password.action'
+import { resetPasswordAction } from '@/actions/auth/reset-password.action'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useToast } from '@/hooks/useToast'
 import { t } from '@/locale'
@@ -56,7 +56,7 @@ export default function Page() {
     }
   }, [router])
   const [state, formAction, isPending] = useActionState<FormActionResult<null>, FormData>(
-    resetNewPassword,
+    resetPasswordAction,
     {
       status: 'idle',
     }

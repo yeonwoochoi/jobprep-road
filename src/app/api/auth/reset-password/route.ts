@@ -18,7 +18,6 @@ export async function POST(request: NextRequest) {
 
     // 2. 쿠키에서 토큰 추출
     const token = request.cookies.get('reset_token')?.value || undefined
-
     if (!token) {
       return NextResponse.json(
         { error: '인증 토큰이 없습니다. 다시 인증해주세요' },

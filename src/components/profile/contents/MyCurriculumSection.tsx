@@ -33,7 +33,9 @@ function CurriculumCard({ curriculum, removeCurriculum }: CurriculumCardProps) {
 
   const handleRemoveClick = async () => {
     if (isDeleting) return
-    if (confirm(t({ ko: '정말 삭제하시겠습니까?', en: 'Are you sure you want to delete?' }, language))) {
+    if (
+      confirm(t({ ko: '정말 삭제하시겠습니까?', en: 'Are you sure you want to delete?' }, language))
+    ) {
       try {
         setIsDeleting(true)
         await removeCurriculum(curriculum.id)
